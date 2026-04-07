@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /preview.html
+
+Sitemap: https://pasha.lt/sitemap.xml

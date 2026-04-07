@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- Главная (языковые версии) -->
+  <url>
+    <loc>https://pasha.lt/</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pasha.lt/ru/"/>
+    <lastmod>2026-04-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://pasha.lt/ru/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://pasha.lt/ru/"/>
+    <xhtml:link rel="alternate" hreflang="lt" href="https://pasha.lt/lt/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pasha.lt/en/"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://pasha.lt/pl/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://pasha.lt/ukr/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://pasha.lt/de/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pasha.lt/ru/"/>
+    <lastmod>2026-04-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://pasha.lt/lt/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://pasha.lt/ru/"/>
+    <xhtml:link rel="alternate" hreflang="lt" href="https://pasha.lt/lt/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pasha.lt/en/"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://pasha.lt/pl/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://pasha.lt/ukr/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://pasha.lt/de/"/>
+    <lastmod>2026-04-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://pasha.lt/en/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://pasha.lt/ru/"/>
+    <xhtml:link rel="alternate" hreflang="lt" href="https://pasha.lt/lt/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pasha.lt/en/"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://pasha.lt/pl/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://pasha.lt/ukr/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://pasha.lt/de/"/>
+    <lastmod>2026-04-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://pasha.lt/pl/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://pasha.lt/ru/"/>
+    <xhtml:link rel="alternate" hreflang="lt" href="https://pasha.lt/lt/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pasha.lt/en/"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://pasha.lt/pl/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://pasha.lt/ukr/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://pasha.lt/de/"/>
+    <lastmod>2026-04-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://pasha.lt/ukr/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://pasha.lt/ru/"/>
+    <xhtml:link rel="alternate" hreflang="lt" href="https://pasha.lt/lt/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pasha.lt/en/"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://pasha.lt/pl/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://pasha.lt/ukr/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://pasha.lt/de/"/>
+    <lastmod>2026-04-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://pasha.lt/de/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://pasha.lt/ru/"/>
+    <xhtml:link rel="alternate" hreflang="lt" href="https://pasha.lt/lt/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pasha.lt/en/"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://pasha.lt/pl/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://pasha.lt/ukr/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://pasha.lt/de/"/>
+    <lastmod>2026-04-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Русские подстраницы -->
+  <url>
+    <loc>https://pasha.lt/ru/smysl-pashi.html</loc>
+    <lastmod>2026-04-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://pasha.lt/ru/put-hrista.html</loc>
+    <lastmod>2026-04-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://pasha.lt/ru/yavleniya.html</loc>
+    <lastmod>2026-04-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://pasha.lt/ru/osvyashchenie.html</loc>
+    <lastmod>2026-04-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://pasha.lt/ru/prorochestva.html</loc>
+    <lastmod>2026-04-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://pasha.lt/ru/traditsii.html</loc>
+    <lastmod>2026-04-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://pasha.lt/ru/raspisanie.html</loc>
+    <lastmod>2026-04-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://pasha.lt/ru/vpervye.html</loc>
+    <lastmod>2026-04-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+</urlset>
