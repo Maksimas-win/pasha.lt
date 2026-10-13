@@ -1,0 +1,26 @@
+# pasha.lt — настройки веб-сервера (Hostinger, LiteSpeed/Apache)
+# Сайт выкладывается на хостинг прямо из репозитория, поэтому служебные файлы
+# проекта (сборка, документация, исходные данные) закрываются от посетителей.
+
+Options -Indexes
+
+# Служебные папки и файлы: отвечать «не найдено»
+RedirectMatch 404 ^/(tools|docs|data|includes|\.vscode|\.builds)(/.*)?$
+RedirectMatch 404 ^/(README\.md|preview\.html|\.gitignore)$
+RedirectMatch 404 \.(md|mjs|bak)$
+
+# Кеширование: страницы, стили и скрипты браузер перепроверяет при каждом заходе
+# (после выкладки сразу видна новая версия); шрифты и картинки хранятся 30 дней
+<IfModule mod_headers.c>
+  <FilesMatch "\.(html|css|js|json|xml)$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+  <FilesMatch "\.(woff2|svg|png)$">
+    Header set Cache-Control "public, max-age=2592000"
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_mime.c>
+  AddType font/woff2 .woff2
+  AddType text/calendar .ics
+</IfModule>
