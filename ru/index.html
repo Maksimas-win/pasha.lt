@@ -33,6 +33,8 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="../images/favicon.svg" type="image/svg+xml">
 <link rel="manifest" href="../manifest.json">
+<link rel="preload" href="../fonts/spectral-light.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../fonts/manrope-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../css/style.css">
 <script>document.documentElement.classList.add('js')</script>
 <script type="application/ld+json">
@@ -70,11 +72,11 @@
 <header id="site-header">
 <!-- @region header -->
 <a href="#main-content" class="skip-nav">Перейти к содержимому</a>
-<div data-region="announce" data-mode="C" class="announcement-bar">Следующая православная Пасха — <strong>2 мая 2027 г.</strong></div>
+<div data-region="announce" data-mode="C" class="announcement-bar"><p>Следующая православная Пасха — <strong>2 мая 2027 г.</strong></p></div>
 <nav aria-label="Основная навигация">
   <div class="nav-inner">
     <a href="/ru/" class="nav-logo" aria-label="pasha.lt — на главную">
-      <span class="nav-logo__cross" aria-hidden="true">☩</span>
+      <svg class="mark" viewBox="0 0 24 32" aria-hidden="true" focusable="false"><path d="M12 1.5v29M8.5 5.5h7M4.5 11h15M7.5 22.5l9-3"/></svg>
       <span class="nav-logo__text">Пасха<span class="nav-logo__sub">pasha.lt</span></span>
     </a>
     <ul class="nav-links">
@@ -86,14 +88,17 @@
       <li><a href="/ru/vpervye.html">Впервые в храме</a></li>
     </ul>
     <div class="nav-right">
-      <div class="lang-switcher" role="group" aria-label="Выбор языка">
-        <a href="/ru/" lang="ru" class="active" aria-current="page">RU</a>
-        <a href="/lt/" lang="lt" hreflang="lt" title="Lietuvių">LT</a>
-        <a href="/en/" lang="en" hreflang="en" title="English">EN</a>
-        <a href="/pl/" lang="pl" hreflang="pl" title="Polski">PL</a>
-        <a href="/ukr/" lang="uk" hreflang="uk" title="Українська">UK</a>
-        <a href="/de/" lang="de" hreflang="de" title="Deutsch">DE</a>
-      </div>
+      <details class="lang-menu">
+        <summary aria-label="Выбор языка"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.4 2.5 3.5 5.3 3.5 8.5s-1.1 6-3.5 8.5c-2.4-2.5-3.5-5.3-3.5-8.5s1.1-6 3.5-8.5z"/></svg><span>RU</span></summary>
+        <div class="lang-menu__list" role="group" aria-label="Выбор языка">
+        <a href="/ru/" lang="ru" class="active" aria-current="page">Русский</a>
+        <a href="/lt/" lang="lt" hreflang="lt" title="Lietuvių">Lietuvių</a>
+        <a href="/en/" lang="en" hreflang="en" title="English">English</a>
+        <a href="/pl/" lang="pl" hreflang="pl" title="Polski">Polski</a>
+        <a href="/ukr/" lang="uk" hreflang="uk" title="Українська">Українська</a>
+        <a href="/de/" lang="de" hreflang="de" title="Deutsch">Deutsch</a>
+        </div>
+      </details>
       <button type="button" class="hamburger" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobile-menu">
         <span></span><span></span><span></span>
       </button>
@@ -120,267 +125,161 @@
         <a href="/ukr/" lang="uk" hreflang="uk" class="btn btn--ghost" title="Українська">UK</a>
         <a href="/de/" lang="de" hreflang="de" class="btn btn--ghost" title="Deutsch">DE</a>
   </div>
-  <a href="https://bukiski-hram.net" target="_blank" rel="noopener" class="btn btn--outline">⛪ Сайт храма<span class="visually-hidden"> (откроется в новой вкладке)</span></a>
+  <a href="https://bukiski-hram.net" target="_blank" rel="noopener" class="btn btn--outline">Сайт храма<span class="visually-hidden"> (откроется в новой вкладке)</span></a>
 </div>
 <!-- @/region header -->
 </header>
 <main id="main-content">
 
-
-
-<!-- ══════════════════════════════════════════
-     HERO — Главный экран
-     ══════════════════════════════════════════ -->
+<!-- Главный экран: заголовок и панель с датой Пасхи (данные — data/site.json) -->
 <section class="hero" aria-labelledby="hero-title">
-
-  <!-- Floating particles -->
-  <canvas id="hero-particles" aria-hidden="true"></canvas>
-
-  <div class="hero-content parallax-layer">
-
-    <!-- Крест со свечением и лучами -->
-    <div class="hero-cross-wrap" aria-hidden="true">
-      <div class="hero-cross-rays"></div>
-      <div class="hero-cross-halo"></div>
-      <div class="hero-cross">
-        <svg viewBox="0 0 60 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <rect x="24" y="0" width="12" height="80" rx="3"/>
-          <rect x="0" y="18" width="60" height="12" rx="3"/>
-        </svg>
-      </div>
-    </div>
-    <!-- @region hero -->
-<div data-region="hero" data-mode="C"><p class="hero-eyebrow">Следующая православная Пасха</p><h1 class="hero-title hero-title--feast" id="hero-title">Светлое Христово<br>Воскресение</h1><div class="hero-divider" aria-hidden="true"></div><div class="hero-service-info"><p class="hero-service-date">Воскресенье, 2 мая 2027 г.</p><p class="hero-service-text">Расписание богослужений уточняется и будет опубликовано после утверждения приходом.</p></div><p class="hero-note">Западные христиане празднуют Пасху 28 марта 2027 г. Православная Церковь определяет дату Пасхи по юлианскому календарю, поэтому она часто не совпадает с западной.</p><div class="hero-cta-wrap"><a href="#schedule" class="btn btn--gold">Расписание</a><a href="#route" class="btn btn--outline">Как добраться</a></div></div>
+  <div class="container">
+<!-- @region hero -->
+<div data-region="hero" data-mode="C" class="hero__grid"><div class="hero__text"><p class="hero__kicker">Православная Пасха 2027</p><h1 class="hero__title" id="hero-title">Светлое Христово<br>Воскресение</h1><p class="hero__lead">Храм Рождества Христова в Букишкисе приглашает на пасхальное богослужение. Здесь — дата праздника, расписание, порядок ночной службы и дорога к храму.</p><div class="hero__actions"><a href="#schedule" class="btn btn--gold">Расписание</a><a href="#route" class="btn btn--outline">Как добраться</a></div></div><aside class="hero__panel" aria-label="Дата Пасхи и расписание"><p class="panel__label">Следующая православная Пасха</p><p class="panel__date"><time datetime="2027-05-02"><span class="panel__day">2</span> <span class="panel__month">мая</span></time></p><p class="panel__sub">Воскресенье, 2027</p><p class="panel__status"><strong>Расписание богослужений</strong> уточняется и будет опубликовано после утверждения приходом.</p><details class="panel__more"><summary>Западные христиане празднуют Пасху 28 марта 2027 г.</summary><p>Православная Церковь определяет дату Пасхи по юлианскому календарю, поэтому она часто не совпадает с западной.</p></details><div class="panel__actions"><button type="button" class="btn btn--ghost" data-ics-date="20270502" data-ics-title="Православная Пасха 2027" data-ics-location="Храм Рождества Христова в Букишкисе, Sodų g. 8, Bukiškis, Lietuva" data-ics-file="pascha-2027.ics" hidden><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4M12 13v4M10 15h4"/></svg>Добавить в календарь</button></div></aside></div>
 <!-- @/region hero -->
-
   </div>
-
-  <!-- Индикатор прокрутки -->
-  <div class="hero-scroll" aria-hidden="true">
-    <span>прокрутите</span>
-    <div class="hero-scroll__arrow"></div>
-  </div>
-
 </section>
 
-<!-- ОБРАТНЫЙ ОТСЧЁТ (только в период подготовки к Пасхе) -->
-<!-- @region countdown -->
-<div data-region="countdown" data-mode="C"></div>
-<!-- @/region countdown -->
+<!-- Пасхальное приветствие на разных языках (data/site.json → greetings) -->
+<!-- @region greetings -->
+<section class="section greet" aria-labelledby="greet-heading" data-greetings>
+  <div class="container greet__inner">
+    <div class="greet__head">
+      <h2 class="section-title" id="greet-heading">Пасхальное приветствие</h2>
+      <p class="section-lead">Так приветствуют друг друга православные христиане по всему миру — от Пасхи до её Отдания.</p>
+    </div>
+    <div class="greet__stage" aria-live="polite">
+      <p class="greet__item" lang="ru"><span class="greet__g">Христос воскресе!</span><span class="greet__r">Воистину воскресе!</span></p>
+      <p class="greet__item" lang="el"><span class="greet__g">Χριστὸς ἀνέστη!</span><span class="greet__r">Ἀληθῶς ἀνέστη!</span></p>
+      <p class="greet__item" lang="lt"><span class="greet__g">Kristus prisikėlė!</span><span class="greet__r">Iš tikrųjų prisikėlė!</span></p>
+      <p class="greet__item" lang="uk"><span class="greet__g">Христос воскрес!</span><span class="greet__r">Воістину воскрес!</span></p>
+      <p class="greet__item" lang="be"><span class="greet__g">Хрыстос уваскрос!</span><span class="greet__r">Сапраўды ўваскрос!</span></p>
+      <p class="greet__item" lang="pl"><span class="greet__g">Chrystus zmartwychwstał!</span><span class="greet__r">Prawdziwie zmartwychwstał!</span></p>
+      <p class="greet__item" lang="sr"><span class="greet__g">Христос васкрсе!</span><span class="greet__r">Ваистину васкрсе!</span></p>
+      <p class="greet__item" lang="bg"><span class="greet__g">Христос воскресе!</span><span class="greet__r">Воистина воскресе!</span></p>
+      <p class="greet__item" lang="ro"><span class="greet__g">Hristos a înviat!</span><span class="greet__r">Adevărat a înviat!</span></p>
+      <p class="greet__item" lang="ka"><span class="greet__g">ქრისტე აღსდგა!</span><span class="greet__r">ჭეშმარიტად აღსდგა!</span></p>
+      <p class="greet__item" lang="ar" dir="rtl"><span class="greet__g">المسيح قام!</span><span class="greet__r">حقاً قام!</span></p>
+      <p class="greet__item" lang="la"><span class="greet__g">Christus resurrexit!</span><span class="greet__r">Resurrexit vere!</span></p>
+      <p class="greet__item" lang="en"><span class="greet__g">Christ is risen!</span><span class="greet__r">Truly He is risen!</span></p>
+      <p class="greet__item" lang="de"><span class="greet__g">Christus ist auferstanden!</span><span class="greet__r">Er ist wahrhaftig auferstanden!</span></p>
+    </div>
+    <div class="greet__controls">
+      <button type="button" class="greet__toggle" data-greet-toggle data-label-pause="Остановить смену языков" data-label-play="Продолжить смену языков" aria-label="Остановить смену языков" hidden><svg class="icon icon--pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 5.5v13M15.5 5.5v13"/></svg><svg class="icon icon--play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg></button>
+      <div class="greet__chips" role="group" aria-label="Выберите язык приветствия">
+        <button type="button" class="chip" data-greet-index="0" lang="ru" aria-pressed="true">Русский</button>
+        <button type="button" class="chip" data-greet-index="1" lang="el" aria-pressed="false">Ελληνικά</button>
+        <button type="button" class="chip" data-greet-index="2" lang="lt" aria-pressed="false">Lietuvių</button>
+        <button type="button" class="chip" data-greet-index="3" lang="uk" aria-pressed="false">Українська</button>
+        <button type="button" class="chip" data-greet-index="4" lang="be" aria-pressed="false">Беларуская</button>
+        <button type="button" class="chip" data-greet-index="5" lang="pl" aria-pressed="false">Polski</button>
+        <button type="button" class="chip" data-greet-index="6" lang="sr" aria-pressed="false">Српски</button>
+        <button type="button" class="chip" data-greet-index="7" lang="bg" aria-pressed="false">Български</button>
+        <button type="button" class="chip" data-greet-index="8" lang="ro" aria-pressed="false">Română</button>
+        <button type="button" class="chip" data-greet-index="9" lang="ka" aria-pressed="false">ქართული</button>
+        <button type="button" class="chip" data-greet-index="10" lang="ar" aria-pressed="false">العربية</button>
+        <button type="button" class="chip" data-greet-index="11" lang="la" aria-pressed="false">Latina</button>
+        <button type="button" class="chip" data-greet-index="12" lang="en" aria-pressed="false">English</button>
+        <button type="button" class="chip" data-greet-index="13" lang="de" aria-pressed="false">Deutsch</button>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- @/region greetings -->
 
-<hr class="divider">
-
-<!-- Ornamental divider -->
-<div class="section-divider" aria-hidden="true">
-  <span class="section-divider__cross">☩</span>
-</div>
-
-<!-- ══════════════════════════════════════════
-     РАСПИСАНИЕ БОГОСЛУЖЕНИЙ
-     ══════════════════════════════════════════ -->
-<section class="section section--violet" id="schedule" aria-labelledby="schedule-heading">
+<!-- Расписание (data/site.json → schedules) -->
+<section class="section section--band" id="schedule" aria-labelledby="schedule-heading">
   <div class="container">
 <!-- @region schedule -->
-<div data-region="schedule" data-mode="C"><div class="section-header"><span class="section-tag">Расписание</span><h2 class="section-title" id="schedule-heading">Пасхальные богослужения 2027</h2><p class="section-lead">Храм Рождества Христова в Букишкисе</p></div><div class="notice-card" role="status"><h3 class="notice-card__title">Расписание уточняется</h3><p>Расписание пасхальных богослужений 2027 года ещё не утверждено. Мы опубликуем его здесь сразу после подтверждения. Пожалуйста, не ориентируйтесь на расписание прошлых лет.</p><p class="notice-card__contact">Вопросы можно задать по телефону <a href="tel:+37063693506">+370 636 93 506</a> или на сайте храма.</p></div><div class="schedule-more"><a href="https://bukiski-hram.net/raspisanie-bogosluzhenij" target="_blank" rel="noopener" class="btn btn--outline">Расписание храма на весь год →<span class="visually-hidden"> (откроется в новой вкладке)</span></a></div></div>
+<div data-region="schedule" data-mode="C"><div class="section-head"><h2 class="section-title" id="schedule-heading">Пасхальные богослужения 2027</h2><p class="section-lead">Храм Рождества Христова в Букишкисе</p></div><div class="notice" role="status"><h3 class="notice__title">Расписание уточняется</h3><p>Расписание пасхальных богослужений 2027 года ещё не утверждено. Мы опубликуем его здесь сразу после подтверждения. Пожалуйста, не ориентируйтесь на расписание прошлых лет.</p><p class="notice__contact">Вопросы можно задать по телефону <a href="tel:+37063693506">+370 636 93 506</a> или на сайте храма.</p></div><p class="schedule-more"><a href="https://bukiski-hram.net/raspisanie-bogosluzhenij" target="_blank" rel="noopener" class="link-arrow">Расписание храма на весь год<span class="visually-hidden"> (откроется в новой вкладке)</span></a></p></div>
 <!-- @/region schedule -->
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════
-     ТИХОЕ СЛОВО ДЛЯ СЕРДЦА
-     ══════════════════════════════════════════ -->
-<div class="section-divider" aria-hidden="true">
-  <span class="section-divider__cross">☩</span>
-</div>
+<!-- Порядок пасхальной ночи: последовательность, поэтому с номерами -->
+<section class="section" aria-labelledby="night-heading">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="section-title" id="night-heading">Как проходит пасхальная ночь</h2>
+      <p class="section-lead">Ночная служба длится несколько часов. Вот из чего она складывается.</p>
+    </div>
+    <ol class="steps">
+      <li class="step">
+        <h3 class="step__title">Полунощница</h3>
+        <p>В полутьме читается канон Великой Субботы. Это последние минуты ожидания у Гроба Господня.</p>
+      </li>
+      <li class="step">
+        <h3 class="step__title">Крестный ход</h3>
+        <p>Со свечами все обходят храм с пением. Перед закрытыми дверями начинается пасхальная утреня.</p>
+      </li>
+      <li class="step">
+        <h3 class="step__title">Пасхальная утреня</h3>
+        <p>«Христос воскресе!» — «Воистину воскресе!» Поётся пасхальный канон, читается Огласительное слово святителя Иоанна Златоуста.</p>
+      </li>
+      <li class="step">
+        <h3 class="step__title">Божественная литургия</h3>
+        <p>Вершина пасхальной ночи — Причащение Святых Христовых Таин.</p>
+      </li>
+    </ol>
+    <p class="steps__more"><a href="/ru/vpervye.html" class="link-arrow">Впервые на пасхальной службе? Что полезно знать</a></p>
+  </div>
+</section>
 
-<section class="section" aria-labelledby="silent-heading">
-  <div class="container--narrow">
-    <figure class="silent-word reveal-scale">
-      <div class="silent-word__icon" aria-hidden="true">🕯️</div>
-      <h2 id="silent-heading" class="silent-word__heading">Тихое слово для сердца</h2>
-      <blockquote class="silent-word__text">
-        «Никто пусть не плачет о грехах, ибо из гроба воссияло прощение.
+<!-- Пасхальный круг: переходящие дни (data/site.json → calendar.cycle) -->
+<!-- @region cycle -->
+<section data-region="cycle" data-mode="C" class="section cycle" aria-labelledby="cycle-heading"><div class="container"><div class="section-head"><h2 class="section-title" id="cycle-heading">Пасхальный круг 2027</h2><p class="section-lead">Дни, которые каждый год зависят от даты Пасхи.</p></div><ol class="cycle__track"><li class="cycle__item is-next"><time class="cycle__date" datetime="2027-03-15"><span class="cycle__day">15</span><span class="cycle__month">марта</span></time><span class="cycle__name">Начало Великого поста</span><span class="cycle__badge">ближайший</span></li><li class="cycle__item is-future"><time class="cycle__date" datetime="2027-04-25"><span class="cycle__day">25</span><span class="cycle__month">апреля</span></time><span class="cycle__name">Вход Господень в Иерусалим</span></li><li class="cycle__item is-future is-pascha"><time class="cycle__date" datetime="2027-05-02"><span class="cycle__day">2</span><span class="cycle__month">мая</span></time><span class="cycle__name">Пасха</span></li><li class="cycle__item is-future"><time class="cycle__date" datetime="2027-05-11"><span class="cycle__day">11</span><span class="cycle__month">мая</span></time><span class="cycle__name">Радоница</span></li><li class="cycle__item is-future"><time class="cycle__date" datetime="2027-06-09"><span class="cycle__day">9</span><span class="cycle__month">июня</span></time><span class="cycle__name">Отдание Пасхи</span></li><li class="cycle__item is-future"><time class="cycle__date" datetime="2027-06-10"><span class="cycle__day">10</span><span class="cycle__month">июня</span></time><span class="cycle__name">Вознесение Господне</span></li><li class="cycle__item is-future"><time class="cycle__date" datetime="2027-06-20"><span class="cycle__day">20</span><span class="cycle__month">июня</span></time><span class="cycle__name">День Святой Троицы</span></li></ol></div></section>
+<!-- @/region cycle -->
+
+<!-- Слово святителя Иоанна Златоуста -->
+<section class="section" aria-labelledby="quote-heading">
+  <div class="container">
+    <h2 class="visually-hidden" id="quote-heading">Из Огласительного слова на Святую Пасху</h2>
+    <figure class="pull">
+      <blockquote class="pull__text">
+        Никто пусть не плачет о грехах, ибо из гроба воссияло прощение.
         Никто пусть не боится смерти, ибо освободила нас смерть Спасителя.
-        <br>…<br>
-        Воскрес Христос, — и водворяется жизнь».
+        <span class="pull__gap" aria-hidden="true">…</span>
+        Воскрес Христос, — и водворяется жизнь.
       </blockquote>
-      <figcaption class="silent-word__verse">— Святитель Иоанн Златоуст, Огласительное слово на Святую Пасху<br><span class="silent-word__source">русский перевод — по тексту на <a href="https://azbyka.ru/slovo-oglasitelnoe-na-svyatuyu-pashu" target="_blank" rel="noopener">azbyka.ru<span class="visually-hidden"> (откроется в новой вкладке)</span></a></span></figcaption>
+      <figcaption class="pull__source">Святитель Иоанн Златоуст, Огласительное слово на Святую Пасху.
+        <span>Русский перевод — по тексту на <a href="https://azbyka.ru/slovo-oglasitelnoe-na-svyatuyu-pashu" target="_blank" rel="noopener">azbyka.ru<span class="visually-hidden"> (откроется в новой вкладке)</span></a></span></figcaption>
     </figure>
   </div>
 </section>
 
-<hr class="divider">
-
-<div class="section-divider" aria-hidden="true">
-  <span class="section-divider__cross">☩</span>
-</div>
-
-<!-- ══════════════════════════════════════════
-     РАЗДЕЛЫ САЙТА
-     ══════════════════════════════════════════ -->
-<section class="section" aria-labelledby="explore-heading">
+<!-- Статьи (список и время чтения генерируются при сборке) -->
+<section class="section section--band" aria-labelledby="articles-heading">
   <div class="container">
-
-    <div class="section-header reveal">
-      <span class="section-tag">Познание</span>
-      <h2 class="section-title" id="explore-heading">Войди глубже</h2>
-      <p class="section-lead">Каждая страница — это приглашение к тишине, пониманию и встрече с живым Богом.</p>
-    </div>
-
-    <div class="pages-grid">
-
-      <a href="/ru/smysl-pashi.html" class="page-link-card reveal reveal-delay-1">
-        <p class="page-link-card__num">01 · Основа веры</p>
-        <h3 class="page-link-card__title">Смысл Пасхи</h3>
-        <p class="page-link-card__desc">Почему Воскресение — это центр всего. Победа жизни над смертью, объяснённая просто и глубоко.</p>
-        <div class="page-link-card__arrow">→</div>
-      </a>
-
-      <a href="/ru/put-hrista.html" class="page-link-card reveal reveal-delay-2">
-        <p class="page-link-card__num">02 · Путь</p>
-        <h3 class="page-link-card__title">Путь Христа к Воскресению</h3>
-        <p class="page-link-card__desc">От Входа в Иерусалим до Воскресения — шаг за шагом, с молитвой и смыслом.</p>
-        <div class="page-link-card__arrow">→</div>
-      </a>
-
-      <a href="/ru/yavleniya.html" class="page-link-card reveal reveal-delay-3">
-        <p class="page-link-card__num">03 · Свидетели</p>
-        <h3 class="page-link-card__title">Явления Воскресшего Христа</h3>
-        <p class="page-link-card__desc">Мария Магдалина, двое учеников, Фома — встречи, изменившие историю.</p>
-        <div class="page-link-card__arrow">→</div>
-      </a>
-
-      <a href="/ru/osvyashchenie.html" class="page-link-card reveal reveal-delay-1">
-        <p class="page-link-card__num">04 · Традиция</p>
-        <h3 class="page-link-card__title">Почему мы освящаем пищу?</h3>
-        <p class="page-link-card__desc">Кулич, пасха, яйца — что стоит за этими символами и откуда берётся традиция.</p>
-        <div class="page-link-card__arrow">→</div>
-      </a>
-
-      <a href="/ru/prorochestva.html" class="page-link-card reveal reveal-delay-2">
-        <p class="page-link-card__num">05 · Слово Божие</p>
-        <h3 class="page-link-card__title">Пророчества о Воскресении</h3>
-        <p class="page-link-card__desc">Псалмы, Исаия, Иона — Ветхий Завет говорил о Воскресении за сотни лет.</p>
-        <div class="page-link-card__arrow">→</div>
-      </a>
-
-      <a href="/ru/traditsii.html" class="page-link-card reveal reveal-delay-3">
-        <p class="page-link-card__num">06 · Жизнь</p>
-        <h3 class="page-link-card__title">Пасхальные Традиции</h3>
-        <p class="page-link-card__desc">Красные яйца, ночной крестный ход, пасхальное приветствие — живая история веры.</p>
-        <div class="page-link-card__arrow">→</div>
-      </a>
-
-      <a href="/ru/raspisanie.html" class="page-link-card reveal reveal-delay-1">
-        <p class="page-link-card__num">07 · Богослужение</p>
-        <h3 class="page-link-card__title">Расписание богослужений</h3>
-        <p class="page-link-card__desc">Полное расписание Пасхальных служб с описанием каждого чинопоследования.</p>
-        <div class="page-link-card__arrow">→</div>
-      </a>
-
-      <a href="/ru/vpervye.html" class="page-link-card reveal reveal-delay-2" style="border-color: rgba(212,175,55,0.25);">
-        <p class="page-link-card__num">08 · Добро пожаловать</p>
-        <h3 class="page-link-card__title">Впервые в храме?</h3>
-        <p class="page-link-card__desc">Не знаете, как войти, что ожидать и как себя вести? Мы рады помочь вам сделать первый шаг.</p>
-        <div class="page-link-card__arrow">→</div>
-      </a>
-
-    </div>
+<!-- @region articles -->
+<div class="section-head"><h2 class="section-title" id="articles-heading">Читать о Пасхе</h2><p class="section-lead">Короткие тексты для тех, кто хочет понять смысл праздника и подготовиться к службе.</p></div>
+<ul class="reads">
+  <li class="read read--lead"><a href="/ru/smysl-pashi.html"><span class="read__title">Смысл Пасхи</span><span class="read__desc">Что такое Пасха? Почему Воскресение Христово — центр христианской веры. Простое и точное объяснение.</span><span class="read__meta">3 мин чтения</span></a></li>
+  <li class="read"><a href="/ru/put-hrista.html"><span class="read__title">Путь Христа к Воскресению</span><span class="read__desc">От Входа в Иерусалим до Воскресения: события Страстной седмицы по Евангелию.</span><span class="read__meta">2 мин чтения</span></a></li>
+  <li class="read"><a href="/ru/yavleniya.html"><span class="read__title">Явления Воскресшего Христа</span><span class="read__desc">Мария Магдалина, жёны-мироносицы, ученики на пути в Эммаус, апостол Фома — явления Воскресшего Христа по Евангелию.</span><span class="read__meta">2 мин чтения</span></a></li>
+  <li class="read"><a href="/ru/osvyashchenie.html"><span class="read__title">Почему мы освящаем пищу на Пасху</span><span class="read__desc">Кулич, пасха, яйца: что означает освящение пасхальной пищи и когда оно совершается в нашем храме.</span><span class="read__meta">2 мин чтения</span></a></li>
+  <li class="read"><a href="/ru/prorochestva.html"><span class="read__title">Пророчества о Воскресении Христа</span><span class="read__desc">Псалмы, пророки Исаия, Осия и Иона: ветхозаветные тексты, которые Церковь читает как пророчества о Страданиях и Воскресении Христа.</span><span class="read__meta">3 мин чтения</span></a></li>
+  <li class="read"><a href="/ru/traditsii.html"><span class="read__title">Пасхальные традиции</span><span class="read__desc">Крестный ход, христосование, красные яйца, разговение, Светлая седмица — традиции православной Пасхи.</span><span class="read__meta">2 мин чтения</span></a></li>
+  <li class="read"><a href="/ru/vpervye.html"><span class="read__title">Впервые в храме</span><span class="read__desc">Впервые на пасхальном богослужении? Как одеться, что происходит на службе, как себя вести — спокойно и без осуждения.</span><span class="read__meta">3 мин чтения</span></a></li>
+</ul>
+<!-- @/region articles -->
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════
-     О ХРАМЕ
-     ══════════════════════════════════════════ -->
-<section class="section section--violet" aria-labelledby="church-heading">
-  <div class="container">
-    <div class="church-grid">
-      <div class="reveal-left">
-        <span class="section-tag">Наш храм</span>
-        <h2 class="section-title" id="church-heading" style="margin-top:12px;">
-          Православный храм<br>Рождества Христова
-        </h2>
-        <p style="color:var(--text-muted); line-height:1.9; margin-bottom:24px;">
-          Наш храм — это место, где тишина встречается с вечностью. Здесь в Пасхальную ночь вспыхивают сотни свечей,
-          и весь народ Божий вместе провозглашает: <span style="color:var(--gold); font-style:italic;">Христос Воскресе!</span>
-        </p>
-        <p style="color:var(--text-muted); line-height:1.9; margin-bottom:32px;">
-          Мы рады каждому — и тому, кто молится с детства, и тому, кто делает свой первый шаг навстречу Богу.
-          Двери храма открыты для всех.
-        </p>
-        <div style="display:flex; gap:12px; flex-wrap:wrap;">
-          <a href="https://bukiski-hram.net" target="_blank" rel="noopener" class="btn btn--gold">
-            Сайт храма
-          </a>
-          <a href="/ru/vpervye.html" class="btn btn--outline">
-            Впервые в храме →
-          </a>
-        </div>
-      </div>
-      <div class="glass-card church-card reveal-right">
-        <div class="glass-card__body" style="text-align:center; padding:40px 32px;">
-          <div style="font-size:4rem; margin-bottom:20px;">⛪</div>
-          <h3 style="color:var(--gold); font-family:var(--font-serif); font-size:clamp(1.6rem, 3.5vw, 2.2rem); margin-bottom:8px; line-height:1.3;">
-            Храм Рождества Христова
-          </h3>
-          <p style="color:var(--text-main); font-size:clamp(1rem, 2vw, 1.2rem); margin-bottom:6px; font-family:var(--font-serif);">
-            Православная церковь в Литве
-          </p>
-          <p style="color:var(--text-muted); font-size:clamp(0.95rem, 1.8vw, 1.1rem); margin-bottom:28px;">
-            Букишкис · Вильнюсский район
-          </p>
-          <div style="display:flex; flex-direction:column; gap:10px; align-items:center;">
-            <a href="https://bukiski-hram.net" target="_blank" rel="noopener" style="color:var(--gold); font-size:1rem;">
-              bukiski-hram.net →
-            </a>
-            <a href="https://bukiski-hram.org" target="_blank" rel="noopener" style="color:var(--text-muted); font-size:0.95rem;">
-              bukiski-hram.org →
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════
-     КАК ДОБРАТЬСЯ (данные — data/site.json → church)
-     ══════════════════════════════════════════ -->
+<!-- Как добраться (data/site.json → church) -->
 <!-- @region route -->
-<section class="section section--violet route" id="route" aria-labelledby="route-heading" data-region="route"><div class="container--narrow"><div class="section-header"><span class="section-tag">Как добраться</span><h2 class="section-title" id="route-heading">Адрес храма</h2></div><div class="route-card"><p class="route-card__church">Храм Рождества Христова в Букишкисе</p><address class="route-card__address" data-address>Sodų g. 8<br>LT-14180 Bukiškis<br>Avižienių sen., Vilniaus r. sav.<br>Lietuva</address><p class="route-card__place">Букишкис (Bukiškis), Вильнюсский район, Литва</p><div class="route-card__actions"><a class="btn btn--gold" href="https://www.google.com/maps/dir/?api=1&amp;destination=54.76091%2C25.207621" target="_blank" rel="noopener">Проложить маршрут<span class="visually-hidden"> (откроется в новой вкладке)</span></a><a class="btn btn--outline" href="tel:+37063693506">Позвонить: +370 636 93 506</a><button type="button" class="btn btn--ghost" data-copy-address="Sodų g. 8, Bukiškis, LT-14180, Avižienių sen., Vilniaus r. sav., Lietuva" data-copied="Адрес скопирован" data-copy-fail="Не удалось скопировать. Выделите адрес вручную." hidden>Скопировать адрес</button></div><p class="route-card__note">Маршрут откроется в Google Картах по координатам храма.</p><p class="route-card__status" data-copy-status role="status" aria-live="polite"></p></div></div></section>
+<section class="section route" id="route" aria-labelledby="route-heading" data-region="route"><div class="container"><div class="route__grid"><div class="route__intro"><h2 class="section-title" id="route-heading">Как добраться</h2><p class="section-lead">Двери храма открыты для всех — и для тех, кто молится с детства, и для тех, кто приходит впервые.</p></div><div class="route-card"><p class="route-card__church">Храм Рождества Христова в Букишкисе</p><address class="route-card__address" data-address>Sodų g. 8<br>LT-14180 Bukiškis<br>Avižienių sen., Vilniaus r. sav.<br>Lietuva</address><p class="route-card__place">Букишкис (Bukiškis), Вильнюсский район, Литва</p><div class="route-card__actions"><a class="btn btn--gold" href="https://www.google.com/maps/dir/?api=1&amp;destination=54.76091%2C25.207621" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg>Проложить маршрут<span class="visually-hidden"> (откроется в новой вкладке)</span></a><a class="btn btn--outline" href="tel:+37063693506"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M6.6 3.5l2.6 3.6-1.7 2.3a12 12 0 0 0 7.1 7.1l2.3-1.7 3.6 2.6-1.5 2.6c-.4.6-1 .9-1.7.9C9.8 20.9 3.1 14.2 3.1 6.7c0-.7.3-1.3.9-1.7z"/></svg>+370 636 93 506</a><button type="button" class="btn btn--ghost" data-copy-address="Sodų g. 8, Bukiškis, LT-14180, Avižienių sen., Vilniaus r. sav., Lietuva" data-copied="Адрес скопирован" data-copy-fail="Не удалось скопировать. Выделите адрес вручную." hidden><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><rect x="8.5" y="8.5" width="12" height="12" rx="2"/><path d="M15.5 8.5V5.5a2 2 0 0 0-2-2h-8a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h3"/></svg>Скопировать адрес</button></div><p class="route-card__note">Маршрут откроется в Google Картах по координатам храма.</p><p class="route-card__status" data-copy-status role="status" aria-live="polite"></p></div></div></div></section>
 <!-- @/region route -->
-
-<!-- ══════════════════════════════════════════
-     ФИНАЛЬНЫЙ ПРИЗЫВ (без дат: актуален круглый год)
-     ══════════════════════════════════════════ -->
-<section class="section cta-final" aria-labelledby="cta-heading">
-  <div class="container--narrow cta-final__inner">
-    <div class="reveal-scale">
-      <div class="cta-final__icon" aria-hidden="true">🕯️</div>
-      <h2 class="cta-final__title" id="cta-heading">Двери храма открыты</h2>
-      <p class="cta-final__text">
-        Пасхальная ночь — это ночь, когда гробница оказалась пустой и смерть перестала быть последним словом о человеке.
-        Приходите — с вопросами, с сомнениями, с открытым сердцем. Вам будут рады.
-      </p>
-      <div class="cta-final__actions">
-        <a href="/ru/raspisanie.html" class="btn btn--gold">Расписание богослужений</a>
-        <a href="/ru/vpervye.html" class="btn btn--outline">Впервые в храме →</a>
-      </div>
-    </div>
-  </div>
-</section>
 
 </main>
 
-<!-- Подвал -->
 <footer id="site-footer">
 <!-- @region footer -->
 <div class="footer-inner">
   <div class="footer-grid">
     <div>
-      <p class="footer-brand"><span class="footer-brand__cross" aria-hidden="true">☩</span> <span class="footer-brand__name">Пасха · pasha.lt</span></p>
+      <p class="footer-brand"><svg class="mark" viewBox="0 0 24 32" aria-hidden="true" focusable="false"><path d="M12 1.5v29M8.5 5.5h7M4.5 11h15M7.5 22.5l9-3"/></svg><span class="footer-brand__name">Пасха · pasha.lt</span></p>
       <p class="footer-desc">Сайт прихода храма Рождества Христова в Букишкисе о Светлом Христовом Воскресении.</p>
-      <a href="https://bukiski-hram.net" target="_blank" rel="noopener" class="footer-hram-link"><span aria-hidden="true">⛪</span> Сайт храма<span class="visually-hidden"> (откроется в новой вкладке)</span></a>
+      <a href="https://bukiski-hram.net" target="_blank" rel="noopener" class="footer-hram-link">Сайт храма<span class="visually-hidden"> (откроется в новой вкладке)</span></a>
     </div>
     <div>
       <h2 class="footer-col-title">Материалы</h2>
@@ -416,7 +315,13 @@
     </div>
   </div>
 </div>
-<button type="button" class="scroll-top" aria-label="Наверх" title="Наверх">↑</button>
+<button type="button" class="scroll-top" aria-label="Наверх" title="Наверх"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>
+<nav class="quickbar" aria-label="Быстрые действия">
+  <a href="/ru/raspisanie.html#schedule"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg><span>Расписание</span></a>
+  <a href="#route"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg><span>Как добраться</span></a>
+  <a href="tel:+37063693506"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 3.5l2.6 3.6-1.7 2.3a12 12 0 0 0 7.1 7.1l2.3-1.7 3.6 2.6-1.5 2.6c-.4.6-1 .9-1.7.9C9.8 20.9 3.1 14.2 3.1 6.7c0-.7.3-1.3.9-1.7z"/></svg><span>Позвонить</span></a>
+</nav>
+<p class="visually-hidden" data-live-status role="status" aria-live="polite"></p>
 <!-- @/region footer -->
 </footer>
 <!-- @region scripts -->
@@ -427,7 +332,6 @@
 <script src="../js/animations.js" defer></script>
 <!-- @/region scripts -->
 
-<!-- Скрипты -->
 
 </body>
 </html>

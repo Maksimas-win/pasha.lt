@@ -192,7 +192,7 @@
   function cap(s) { return s ? s.charAt(0).toUpperCase() + s.slice(1) : s; }
 
   /* ── Отрисовка регионов ───────────────────────────────────── */
-  // ctx = { site, t (строки языка), lang, locale, base ('/ru/'), state }
+  // ctx = { site, t (строки языка), lang, locale, state, scheduleHref, meaningHref }
 
   function wrap(region, state, inner, tag, attrs) {
     tag = tag || 'div';
@@ -200,63 +200,88 @@
   }
 
   function serviceInfo(ctx) {
-    var s = ctx.state, sched = s.schedule;
-    var start = null;
-    sched.groups.forEach(function (g) { g.items.forEach(function (i) { if (i.serviceStart) start = { date: g.date, time: i.time }; }); });
+    var s = ctx.state, start = null;
+    if (!s.schedule) return null;
+    s.schedule.groups.forEach(function (g) { g.items.forEach(function (i) { if (i.serviceStart) start = { date: g.date, time: i.time, ms: i.startMs }; }); });
     return start;
   }
 
-  function renderHero(ctx) {
-    var s = ctx.state, t = ctx.t.status, L = ctx.locale, h = '';
-    var westernLine = '';
-    if (s.mode !== 'unsupported' && s.mode !== 'B') {
-      var same = iso(s.western) === iso(s.pascha);
-      westernLine = '<p class="hero-note">' + esc(same
-        ? fmt(t.westernSame, { year: s.year })
-        : fmt(t.westernDiff, { year: s.year, date: dateLong(s.western, L) })) + ' ' + esc(t.julianNote) + '</p>';
-    }
-    var ctas = '<div class="hero-cta-wrap">';
-    if (s.mode === 'B' && ctx.meaningHref) {
-      ctas += '<a href="' + ctx.meaningHref + '" class="btn btn--gold">' + esc(t.ctaMeaning) + '</a>';
-    } else {
-      ctas += '<a href="' + ctx.scheduleHref + '" class="btn btn--gold">' + esc(t.ctaSchedule) + '</a>';
-    }
-    ctas += '<a href="#route" class="btn btn--outline">' + esc(t.ctaRoute) + '</a></div>';
+  /** День и месяц отдельно, в нужном падеже: {day: '2', month: 'мая'}. */
+  function dayMonth(o, locale) {
+    var parts = new Intl.DateTimeFormat(locale, { timeZone: 'UTC', day: 'numeric', month: 'long' }).formatToParts(new Date(toUTC(o)));
+    var out = { day: '', month: '' };
+    parts.forEach(function (p) { if (p.type === 'day') out.day = p.value; if (p.type === 'month') out.month = p.value; });
+    return out;
+  }
+  function weekday(o, locale) { return fmtDate(o, locale, { weekday: 'long' }); }
+  function ymdCompact(o) { return o.y + pad(o.m) + pad(o.d); }
+  function utcCompact(ms) { return new Date(ms).toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, ''); }
 
+  function countdownInner(ctx, compact) {
+    var s = ctx.state, t = ctx.t.countdown, L = ctx.locale, start = serviceInfo(ctx);
+    var target = (s.countdown.kind === 'service' && start)
+      ? fmt(t.targetService, { date: dateWeekdayYear(start.date, L), time: start.time })
+      : fmt(t.targetFeast, { date: dateWeekdayYear(s.pascha, L) });
+    var units = compact ? ['days', 'hours', 'minutes'] : ['days', 'hours', 'minutes', 'seconds'];
+    return '<p class="countdown__label">' + esc(s.countdown.kind === 'service' ? t.tagService : t.tagFeast) + '</p>' +
+      '<div class="countdown" data-countdown-box data-target="' + s.countdown.targetMs + '" data-kind="' + s.countdown.kind + '" role="timer" aria-label="' + esc(t.aria) + '" hidden>' +
+      units.map(function (k) {
+        return '<div class="countdown__unit"><span class="countdown__num" data-countdown="' + k + '">00</span><span class="countdown__cap">' + esc(t[k]) + '</span></div>';
+      }).join('') + '</div>' +
+      '<p class="countdown__target" data-countdown-msg>' + esc(cap(target)) + '</p>';
+  }
+
+  function icsButton(ctx) {
+    var s = ctx.state, t = ctx.t.status, c = ctx.site.church, a = c.address, start = serviceInfo(ctx);
+    var loc = c.names[ctx.lang] + ', ' + a.street + ', ' + a.locality + ', ' + a.country;
+    var attrs = start && start.ms > s.nowMs
+      ? 'data-ics-start="' + utcCompact(start.ms) + '" data-ics-title="' + esc(t.icsService + ' ' + s.year) + '"'
+      : 'data-ics-date="' + ymdCompact(s.pascha) + '" data-ics-title="' + esc(t.icsFeast + ' ' + s.year) + '"';
+    return '<button type="button" class="btn btn--ghost" ' + attrs + ' data-ics-location="' + esc(loc) + '" data-ics-file="pascha-' + s.year + '.ics" hidden>' +
+      '<svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4M12 13v4M10 15h4"/></svg>' + esc(t.addCal) + '</button>';
+  }
+
+  function renderHero(ctx) {
+    var s = ctx.state, t = ctx.t.status, L = ctx.locale;
+    var ctas = function (primaryHref, primaryLabel) {
+      return '<div class="hero__actions"><a href="' + primaryHref + '" class="btn btn--gold">' + esc(primaryLabel) + '</a>' +
+        '<a href="#route" class="btn btn--outline">' + esc(t.ctaRoute) + '</a></div>';
+    };
     if (s.mode === 'unsupported') {
-      h = '<h1 class="hero-title hero-title--feast" id="hero-title">' + t.feastTitle + '</h1>' +
-          '<div class="hero-divider" aria-hidden="true"></div>' +
-          '<p class="hero-note">' + esc(t.unsupported) + '</p>' + ctas;
-      return wrap('hero', s, h);
+      return wrap('hero', s, '<div class="hero__text"><h1 class="hero__title" id="hero-title">' + t.feastTitle + '</h1>' +
+        '<p class="hero__lead">' + esc(t.unsupported) + '</p>' + ctas(ctx.scheduleHref, t.ctaSchedule) + '</div>', 'div', 'class="hero__grid"');
     }
+    var text, panel, start = serviceInfo(ctx);
+    var dm = dayMonth(s.pascha, L);
     if (s.mode === 'B') {
-      h = '<p class="hero-eyebrow">' + esc(t.eyebrowPaschal) + '</p>' +
-          '<h1 class="hero-title" id="hero-title">' + t.greetingTitle + '</h1>' +
-          '<p class="hero-subtitle">' + esc(t.greetingReply) + '</p>' +
-          '<div class="hero-divider" aria-hidden="true"></div>' +
-          (s.serviceInProgress ? '<p class="hero-service-text">' + esc(t.inProgress) + '</p>' : '') +
-          '<p class="hero-note">' + esc(fmt(t.paschalLine, { date: dateLong(s.otdanie, L) })) + '</p>' + ctas;
-      return wrap('hero', s, h);
-    }
-    var eyebrow = s.mode === 'A' ? fmt(t.eyebrowUpcoming, { date: dateLong(s.pascha, L) }) : t.eyebrowNext;
-    var info;
-    var start = serviceInfo(ctx);
-    if (s.mode === 'C') {
-      info = '<p class="hero-service-date">' + esc(cap(dateWeekdayYear(s.pascha, L))) + '</p>';
-      if (start) info += '<p class="hero-service-text">' + esc(t.serviceLabel) + ': ' + esc(fmt(t.serviceLine, { satDate: dateWeekday(start.date, L), time: start.time })) + '</p>';
-      else info += '<p class="hero-service-text">' + esc(t.pendingLabel) + ' ' + esc(t.pendingLine) + '.</p>';
-    } else if (start) {
-      info = '<p class="hero-service-date">' + esc(t.serviceLabel) + '</p>' +
-             '<p class="hero-service-text">' + esc(cap(fmt(t.serviceLine, { satDate: dateWeekday(start.date, L), time: start.time }))) + '</p>';
+      var om = dayMonth(s.otdanie, L);
+      text = '<p class="hero__kicker">' + esc(t.eyebrowPaschal) + '</p>' +
+        '<h1 class="hero__title hero__title--greeting" id="hero-title">' + t.greetingTitle + '</h1>' +
+        '<p class="hero__reply">' + esc(t.greetingReply) + '</p>' +
+        '<p class="hero__lead">' + esc(fmt(t.paschalLine, { date: dateLong(s.otdanie, L) })) + '</p>' +
+        ctas(ctx.meaningHref || ctx.scheduleHref, ctx.meaningHref ? t.ctaMeaning : t.ctaSchedule);
+      panel = '<p class="panel__label">' + esc(t.panelPaschal) + '</p>' +
+        '<p class="panel__date"><span class="panel__day">' + esc(fmt(t.panelUntil, { date: om.day })) + '</span> <span class="panel__month">' + esc(om.month) + '</span></p>' +
+        '<p class="panel__sub">' + esc(t.panelOtdanie + ', ' + weekday(s.otdanie, L)) + '</p>' +
+        (s.serviceInProgress ? '<p class="panel__status panel__status--live">' + esc(t.inProgress) + '</p>' : '');
     } else {
-      info = '<p class="hero-service-date">' + esc(t.pendingLabel) + '</p>' +
-             '<p class="hero-service-text">' + esc(cap(t.pendingLine)) + '.</p>';
+      text = '<p class="hero__kicker">' + esc(fmt(t.kicker, { year: s.year })) + '</p>' +
+        '<h1 class="hero__title" id="hero-title">' + t.feastTitle + '</h1>' +
+        '<p class="hero__lead">' + esc(t.lead) + '</p>' + ctas(ctx.scheduleHref, t.ctaSchedule);
+      var status = start
+        ? '<p class="panel__status"><strong>' + esc(t.serviceLabel) + '</strong><br>' + esc(cap(fmt(t.serviceLine, { satDate: dateWeekday(start.date, L), time: start.time }))) + '</p>'
+        : '<p class="panel__status"><strong>' + esc(t.pendingLabel) + '</strong> ' + esc(t.pendingLine) + '.</p>';
+      var same = iso(s.western) === iso(s.pascha);
+      var western = same ? fmt(t.westernSame, { year: s.year }) : fmt(t.westernDiff, { date: dateLong(s.western, L) });
+      panel = '<p class="panel__label">' + esc(s.mode === 'A' ? t.panelThis : t.panelNext) + '</p>' +
+        '<p class="panel__date"><time datetime="' + iso(s.pascha) + '"><span class="panel__day">' + esc(dm.day) + '</span> <span class="panel__month">' + esc(dm.month) + '</span></time></p>' +
+        '<p class="panel__sub">' + esc(cap(weekday(s.pascha, L)) + ', ' + s.year) + '</p>' +
+        (s.mode === 'A' && s.countdown ? '<div class="panel__countdown">' + countdownInner(ctx, false) + '</div>' : '') +
+        status +
+        '<details class="panel__more"><summary>' + esc(western) + '</summary><p>' + esc(t.julianNote) + '</p></details>' +
+        '<div class="panel__actions">' + icsButton(ctx) + '</div>';
     }
-    h = '<p class="hero-eyebrow">' + esc(eyebrow) + '</p>' +
-        '<h1 class="hero-title hero-title--feast" id="hero-title">' + t.feastTitle + '</h1>' +
-        '<div class="hero-divider" aria-hidden="true"></div>' +
-        '<div class="hero-service-info">' + info + '</div>' + westernLine + ctas;
-    return wrap('hero', s, h);
+    return wrap('hero', s, '<div class="hero__text">' + text + '</div><aside class="hero__panel" aria-label="' + esc(t.panelAria) + '">' + panel + '</aside>', 'div', 'class="hero__grid"');
   }
 
   function renderAnnounce(ctx) {
@@ -267,79 +292,94 @@
     else if (s.mode === 'A' && start) txt = fmt(t.confirmed, { satDate: esc(dateWeekday(start.date, L)), time: esc(start.time), church: esc(ctx.site.church.names[ctx.lang]) });
     else if (s.mode === 'A') txt = fmt(t.pending, { date: esc(dateLong(s.pascha, L)) });
     else txt = fmt(t.next, { date: esc(dateLong(s.pascha, L)) });
-    return wrap('announce', s, txt, 'div', 'class="announcement-bar"');
+    return wrap('announce', s, '<p>' + txt + '</p>', 'div', 'class="announcement-bar"');
   }
 
+  /** Отдельный блок отсчёта (страница расписания). */
   function renderCountdown(ctx) {
-    var s = ctx.state, t = ctx.t.countdown, L = ctx.locale;
+    var s = ctx.state;
     if (s.mode !== 'A' || !s.countdown) return wrap('countdown', s, '');
-    var target, start = serviceInfo(ctx);
-    if (s.countdown.kind === 'service' && start) {
-      target = fmt(t.targetService, { date: dateWeekdayYear(start.date, L), time: start.time });
-    } else {
-      target = fmt(t.targetFeast, { date: dateWeekdayYear(s.pascha, L) });
-    }
-    var unit = function (k) {
-      return '<div class="countdown-item"><span class="countdown-item__number" data-countdown="' + k + '">00</span>' +
-             '<span class="countdown-item__label">' + esc(t[k]) + '</span></div>';
-    };
-    var h = '<section class="section" aria-labelledby="countdown-heading"><div class="container">' +
-      '<div class="section-header"><span class="section-tag">' + esc(s.countdown.kind === 'service' ? t.tagService : t.tagFeast) + '</span>' +
-      '<h2 class="section-title" id="countdown-heading">' + esc(t.title) + '</h2></div>' +
-      '<div class="countdown" data-countdown-box data-target="' + s.countdown.targetMs + '" data-kind="' + s.countdown.kind + '" role="timer" aria-label="' + esc(t.aria) + '" hidden>' +
-      unit('days') + unit('hours') + unit('minutes') + unit('seconds') + '</div>' +
-      '<p class="countdown-target" data-countdown-msg>' + esc(cap(target)) + '</p>' +
-      '</div></section>';
-    return wrap('countdown', s, h);
+    return wrap('countdown', s, '<section class="section section--tight" aria-label="' + esc(ctx.t.countdown.aria) + '"><div class="container"><div class="countdown-block">' + countdownInner(ctx, false) + '</div></div></section>');
   }
 
-  function scheduleCards(ctx) {
+  /** Пасхальный круг: переходящие дни текущего цикла (до Троицы включительно). */
+  function getCycle(site, nowMs) {
+    var tz = site.timezone, cal = site.calendar;
+    var today = localDate(nowMs, tz);
+    var y = today.y;
+    var last = (cal.cycle || []).reduce(function (m, c) { return Math.max(m, c.offset); }, 0);
+    var p = orthodoxPascha(y, cal.paschaOverrides);
+    if (p && toUTC(today) > toUTC(addDays(p, last))) { y += 1; p = orthodoxPascha(y, cal.paschaOverrides); }
+    if (!p || y < cal.supportedYears.from || y > cal.supportedYears.to) return null;
+    var nextFound = false;
+    var items = (cal.cycle || []).map(function (c) {
+      var d = addDays(p, c.offset), diff = toUTC(d) - toUTC(today);
+      var st = diff < 0 ? 'past' : diff === 0 ? 'today' : (nextFound ? 'future' : 'next');
+      if (st === 'next' || st === 'today') nextFound = true;
+      return { id: c.id, date: d, status: st };
+    });
+    return { year: y, items: items };
+  }
+
+  function renderCycle(ctx) {
+    var s = ctx.state, t = ctx.t.cycle, L = ctx.locale;
+    var cy = getCycle(ctx.site, s.nowMs);
+    if (!cy || !t) return wrap('cycle', s, '');
+    var li = cy.items.map(function (it) {
+      var dm = dayMonth(it.date, L);
+      var badge = it.status === 'today' ? t.today : it.status === 'next' ? t.next : '';
+      return '<li class="cycle__item is-' + it.status + (it.id === 'pascha' ? ' is-pascha' : '') + '"' + (it.status === 'today' ? ' aria-current="date"' : '') + '>' +
+        '<time class="cycle__date" datetime="' + iso(it.date) + '"><span class="cycle__day">' + esc(dm.day) + '</span><span class="cycle__month">' + esc(dm.month) + '</span></time>' +
+        '<span class="cycle__name">' + esc(t.feasts[it.id] || it.id) + '</span>' +
+        (badge ? '<span class="cycle__badge">' + esc(badge) + '</span>' : '') + '</li>';
+    }).join('');
+    return wrap('cycle', s, '<div class="container"><div class="section-head"><h2 class="section-title" id="cycle-heading">' + esc(fmt(t.title, { year: cy.year })) + '</h2>' +
+      '<p class="section-lead">' + esc(t.lead) + '</p></div><ol class="cycle__track">' + li + '</ol></div>', 'section', 'class="section cycle" aria-labelledby="cycle-heading"');
+  }
+
+  function scheduleDays(ctx) {
     var s = ctx.state, t = ctx.t.schedule, types = ctx.t.types, L = ctx.locale;
-    var icons = { food_blessing: '🧺', midnight_office: '🕯️', procession: '✝', matins: '☩', liturgy: '☦', typika: '☀️' };
     var titles = { saturday: t.saturday, night: t.night, sunday: t.sunday };
-    var out = '<div class="schedule-grid">';
+    var out = '<ol class="days">';
     s.schedule.groups.forEach(function (g) {
       var main = g.id === 'night';
       var dateLabel = main ? fmt(t.nightDate, { satDate: cap(dateWeekday(g.date, L)), sunDate: dateWeekday(addDays(g.date, 1), L) }) : cap(dateWeekdayYear(g.date, L));
-      out += '<div class="schedule-card' + (main ? ' schedule-card--main' : '') + '">' +
-        '<div class="schedule-card__header"><p class="schedule-card__date">' + esc(dateLabel) + '</p>' +
-        '<h3 class="schedule-card__title">' + esc(titles[g.id] || g.id) + '</h3></div><div class="schedule-card__body">';
+      out += '<li class="day' + (main ? ' day--main' : '') + '"><div class="day__head"><h3 class="day__title">' + esc(titles[g.id] || g.id) + '</h3>' +
+        '<p class="day__date">' + esc(dateLabel) + '</p></div><ol class="day__items">';
       g.items.forEach(function (it, idx) {
         var time = it.time
           ? (it.until ? fmt(t.range, { from: it.time, to: it.until }) : it.time)
           : (idx === 0 ? '' : (g.id === 'night' ? t.then : t.after));
         var ty = types[it.type] || { name: it.type, note: '' };
-        out += '<div class="schedule-item"><span class="schedule-item__icon" aria-hidden="true">' + (icons[it.type] || '•') + '</span>' +
-          '<span class="schedule-item__time">' + esc(time) + '</span>' +
-          '<p class="schedule-item__text"><strong>' + esc(ty.name) + '</strong>' + (ty.note ? ' — ' + esc(ty.note) : '') + '</p></div>';
+        out += '<li class="slot' + (it.time ? '' : ' slot--then') + '"><span class="slot__time">' + esc(time) + '</span>' +
+          '<p class="slot__text"><strong>' + esc(ty.name) + '</strong>' + (ty.note ? '<span>' + esc(ty.note) + '</span>' : '') + '</p></li>';
       });
-      out += '</div></div>';
+      out += '</ol></li>';
     });
-    return out + '</div>';
+    return out + '</ol>';
   }
 
   function renderSchedule(ctx) {
     var s = ctx.state, t = ctx.t.schedule, site = ctx.site;
     var head = function (title) {
-      return '<div class="section-header"><span class="section-tag">' + esc(t.tag) + '</span>' +
-        '<h2 class="section-title" id="schedule-heading">' + esc(title) + '</h2>' +
+      return '<div class="section-head"><h2 class="section-title" id="schedule-heading">' + esc(title) + '</h2>' +
         '<p class="section-lead">' + esc(site.church.names[ctx.lang]) + '</p></div>';
     };
-    var contact = '<p class="notice-card__contact">' + fmt(esc(t.contact), {
+    var contact = '<p class="notice__contact">' + fmt(esc(t.contact), {
       phone: '<a href="tel:' + site.church.phoneE164 + '">' + esc(site.church.phone) + '</a>'
     }) + '</p>';
-    var more = '<div class="schedule-more"><a href="' + site.church.scheduleUrl + '" target="_blank" rel="noopener" class="btn btn--outline">' +
-      esc(ctx.t.ui.fullSchedule) + ' →<span class="visually-hidden"> ' + esc(ctx.t.ui.external) + '</span></a></div>';
+    var more = '<p class="schedule-more"><a href="' + site.church.scheduleUrl + '" target="_blank" rel="noopener" class="link-arrow">' +
+      esc(ctx.t.ui.fullSchedule) + '<span class="visually-hidden"> ' + esc(ctx.t.ui.external) + '</span></a></p>';
     var h;
     if (s.mode === 'unsupported') return wrap('schedule', s, '');
     if (s.mode === 'B' && !s.scheduleRelevant) {
-      h = head(t.paschalTitle) + '<div class="notice-card"><p>' + esc(t.paschalText) + '</p></div>' + more;
+      h = head(t.paschalTitle) + '<div class="notice"><p>' + esc(t.paschalText) + '</p></div>' + more;
     } else if (s.schedule.status === 'confirmed') {
-      h = head(fmt(t.title, { year: s.year })) + scheduleCards(ctx) +
-        '<p class="schedule-status">' + esc(t.confirmedNote) + '</p>' + more;
+      h = head(fmt(t.title, { year: s.year })) + scheduleDays(ctx) +
+        '<p class="schedule-status"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>' + esc(t.confirmedNote) + '</p>' + more;
     } else {
       h = head(fmt(t.title, { year: s.year })) +
-        '<div class="notice-card" role="status"><h3 class="notice-card__title">' + esc(t.pendingTitle) + '</h3>' +
+        '<div class="notice" role="status"><h3 class="notice__title">' + esc(t.pendingTitle) + '</h3>' +
         '<p>' + esc(fmt(t.pendingText, { year: s.year })) + '</p>' + contact + '</div>' + more;
     }
     return wrap('schedule', s, h);
@@ -369,24 +409,24 @@
   }
 
   function renderRoute(ctx) {
-    var c = ctx.site.church, a = c.address, t = ctx.t.route;
+    var c = ctx.site.church, a = c.address, t = ctx.t.route, ui = ctx.t.ui;
     var full = a.street + ', ' + a.locality + ', ' + a.postalCode + ', ' + a.eldership + ', ' + a.municipality + ', ' + a.country;
     var maps = 'https://www.google.com/maps/dir/?api=1&amp;destination=' + c.geo.lat + '%2C' + c.geo.lng;
-    return '<section class="section section--violet route" id="route" aria-labelledby="route-heading" data-region="route"><div class="container--narrow">' +
-      '<div class="section-header"><span class="section-tag">' + esc(t.tag) + '</span>' +
-      '<h2 class="section-title" id="route-heading">' + esc(t.title) + '</h2></div>' +
+    return '<section class="section route" id="route" aria-labelledby="route-heading" data-region="route"><div class="container"><div class="route__grid">' +
+      '<div class="route__intro"><h2 class="section-title" id="route-heading">' + esc(t.tag) + '</h2>' +
+      (t.lead ? '<p class="section-lead">' + esc(t.lead) + '</p>' : '') + '</div>' +
       '<div class="route-card">' +
       '<p class="route-card__church">' + esc(c.names[ctx.lang]) + '</p>' +
       '<address class="route-card__address" data-address>' + esc(a.street) + '<br>' + esc(a.postalCode + ' ' + a.locality) + '<br>' +
       esc(a.eldership + ', ' + a.municipality) + '<br>' + esc(a.country) + '</address>' +
       '<p class="route-card__place">' + esc(t.place) + '</p>' +
       '<div class="route-card__actions">' +
-      '<a class="btn btn--gold" href="' + maps + '" target="_blank" rel="noopener">' + esc(t.directions) + '<span class="visually-hidden"> ' + esc(ctx.t.ui.external) + '</span></a>' +
-      '<a class="btn btn--outline" href="tel:' + c.phoneE164 + '">' + esc(t.call) + ': ' + esc(c.phone) + '</a>' +
-      '<button type="button" class="btn btn--ghost" data-copy-address="' + esc(full) + '" data-copied="' + esc(t.copied) + '" data-copy-fail="' + esc(t.copyFail) + '" hidden>' + esc(t.copy) + '</button>' +
+      '<a class="btn btn--gold" href="' + maps + '" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg>' + esc(t.directions) + '<span class="visually-hidden"> ' + esc(ui.external) + '</span></a>' +
+      '<a class="btn btn--outline" href="tel:' + c.phoneE164 + '"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M6.6 3.5l2.6 3.6-1.7 2.3a12 12 0 0 0 7.1 7.1l2.3-1.7 3.6 2.6-1.5 2.6c-.4.6-1 .9-1.7.9C9.8 20.9 3.1 14.2 3.1 6.7c0-.7.3-1.3.9-1.7z"/></svg>' + esc(c.phone) + '</a>' +
+      '<button type="button" class="btn btn--ghost" data-copy-address="' + esc(full) + '" data-copied="' + esc(t.copied) + '" data-copy-fail="' + esc(t.copyFail) + '" hidden><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><rect x="8.5" y="8.5" width="12" height="12" rx="2"/><path d="M15.5 8.5V5.5a2 2 0 0 0-2-2h-8a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h3"/></svg>' + esc(t.copy) + '</button>' +
       '</div><p class="route-card__note">' + esc(t.mapNote) + '</p>' +
       '<p class="route-card__status" data-copy-status role="status" aria-live="polite"></p>' +
-      '</div></div></section>';
+      '</div></div></div></section>';
   }
 
   return {
@@ -396,6 +436,7 @@
     getSchedule: getSchedule, getState: getState,
     esc: esc, fmt: fmt, dateLong: dateLong, dateWeekday: dateWeekday, dateWeekdayYear: dateWeekdayYear, cap: cap,
     renderHero: renderHero, renderAnnounce: renderAnnounce, renderCountdown: renderCountdown,
-    renderSchedule: renderSchedule, renderBlessing: renderBlessing, renderRoute: renderRoute
+    renderSchedule: renderSchedule, renderBlessing: renderBlessing, renderRoute: renderRoute,
+    renderCycle: renderCycle, getCycle: getCycle, dayMonth: dayMonth
   };
 });

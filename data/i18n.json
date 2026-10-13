@@ -25,7 +25,12 @@
       "fullSchedule": "Расписание храма на весь год",
       "notTranslatedNote": "Этот материал пока есть только на русском языке. Ссылки на другие языки ведут на их главные страницы.",
       "notTranslatedAria": "{label}: главная страница (этот материал не переведён)",
-      "external": "(откроется в новой вкладке)"
+      "external": "(откроется в новой вкладке)",
+      "share": "Поделиться",
+      "linkCopied": "Ссылка скопирована",
+      "readTime": "{n} мин чтения",
+      "call": "Позвонить",
+      "quickNav": "Быстрые действия"
     },
     "nav": [
       {
@@ -93,8 +98,8 @@
     ],
     "status": {
       "feastTitle": "Светлое Христово<br>Воскресение",
-      "greetingTitle": "Христос<br>Воскресе!",
-      "greetingReply": "Воистину Воскресе!",
+      "greetingTitle": "Христос<br>воскресе!",
+      "greetingReply": "Воистину воскресе!",
       "eyebrowUpcoming": "Православная Пасха · {date}",
       "eyebrowNext": "Следующая православная Пасха",
       "eyebrowPaschal": "Пасхальные дни",
@@ -103,7 +108,7 @@
       "pendingLabel": "Расписание богослужений",
       "pendingLine": "уточняется и будет опубликовано после утверждения приходом",
       "inProgress": "Пасхальное богослужение уже идёт.",
-      "paschalLine": "Пасха празднуется до {date} — дня Отдания Пасхи. Всё это время мы приветствуем друг друга словами «Христос Воскресе!».",
+      "paschalLine": "Пасха празднуется до {date} — дня Отдания Пасхи. Всё это время мы приветствуем друг друга словами «Христос воскресе!».",
       "nextLine": "{date}",
       "westernDiff": "Западные христиане празднуют Пасху {date}.",
       "westernSame": "В {year} году православные и западные христиане празднуют Пасху в один день.",
@@ -111,12 +116,23 @@
       "unsupported": "Дата следующей Пасхи пока не внесена на сайт. Уточните её в храме или на сайте прихода.",
       "ctaSchedule": "Расписание",
       "ctaRoute": "Как добраться",
-      "ctaMeaning": "О смысле Пасхи"
+      "ctaMeaning": "О смысле Пасхи",
+      "kicker": "Православная Пасха {year}",
+      "lead": "Храм Рождества Христова в Букишкисе приглашает на пасхальное богослужение. Здесь — дата праздника, расписание, порядок ночной службы и дорога к храму.",
+      "panelNext": "Следующая православная Пасха",
+      "panelThis": "Православная Пасха",
+      "panelPaschal": "Пасхальные дни продолжаются",
+      "panelUntil": "до {date}",
+      "panelOtdanie": "Отдание Пасхи",
+      "addCal": "Добавить в календарь",
+      "icsFeast": "Православная Пасха",
+      "icsService": "Пасхальное богослужение",
+      "panelAria": "Дата Пасхи и расписание"
     },
     "announce": {
       "confirmed": "<strong>Пасхальное богослужение</strong> — {satDate}, начало в <strong>{time}</strong> · {church}",
       "pending": "<strong>Православная Пасха</strong> — {date} · расписание уточняется",
-      "paschal": "<strong>Христос Воскресе!</strong> Пасхальные дни — до {date}",
+      "paschal": "<strong>Христос воскресе!</strong> Пасхальные дни — до {date}",
       "next": "Следующая православная Пасха — <strong>{date}</strong>"
     },
     "countdown": {
@@ -131,7 +147,7 @@
       "minutes": "Минут",
       "seconds": "Секунд",
       "reachedService": "Пасхальное богослужение началось.",
-      "reachedFeast": "Христос Воскресе!"
+      "reachedFeast": "Христос воскресе!"
     },
     "schedule": {
       "tag": "Расписание",
@@ -186,7 +202,8 @@
       "copy": "Скопировать адрес",
       "copied": "Адрес скопирован",
       "copyFail": "Не удалось скопировать. Выделите адрес вручную.",
-      "mapNote": "Маршрут откроется в Google Картах по координатам храма."
+      "mapNote": "Маршрут откроется в Google Картах по координатам храма.",
+      "lead": "Двери храма открыты для всех — и для тех, кто молится с детства, и для тех, кто приходит впервые."
     },
     "footer": {
       "desc": "Сайт прихода храма Рождества Христова в Букишкисе о Светлом Христовом Воскресении.",
@@ -239,6 +256,33 @@
         "description": "Впервые на пасхальном богослужении? Как одеться, что происходит на службе, как себя вести — спокойно и без осуждения.",
         "ogTitle": "Впервые в храме"
       }
+    },
+    "greet": {
+      "title": "Пасхальное приветствие",
+      "lead": "Так приветствуют друг друга православные христиане по всему миру — от Пасхи до её Отдания.",
+      "pause": "Остановить смену языков",
+      "play": "Продолжить смену языков",
+      "choose": "Выберите язык приветствия"
+    },
+    "cycle": {
+      "title": "Пасхальный круг {year}",
+      "lead": "Дни, которые каждый год зависят от даты Пасхи.",
+      "today": "сегодня",
+      "next": "ближайший",
+      "past": "прошёл",
+      "feasts": {
+        "lent": "Начало Великого поста",
+        "palm": "Вход Господень в Иерусалим",
+        "pascha": "Пасха",
+        "radonitsa": "Радоница",
+        "otdanie": "Отдание Пасхи",
+        "ascension": "Вознесение Господне",
+        "pentecost": "День Святой Троицы"
+      }
+    },
+    "articles": {
+      "title": "Читать о Пасхе",
+      "lead": "Короткие тексты для тех, кто хочет понять смысл праздника и подготовиться к службе."
     }
   },
   "lt": {
@@ -267,7 +311,12 @@
       "ruMaterials": "Daugiau medžiagos — rusų kalba",
       "notTranslatedNote": "Ši medžiaga kol kas yra tik rusų kalba.",
       "notTranslatedAria": "{label}: pagrindinis puslapis (ši medžiaga neišversta)",
-      "external": "(atsidarys naujame skirtuke)"
+      "external": "(atsidarys naujame skirtuke)",
+      "share": "Dalintis",
+      "linkCopied": "Nuoroda nukopijuota",
+      "readTime": "{n} min skaitymo",
+      "call": "Skambinti",
+      "quickNav": "Greiti veiksmai"
     },
     "status": {
       "feastTitle": "Šventasis Kristaus<br>Prisikėlimas",
@@ -289,7 +338,18 @@
       "unsupported": "Kitų Velykų data svetainėje dar nenurodyta. Pasiteiraukite bažnyčioje arba parapijos svetainėje.",
       "ctaSchedule": "Tvarkaraštis",
       "ctaRoute": "Kaip atvykti",
-      "ctaMeaning": "Apie Velykas (rusų k.)"
+      "ctaMeaning": "Apie Velykas (rusų k.)",
+      "kicker": "Stačiatikių Velykos {year}",
+      "lead": "Bukiškio Kristaus Gimimo stačiatikių bažnyčia kviečia į Velykų pamaldas. Čia rasite šventės datą, pamaldų tvarkaraštį ir kelią į bažnyčią.",
+      "panelNext": "Artimiausios stačiatikių Velykos",
+      "panelThis": "Stačiatikių Velykos",
+      "panelPaschal": "Velykų laikotarpis tęsiasi",
+      "panelUntil": "iki {date}",
+      "panelOtdanie": "Velykų šventės užbaigimas",
+      "addCal": "Įtraukti į kalendorių",
+      "icsFeast": "Stačiatikių Velykos",
+      "icsService": "Velykų pamaldos",
+      "panelAria": "Velykų data ir tvarkaraštis"
     },
     "announce": {
       "confirmed": "<strong>Velykų pamaldos</strong> — {satDate}, pradžia <strong>{time}</strong> · {church}",
@@ -364,7 +424,8 @@
       "copy": "Kopijuoti adresą",
       "copied": "Adresas nukopijuotas",
       "copyFail": "Nepavyko nukopijuoti. Pažymėkite adresą rankiniu būdu.",
-      "mapNote": "Maršrutas atsidarys „Google Maps“ pagal bažnyčios koordinates."
+      "mapNote": "Maršrutas atsidarys „Google Maps“ pagal bažnyčios koordinates.",
+      "lead": "Bažnyčios durys atviros visiems — ir tiems, kurie meldžiasi nuo vaikystės, ir tiems, kurie ateina pirmą kartą."
     },
     "footer": {
       "desc": "Bukiškio Kristaus Gimimo stačiatikių parapijos svetainė apie Šventąjį Kristaus Prisikėlimą.",
@@ -378,6 +439,29 @@
       "closingTitle": "Bažnyčios durys atviros",
       "closingText": "Laukiame visų — ir tų, kurie meldžiasi nuo vaikystės, ir tų, kurie į bažnyčią ateina pirmą kartą.",
       "ruLink": "Русская версия"
+    },
+    "greet": {
+      "title": "Velykų sveikinimas",
+      "lead": "Taip vieni kitus sveikina stačiatikiai visame pasaulyje — nuo Velykų iki šventės užbaigimo.",
+      "pause": "Sustabdyti kalbų keitimą",
+      "play": "Tęsti kalbų keitimą",
+      "choose": "Pasirinkite sveikinimo kalbą"
+    },
+    "cycle": {
+      "title": "Velykų ratas {year}",
+      "lead": "Dienos, kurių data kasmet priklauso nuo Velykų.",
+      "today": "šiandien",
+      "next": "artimiausia",
+      "past": "praėjo",
+      "feasts": {
+        "lent": "Didžiosios gavėnios pradžia",
+        "palm": "Viešpaties įžengimas į Jeruzalę",
+        "pascha": "Velykos",
+        "radonitsa": "Radonica",
+        "otdanie": "Velykų šventės užbaigimas",
+        "ascension": "Viešpaties Žengimas į dangų",
+        "pentecost": "Šventosios Trejybės diena"
+      }
     }
   },
   "en": {
@@ -406,7 +490,12 @@
       "ruMaterials": "More articles — in Russian",
       "notTranslatedNote": "This article is currently available in Russian only.",
       "notTranslatedAria": "{label}: home page (this article is not translated)",
-      "external": "(opens in a new tab)"
+      "external": "(opens in a new tab)",
+      "share": "Share",
+      "linkCopied": "Link copied",
+      "readTime": "{n} min read",
+      "call": "Call",
+      "quickNav": "Quick actions"
     },
     "status": {
       "feastTitle": "The Resurrection<br>of Christ",
@@ -428,7 +517,18 @@
       "unsupported": "The date of the next Pascha has not yet been added to this site. Please ask at the church or check the parish website.",
       "ctaSchedule": "Schedule",
       "ctaRoute": "Directions",
-      "ctaMeaning": "About Pascha (in Russian)"
+      "ctaMeaning": "About Pascha (in Russian)",
+      "kicker": "Orthodox Easter {year}",
+      "lead": "The Orthodox Church of the Nativity of Christ in Bukiškis invites you to the Paschal services. Here you will find the date, the schedule and directions to the church.",
+      "panelNext": "Next Orthodox Easter",
+      "panelThis": "Orthodox Easter",
+      "panelPaschal": "The Paschal season continues",
+      "panelUntil": "until {date}",
+      "panelOtdanie": "Apodosis of Pascha",
+      "addCal": "Add to calendar",
+      "icsFeast": "Orthodox Easter (Pascha)",
+      "icsService": "Paschal service",
+      "panelAria": "Date of Pascha and schedule"
     },
     "announce": {
       "confirmed": "<strong>Paschal services</strong> — {satDate}, starting at <strong>{time}</strong> · {church}",
@@ -503,7 +603,8 @@
       "copy": "Copy address",
       "copied": "Address copied",
       "copyFail": "Could not copy. Please select the address manually.",
-      "mapNote": "Directions open in Google Maps using the church’s coordinates."
+      "mapNote": "Directions open in Google Maps using the church’s coordinates.",
+      "lead": "The church doors are open to everyone — to those who have prayed since childhood and to those coming for the first time."
     },
     "footer": {
       "desc": "A website of the Orthodox parish of the Nativity of Christ in Bukiškis about the Resurrection of Christ.",
@@ -536,6 +637,29 @@
       "closingTitle": "The church doors are open",
       "closingText": "Everyone is welcome — those who have prayed since childhood and those taking their first step towards God.",
       "ruLink": "Русская версия"
+    },
+    "greet": {
+      "title": "The Paschal greeting",
+      "lead": "This is how Orthodox Christians greet one another around the world, from Pascha until its Apodosis.",
+      "pause": "Pause language rotation",
+      "play": "Resume language rotation",
+      "choose": "Choose a language"
+    },
+    "cycle": {
+      "title": "The Paschal cycle {year}",
+      "lead": "Days whose dates depend on Pascha each year.",
+      "today": "today",
+      "next": "next",
+      "past": "passed",
+      "feasts": {
+        "lent": "Great Lent begins",
+        "palm": "Entry of the Lord into Jerusalem",
+        "pascha": "Pascha",
+        "radonitsa": "Radonitsa",
+        "otdanie": "Apodosis of Pascha",
+        "ascension": "Ascension of the Lord",
+        "pentecost": "Holy Trinity Day (Pentecost)"
+      }
     }
   },
   "pl": {
@@ -564,7 +688,12 @@
       "ruMaterials": "Więcej artykułów — po rosyjsku",
       "notTranslatedNote": "Ten artykuł jest na razie dostępny tylko po rosyjsku.",
       "notTranslatedAria": "{label}: strona główna (artykuł nie jest przetłumaczony)",
-      "external": "(otworzy się w nowej karcie)"
+      "external": "(otworzy się w nowej karcie)",
+      "share": "Udostępnij",
+      "linkCopied": "Link skopiowany",
+      "readTime": "{n} min czytania",
+      "call": "Zadzwoń",
+      "quickNav": "Szybkie działania"
     },
     "status": {
       "feastTitle": "Zmartwychwstanie<br>Chrystusa",
@@ -586,7 +715,18 @@
       "unsupported": "Data następnej Paschy nie została jeszcze dodana do strony. Prosimy zapytać w cerkwi lub na stronie parafii.",
       "ctaSchedule": "Nabożeństwa",
       "ctaRoute": "Dojazd",
-      "ctaMeaning": "O Passze (po rosyjsku)"
+      "ctaMeaning": "O Passze (po rosyjsku)",
+      "kicker": "Prawosławna Pascha {year}",
+      "lead": "Prawosławna cerkiew Narodzenia Pańskiego w Bukiszkach zaprasza na nabożeństwa paschalne. Tutaj znajdziesz datę święta, porządek nabożeństw i dojazd.",
+      "panelNext": "Najbliższa prawosławna Pascha",
+      "panelThis": "Prawosławna Pascha",
+      "panelPaschal": "Okres paschalny trwa",
+      "panelUntil": "do {date}",
+      "panelOtdanie": "Oddanie Paschy",
+      "addCal": "Dodaj do kalendarza",
+      "icsFeast": "Prawosławna Pascha",
+      "icsService": "Nabożeństwo paschalne",
+      "panelAria": "Data Paschy i porządek nabożeństw"
     },
     "announce": {
       "confirmed": "<strong>Nabożeństwo paschalne</strong> — {satDate}, początek o <strong>{time}</strong> · {church}",
@@ -661,7 +801,8 @@
       "copy": "Kopiuj adres",
       "copied": "Adres skopiowany",
       "copyFail": "Nie udało się skopiować. Zaznacz adres ręcznie.",
-      "mapNote": "Trasa otworzy się w Mapach Google według współrzędnych cerkwi."
+      "mapNote": "Trasa otworzy się w Mapach Google według współrzędnych cerkwi.",
+      "lead": "Drzwi cerkwi są otwarte dla wszystkich — dla tych, którzy modlą się od dzieciństwa, i dla tych, którzy przychodzą po raz pierwszy."
     },
     "footer": {
       "desc": "Strona prawosławnej parafii Narodzenia Pańskiego w Bukiszkach o Zmartwychwstaniu Chrystusa.",
@@ -675,6 +816,29 @@
       "closingTitle": "Drzwi cerkwi są otwarte",
       "closingText": "Zapraszamy wszystkich — tych, którzy modlą się od dzieciństwa, i tych, którzy stawiają pierwszy krok ku Bogu.",
       "ruLink": "Русская версия"
+    },
+    "greet": {
+      "title": "Paschalne pozdrowienie",
+      "lead": "Tak pozdrawiają się prawosławni chrześcijanie na całym świecie — od Paschy aż do jej oddania.",
+      "pause": "Zatrzymaj zmianę języków",
+      "play": "Wznów zmianę języków",
+      "choose": "Wybierz język"
+    },
+    "cycle": {
+      "title": "Krąg paschalny {year}",
+      "lead": "Dni, których data co roku zależy od Paschy.",
+      "today": "dziś",
+      "next": "najbliższy",
+      "past": "minął",
+      "feasts": {
+        "lent": "Początek Wielkiego Postu",
+        "palm": "Wjazd Pański do Jerozolimy",
+        "pascha": "Pascha",
+        "radonitsa": "Radonica",
+        "otdanie": "Oddanie Paschy",
+        "ascension": "Wniebowstąpienie Pańskie",
+        "pentecost": "Pięćdziesiątnica (Trójca Święta)"
+      }
     }
   },
   "uk": {
@@ -703,7 +867,12 @@
       "ruMaterials": "Більше матеріалів — російською",
       "notTranslatedNote": "Цей матеріал поки що доступний лише російською.",
       "notTranslatedAria": "{label}: головна сторінка (матеріал не перекладено)",
-      "external": "(відкриється в новій вкладці)"
+      "external": "(відкриється в новій вкладці)",
+      "share": "Поділитися",
+      "linkCopied": "Посилання скопійовано",
+      "readTime": "{n} хв читання",
+      "call": "Зателефонувати",
+      "quickNav": "Швидкі дії"
     },
     "status": {
       "feastTitle": "Світле Христове<br>Воскресіння",
@@ -725,7 +894,18 @@
       "unsupported": "Дату наступного Великодня ще не внесено на сайт. Уточніть її в храмі або на сайті парафії.",
       "ctaSchedule": "Розклад",
       "ctaRoute": "Як дістатися",
-      "ctaMeaning": "Про Пасху (російською)"
+      "ctaMeaning": "Про Пасху (російською)",
+      "kicker": "Православний Великдень {year}",
+      "lead": "Храм Різдва Христового в Букішках запрошує на великоднє богослужіння. Тут — дата свята, розклад і дорога до храму.",
+      "panelNext": "Наступний православний Великдень",
+      "panelThis": "Православний Великдень",
+      "panelPaschal": "Великодній період триває",
+      "panelUntil": "до {date}",
+      "panelOtdanie": "Віддання Пасхи",
+      "addCal": "Додати в календар",
+      "icsFeast": "Православний Великдень",
+      "icsService": "Великоднє богослужіння",
+      "panelAria": "Дата Великодня і розклад"
     },
     "announce": {
       "confirmed": "<strong>Великоднє богослужіння</strong> — {satDate}, початок о <strong>{time}</strong> · {church}",
@@ -800,7 +980,8 @@
       "copy": "Скопіювати адресу",
       "copied": "Адресу скопійовано",
       "copyFail": "Не вдалося скопіювати. Виділіть адресу вручну.",
-      "mapNote": "Маршрут відкриється в Google Картах за координатами храму."
+      "mapNote": "Маршрут відкриється в Google Картах за координатами храму.",
+      "lead": "Двері храму відчинені для всіх — і для тих, хто молиться з дитинства, і для тих, хто приходить уперше."
     },
     "footer": {
       "desc": "Сайт православної парафії Різдва Христового в Букішках про Світле Христове Воскресіння.",
@@ -814,6 +995,29 @@
       "closingTitle": "Двері храму відчинені",
       "closingText": "Ми раді кожному — і тим, хто молиться з дитинства, і тим, хто робить перший крок назустріч Богу.",
       "ruLink": "Русская версия"
+    },
+    "greet": {
+      "title": "Великоднє вітання",
+      "lead": "Так вітають одне одного православні християни в усьому світі — від Пасхи до її віддання.",
+      "pause": "Зупинити зміну мов",
+      "play": "Продовжити зміну мов",
+      "choose": "Оберіть мову вітання"
+    },
+    "cycle": {
+      "title": "Великодній цикл {year}",
+      "lead": "Дні, дата яких щороку залежить від Великодня.",
+      "today": "сьогодні",
+      "next": "найближчий",
+      "past": "минув",
+      "feasts": {
+        "lent": "Початок Великого посту",
+        "palm": "Вхід Господній у Єрусалим",
+        "pascha": "Великдень",
+        "radonitsa": "Радониця",
+        "otdanie": "Віддання Пасхи",
+        "ascension": "Вознесіння Господнє",
+        "pentecost": "Трійця (П’ятидесятниця)"
+      }
     }
   },
   "de": {
@@ -842,7 +1046,12 @@
       "ruMaterials": "Weitere Beiträge — auf Russisch",
       "notTranslatedNote": "Dieser Beitrag ist bisher nur auf Russisch verfügbar.",
       "notTranslatedAria": "{label}: Startseite (Beitrag nicht übersetzt)",
-      "external": "(öffnet in neuem Tab)"
+      "external": "(öffnet in neuem Tab)",
+      "share": "Teilen",
+      "linkCopied": "Link kopiert",
+      "readTime": "{n} Min. Lesezeit",
+      "call": "Anrufen",
+      "quickNav": "Schnellzugriff"
     },
     "status": {
       "feastTitle": "Die Auferstehung<br>Christi",
@@ -864,7 +1073,18 @@
       "unsupported": "Das Datum des nächsten Osterfestes ist auf dieser Website noch nicht eingetragen. Bitte fragen Sie in der Kirche oder auf der Website der Gemeinde nach.",
       "ctaSchedule": "Gottesdienste",
       "ctaRoute": "Anfahrt",
-      "ctaMeaning": "Über Ostern (auf Russisch)"
+      "ctaMeaning": "Über Ostern (auf Russisch)",
+      "kicker": "Orthodoxes Osterfest {year}",
+      "lead": "Die orthodoxe Kirche der Geburt Christi in Bukiškis lädt zu den Ostergottesdiensten ein. Hier finden Sie das Datum, die Gottesdienstordnung und den Weg zur Kirche.",
+      "panelNext": "Nächstes orthodoxes Osterfest",
+      "panelThis": "Orthodoxes Osterfest",
+      "panelPaschal": "Die österliche Zeit dauert an",
+      "panelUntil": "bis {date}",
+      "panelOtdanie": "Apodosis des Osterfestes",
+      "addCal": "Zum Kalender hinzufügen",
+      "icsFeast": "Orthodoxes Osterfest",
+      "icsService": "Ostergottesdienst",
+      "panelAria": "Osterdatum und Gottesdienste"
     },
     "announce": {
       "confirmed": "<strong>Ostergottesdienst</strong> — {satDate}, Beginn um <strong>{time} Uhr</strong> · {church}",
@@ -939,7 +1159,8 @@
       "copy": "Adresse kopieren",
       "copied": "Adresse kopiert",
       "copyFail": "Kopieren nicht möglich. Bitte markieren Sie die Adresse von Hand.",
-      "mapNote": "Die Route öffnet sich in Google Maps anhand der Koordinaten der Kirche."
+      "mapNote": "Die Route öffnet sich in Google Maps anhand der Koordinaten der Kirche.",
+      "lead": "Die Türen der Kirche stehen allen offen — denen, die seit der Kindheit beten, und denen, die zum ersten Mal kommen."
     },
     "footer": {
       "desc": "Website der orthodoxen Gemeinde der Geburt Christi in Bukiškis über die Auferstehung Christi.",
@@ -953,6 +1174,29 @@
       "closingTitle": "Die Türen der Kirche stehen offen",
       "closingText": "Alle sind willkommen — wer seit der Kindheit betet, und wer den ersten Schritt zu Gott wagt.",
       "ruLink": "Русская версия"
+    },
+    "greet": {
+      "title": "Der Ostergruß",
+      "lead": "So grüßen sich orthodoxe Christen in aller Welt — von Ostern bis zum Abschluss des Festes.",
+      "pause": "Sprachwechsel anhalten",
+      "play": "Sprachwechsel fortsetzen",
+      "choose": "Sprache wählen"
+    },
+    "cycle": {
+      "title": "Der österliche Festkreis {year}",
+      "lead": "Tage, deren Datum jedes Jahr vom Osterfest abhängt.",
+      "today": "heute",
+      "next": "als Nächstes",
+      "past": "vorbei",
+      "feasts": {
+        "lent": "Beginn der Großen Fastenzeit",
+        "palm": "Einzug des Herrn in Jerusalem",
+        "pascha": "Ostern",
+        "radonitsa": "Radoniza",
+        "otdanie": "Apodosis des Osterfestes",
+        "ascension": "Christi Himmelfahrt",
+        "pentecost": "Pfingsten (Dreifaltigkeitsfest)"
+      }
     }
   }
 }

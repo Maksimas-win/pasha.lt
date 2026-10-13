@@ -33,6 +33,8 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="../images/favicon.svg" type="image/svg+xml">
 <link rel="manifest" href="../manifest.json">
+<link rel="preload" href="../fonts/spectral-light.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../fonts/manrope-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../css/style.css">
 <script>document.documentElement.classList.add('js')</script>
 <script type="application/ld+json">
@@ -66,11 +68,11 @@
 <body data-lang="uk" data-schedule-href="#schedule">
 <header id="site-header">
 <a href="#main-content" class="skip-nav">Перейти до змісту</a>
-<div data-region="announce" data-mode="C" class="announcement-bar">Наступний православний Великдень — <strong>2 травня 2027 р.</strong></div>
+<div data-region="announce" data-mode="C" class="announcement-bar"><p>Наступний православний Великдень — <strong>2 травня 2027 р.</strong></p></div>
 <nav aria-label="Основна навігація">
   <div class="nav-inner">
     <a href="/ukr/" class="nav-logo" aria-label="pasha.lt — на головну">
-      <span class="nav-logo__cross" aria-hidden="true">☩</span>
+      <svg class="mark" viewBox="0 0 24 32" aria-hidden="true" focusable="false"><path d="M12 1.5v29M8.5 5.5h7M4.5 11h15M7.5 22.5l9-3"/></svg>
       <span class="nav-logo__text">Великдень<span class="nav-logo__sub">pasha.lt</span></span>
     </a>
     <ul class="nav-links">
@@ -80,14 +82,17 @@
       <li><a href="/ru/" hreflang="ru" lang="ru">Більше матеріалів — російською</a></li>
     </ul>
     <div class="nav-right">
-      <div class="lang-switcher" role="group" aria-label="Вибір мови">
-        <a href="/ru/" lang="ru" hreflang="ru" title="Русский">RU</a>
-        <a href="/lt/" lang="lt" hreflang="lt" title="Lietuvių">LT</a>
-        <a href="/en/" lang="en" hreflang="en" title="English">EN</a>
-        <a href="/pl/" lang="pl" hreflang="pl" title="Polski">PL</a>
-        <a href="/ukr/" lang="uk" class="active" aria-current="page">UK</a>
-        <a href="/de/" lang="de" hreflang="de" title="Deutsch">DE</a>
-      </div>
+      <details class="lang-menu">
+        <summary aria-label="Вибір мови"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.4 2.5 3.5 5.3 3.5 8.5s-1.1 6-3.5 8.5c-2.4-2.5-3.5-5.3-3.5-8.5s1.1-6 3.5-8.5z"/></svg><span>UK</span></summary>
+        <div class="lang-menu__list" role="group" aria-label="Вибір мови">
+        <a href="/ru/" lang="ru" hreflang="ru" title="Русский">Русский</a>
+        <a href="/lt/" lang="lt" hreflang="lt" title="Lietuvių">Lietuvių</a>
+        <a href="/en/" lang="en" hreflang="en" title="English">English</a>
+        <a href="/pl/" lang="pl" hreflang="pl" title="Polski">Polski</a>
+        <a href="/ukr/" lang="uk" class="active" aria-current="page">Українська</a>
+        <a href="/de/" lang="de" hreflang="de" title="Deutsch">Deutsch</a>
+        </div>
+      </details>
       <button type="button" class="hamburger" aria-label="Відкрити меню" aria-expanded="false" aria-controls="mobile-menu">
         <span></span><span></span><span></span>
       </button>
@@ -109,41 +114,79 @@
         <a href="/ukr/" lang="uk" class="btn btn--ghost active" aria-current="page">UK</a>
         <a href="/de/" lang="de" hreflang="de" class="btn btn--ghost" title="Deutsch">DE</a>
   </div>
-  <a href="https://bukiski-hram.net" target="_blank" rel="noopener" class="btn btn--outline">⛪ Сайт парафії<span class="visually-hidden"> (відкриється в новій вкладці)</span></a>
+  <a href="https://bukiski-hram.net" target="_blank" rel="noopener" class="btn btn--outline">Сайт парафії<span class="visually-hidden"> (відкриється в новій вкладці)</span></a>
 </div>
 </header>
 <main id="main-content">
 <section class="hero" aria-labelledby="hero-title">
-  <div class="hero-content">
-    <div class="hero-cross-wrap" aria-hidden="true">
-      <div class="hero-cross-halo"></div>
-      <div class="hero-cross"><svg viewBox="0 0 60 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><rect x="24" y="0" width="12" height="80" rx="3"/><rect x="0" y="18" width="60" height="12" rx="3"/></svg></div>
-    </div>
-    <div data-region="hero" data-mode="C"><p class="hero-eyebrow">Наступний православний Великдень</p><h1 class="hero-title hero-title--feast" id="hero-title">Світле Христове<br>Воскресіння</h1><div class="hero-divider" aria-hidden="true"></div><div class="hero-service-info"><p class="hero-service-date">Неділя, 2 травня 2027 р.</p><p class="hero-service-text">Розклад богослужінь уточнюється і буде опублікований після затвердження парафією.</p></div><p class="hero-note">Західні християни святкують Великдень 28 березня 2027 р. Православна Церква визначає дату Пасхи за юліанським календарем, тому вона часто не збігається із західною.</p><div class="hero-cta-wrap"><a href="#schedule" class="btn btn--gold">Розклад</a><a href="#route" class="btn btn--outline">Як дістатися</a></div></div>
-  </div>
-</section>
-<div data-region="countdown" data-mode="C"></div>
-<section class="section section--violet" id="schedule" aria-labelledby="schedule-heading">
   <div class="container">
-    <div data-region="schedule" data-mode="C"><div class="section-header"><span class="section-tag">Розклад</span><h2 class="section-title" id="schedule-heading">Великодні богослужіння 2027</h2><p class="section-lead">Храм Різдва Христового в Букішках</p></div><div class="notice-card" role="status"><h3 class="notice-card__title">Розклад уточнюється</h3><p>Розклад великодніх богослужінь на 2027 рік ще не затверджено. Ми опублікуємо його тут одразу після підтвердження. Будь ласка, не орієнтуйтеся на розклад минулих років.</p><p class="notice-card__contact">Питання можна поставити за телефоном <a href="tel:+37063693506">+370 636 93 506</a> або на сайті парафії.</p></div><div class="schedule-more"><a href="https://bukiski-hram.net/raspisanie-bogosluzhenij" target="_blank" rel="noopener" class="btn btn--outline">Розклад храму на весь рік →<span class="visually-hidden"> (відкриється в новій вкладці)</span></a></div></div>
+    <div data-region="hero" data-mode="C" class="hero__grid"><div class="hero__text"><p class="hero__kicker">Православний Великдень 2027</p><h1 class="hero__title" id="hero-title">Світле Христове<br>Воскресіння</h1><p class="hero__lead">Храм Різдва Христового в Букішках запрошує на великоднє богослужіння. Тут — дата свята, розклад і дорога до храму.</p><div class="hero__actions"><a href="#schedule" class="btn btn--gold">Розклад</a><a href="#route" class="btn btn--outline">Як дістатися</a></div></div><aside class="hero__panel" aria-label="Дата Великодня і розклад"><p class="panel__label">Наступний православний Великдень</p><p class="panel__date"><time datetime="2027-05-02"><span class="panel__day">2</span> <span class="panel__month">травня</span></time></p><p class="panel__sub">Неділя, 2027</p><p class="panel__status"><strong>Розклад богослужінь</strong> уточнюється і буде опублікований після затвердження парафією.</p><details class="panel__more"><summary>Західні християни святкують Великдень 28 березня 2027 р.</summary><p>Православна Церква визначає дату Пасхи за юліанським календарем, тому вона часто не збігається із західною.</p></details><div class="panel__actions"><button type="button" class="btn btn--ghost" data-ics-date="20270502" data-ics-title="Православний Великдень 2027" data-ics-location="Храм Різдва Христового в Букішках, Sodų g. 8, Bukiškis, Lietuva" data-ics-file="pascha-2027.ics" hidden><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4M12 13v4M10 15h4"/></svg>Додати в календар</button></div></aside></div>
   </div>
 </section>
-<section class="section" aria-label="Великодній тропар">
-  <div class="container--narrow">
-    <figure class="silent-word">
-      <div class="silent-word__icon" aria-hidden="true">🕯️</div>
-      <blockquote class="silent-word__text">Христос воскрес із мертвих,<br>смертю смерть подолав<br>і тим, що в гробах були,<br>життя дарував.</blockquote>
-      <figcaption class="silent-word__verse">— Великодній тропар</figcaption>
+<section class="section greet" aria-labelledby="greet-heading" data-greetings>
+  <div class="container greet__inner">
+    <div class="greet__head">
+      <h2 class="section-title" id="greet-heading">Великоднє вітання</h2>
+      <p class="section-lead">Так вітають одне одного православні християни в усьому світі — від Пасхи до її віддання.</p>
+    </div>
+    <div class="greet__stage" aria-live="polite">
+      <p class="greet__item" lang="uk"><span class="greet__g">Христос воскрес!</span><span class="greet__r">Воістину воскрес!</span></p>
+      <p class="greet__item" lang="be"><span class="greet__g">Хрыстос уваскрос!</span><span class="greet__r">Сапраўды ўваскрос!</span></p>
+      <p class="greet__item" lang="pl"><span class="greet__g">Chrystus zmartwychwstał!</span><span class="greet__r">Prawdziwie zmartwychwstał!</span></p>
+      <p class="greet__item" lang="sr"><span class="greet__g">Христос васкрсе!</span><span class="greet__r">Ваистину васкрсе!</span></p>
+      <p class="greet__item" lang="bg"><span class="greet__g">Христос воскресе!</span><span class="greet__r">Воистина воскресе!</span></p>
+      <p class="greet__item" lang="ro"><span class="greet__g">Hristos a înviat!</span><span class="greet__r">Adevărat a înviat!</span></p>
+      <p class="greet__item" lang="ka"><span class="greet__g">ქრისტე აღსდგა!</span><span class="greet__r">ჭეშმარიტად აღსდგა!</span></p>
+      <p class="greet__item" lang="ar" dir="rtl"><span class="greet__g">المسيح قام!</span><span class="greet__r">حقاً قام!</span></p>
+      <p class="greet__item" lang="la"><span class="greet__g">Christus resurrexit!</span><span class="greet__r">Resurrexit vere!</span></p>
+      <p class="greet__item" lang="en"><span class="greet__g">Christ is risen!</span><span class="greet__r">Truly He is risen!</span></p>
+      <p class="greet__item" lang="de"><span class="greet__g">Christus ist auferstanden!</span><span class="greet__r">Er ist wahrhaftig auferstanden!</span></p>
+      <p class="greet__item" lang="ru"><span class="greet__g">Христос воскресе!</span><span class="greet__r">Воистину воскресе!</span></p>
+      <p class="greet__item" lang="el"><span class="greet__g">Χριστὸς ἀνέστη!</span><span class="greet__r">Ἀληθῶς ἀνέστη!</span></p>
+      <p class="greet__item" lang="lt"><span class="greet__g">Kristus prisikėlė!</span><span class="greet__r">Iš tikrųjų prisikėlė!</span></p>
+    </div>
+    <div class="greet__controls">
+      <button type="button" class="greet__toggle" data-greet-toggle data-label-pause="Зупинити зміну мов" data-label-play="Продовжити зміну мов" aria-label="Зупинити зміну мов" hidden><svg class="icon icon--pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 5.5v13M15.5 5.5v13"/></svg><svg class="icon icon--play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg></button>
+      <div class="greet__chips" role="group" aria-label="Оберіть мову вітання">
+        <button type="button" class="chip" data-greet-index="0" lang="uk" aria-pressed="true">Українська</button>
+        <button type="button" class="chip" data-greet-index="1" lang="be" aria-pressed="false">Беларуская</button>
+        <button type="button" class="chip" data-greet-index="2" lang="pl" aria-pressed="false">Polski</button>
+        <button type="button" class="chip" data-greet-index="3" lang="sr" aria-pressed="false">Српски</button>
+        <button type="button" class="chip" data-greet-index="4" lang="bg" aria-pressed="false">Български</button>
+        <button type="button" class="chip" data-greet-index="5" lang="ro" aria-pressed="false">Română</button>
+        <button type="button" class="chip" data-greet-index="6" lang="ka" aria-pressed="false">ქართული</button>
+        <button type="button" class="chip" data-greet-index="7" lang="ar" aria-pressed="false">العربية</button>
+        <button type="button" class="chip" data-greet-index="8" lang="la" aria-pressed="false">Latina</button>
+        <button type="button" class="chip" data-greet-index="9" lang="en" aria-pressed="false">English</button>
+        <button type="button" class="chip" data-greet-index="10" lang="de" aria-pressed="false">Deutsch</button>
+        <button type="button" class="chip" data-greet-index="11" lang="ru" aria-pressed="false">Русский</button>
+        <button type="button" class="chip" data-greet-index="12" lang="el" aria-pressed="false">Ελληνικά</button>
+        <button type="button" class="chip" data-greet-index="13" lang="lt" aria-pressed="false">Lietuvių</button>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section section--band" id="schedule" aria-labelledby="schedule-heading">
+  <div class="container">
+    <div data-region="schedule" data-mode="C"><div class="section-head"><h2 class="section-title" id="schedule-heading">Великодні богослужіння 2027</h2><p class="section-lead">Храм Різдва Христового в Букішках</p></div><div class="notice" role="status"><h3 class="notice__title">Розклад уточнюється</h3><p>Розклад великодніх богослужінь на 2027 рік ще не затверджено. Ми опублікуємо його тут одразу після підтвердження. Будь ласка, не орієнтуйтеся на розклад минулих років.</p><p class="notice__contact">Питання можна поставити за телефоном <a href="tel:+37063693506">+370 636 93 506</a> або на сайті парафії.</p></div><p class="schedule-more"><a href="https://bukiski-hram.net/raspisanie-bogosluzhenij" target="_blank" rel="noopener" class="link-arrow">Розклад храму на весь рік<span class="visually-hidden"> (відкриється в новій вкладці)</span></a></p></div>
+  </div>
+</section>
+<section data-region="cycle" data-mode="C" class="section cycle" aria-labelledby="cycle-heading"><div class="container"><div class="section-head"><h2 class="section-title" id="cycle-heading">Великодній цикл 2027</h2><p class="section-lead">Дні, дата яких щороку залежить від Великодня.</p></div><ol class="cycle__track"><li class="cycle__item is-next"><time class="cycle__date" datetime="2027-03-15"><span class="cycle__day">15</span><span class="cycle__month">березня</span></time><span class="cycle__name">Початок Великого посту</span><span class="cycle__badge">найближчий</span></li><li class="cycle__item is-future"><time class="cycle__date" datetime="2027-04-25"><span class="cycle__day">25</span><span class="cycle__month">квітня</span></time><span class="cycle__name">Вхід Господній у Єрусалим</span></li><li class="cycle__item is-future is-pascha"><time class="cycle__date" datetime="2027-05-02"><span class="cycle__day">2</span><span class="cycle__month">травня</span></time><span class="cycle__name">Великдень</span></li><li class="cycle__item is-future"><time class="cycle__date" datetime="2027-05-11"><span class="cycle__day">11</span><span class="cycle__month">травня</span></time><span class="cycle__name">Радониця</span></li><li class="cycle__item is-future"><time class="cycle__date" datetime="2027-06-09"><span class="cycle__day">9</span><span class="cycle__month">червня</span></time><span class="cycle__name">Віддання Пасхи</span></li><li class="cycle__item is-future"><time class="cycle__date" datetime="2027-06-10"><span class="cycle__day">10</span><span class="cycle__month">червня</span></time><span class="cycle__name">Вознесіння Господнє</span></li><li class="cycle__item is-future"><time class="cycle__date" datetime="2027-06-20"><span class="cycle__day">20</span><span class="cycle__month">червня</span></time><span class="cycle__name">Трійця (П’ятидесятниця)</span></li></ol></div></section>
+<section class="section" aria-labelledby="troparion-heading">
+  <div class="container">
+    <figure class="pull">
+      <blockquote class="pull__text">Христос воскрес із мертвих,<br>смертю смерть подолав<br>і тим, що в гробах були,<br>життя дарував.</blockquote>
+      <figcaption class="pull__source" id="troparion-heading">Великодній тропар</figcaption>
     </figure>
   </div>
 </section>
-<section class="section section--violet route" id="route" aria-labelledby="route-heading" data-region="route"><div class="container--narrow"><div class="section-header"><span class="section-tag">Як дістатися</span><h2 class="section-title" id="route-heading">Адреса храму</h2></div><div class="route-card"><p class="route-card__church">Храм Різдва Христового в Букішках</p><address class="route-card__address" data-address>Sodų g. 8<br>LT-14180 Bukiškis<br>Avižienių sen., Vilniaus r. sav.<br>Lietuva</address><p class="route-card__place">Букішки (Bukiškis), Вільнюський район, Литва</p><div class="route-card__actions"><a class="btn btn--gold" href="https://www.google.com/maps/dir/?api=1&amp;destination=54.76091%2C25.207621" target="_blank" rel="noopener">Прокласти маршрут<span class="visually-hidden"> (відкриється в новій вкладці)</span></a><a class="btn btn--outline" href="tel:+37063693506">Зателефонувати: +370 636 93 506</a><button type="button" class="btn btn--ghost" data-copy-address="Sodų g. 8, Bukiškis, LT-14180, Avižienių sen., Vilniaus r. sav., Lietuva" data-copied="Адресу скопійовано" data-copy-fail="Не вдалося скопіювати. Виділіть адресу вручну." hidden>Скопіювати адресу</button></div><p class="route-card__note">Маршрут відкриється в Google Картах за координатами храму.</p><p class="route-card__status" data-copy-status role="status" aria-live="polite"></p></div></div></section>
-<section class="section cta-final" aria-labelledby="closing-heading">
-  <div class="container--narrow cta-final__inner">
-    <h2 class="cta-final__title" id="closing-heading">Двері храму відчинені</h2>
-    <p class="cta-final__text">Ми раді кожному — і тим, хто молиться з дитинства, і тим, хто робить перший крок назустріч Богу.</p>
-    <div class="cta-final__actions">
-      <a href="https://bukiski-hram.net" target="_blank" rel="noopener" class="btn btn--gold">⛪ Сайт парафії<span class="visually-hidden"> (відкриється в новій вкладці)</span></a>
+<section class="section route" id="route" aria-labelledby="route-heading" data-region="route"><div class="container"><div class="route__grid"><div class="route__intro"><h2 class="section-title" id="route-heading">Як дістатися</h2><p class="section-lead">Двері храму відчинені для всіх — і для тих, хто молиться з дитинства, і для тих, хто приходить уперше.</p></div><div class="route-card"><p class="route-card__church">Храм Різдва Христового в Букішках</p><address class="route-card__address" data-address>Sodų g. 8<br>LT-14180 Bukiškis<br>Avižienių sen., Vilniaus r. sav.<br>Lietuva</address><p class="route-card__place">Букішки (Bukiškis), Вільнюський район, Литва</p><div class="route-card__actions"><a class="btn btn--gold" href="https://www.google.com/maps/dir/?api=1&amp;destination=54.76091%2C25.207621" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg>Прокласти маршрут<span class="visually-hidden"> (відкриється в новій вкладці)</span></a><a class="btn btn--outline" href="tel:+37063693506"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M6.6 3.5l2.6 3.6-1.7 2.3a12 12 0 0 0 7.1 7.1l2.3-1.7 3.6 2.6-1.5 2.6c-.4.6-1 .9-1.7.9C9.8 20.9 3.1 14.2 3.1 6.7c0-.7.3-1.3.9-1.7z"/></svg>+370 636 93 506</a><button type="button" class="btn btn--ghost" data-copy-address="Sodų g. 8, Bukiškis, LT-14180, Avižienių sen., Vilniaus r. sav., Lietuva" data-copied="Адресу скопійовано" data-copy-fail="Не вдалося скопіювати. Виділіть адресу вручну." hidden><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><rect x="8.5" y="8.5" width="12" height="12" rx="2"/><path d="M15.5 8.5V5.5a2 2 0 0 0-2-2h-8a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h3"/></svg>Скопіювати адресу</button></div><p class="route-card__note">Маршрут відкриється в Google Картах за координатами храму.</p><p class="route-card__status" data-copy-status role="status" aria-live="polite"></p></div></div></div></section>
+<section class="section closing" aria-labelledby="closing-heading">
+  <div class="container closing__inner">
+    <h2 class="closing__title" id="closing-heading">Двері храму відчинені</h2>
+    <p class="closing__text">Ми раді кожному — і тим, хто молиться з дитинства, і тим, хто робить перший крок назустріч Богу.</p>
+    <div class="closing__actions">
+      <a href="https://bukiski-hram.net" target="_blank" rel="noopener" class="btn btn--gold">Сайт парафії<span class="visually-hidden"> (відкриється в новій вкладці)</span></a>
       <a href="/ru/" class="btn btn--outline" hreflang="ru" lang="ru">Русская версия</a>
     </div>
   </div>
@@ -153,9 +196,9 @@
 <div class="footer-inner">
   <div class="footer-grid">
     <div>
-      <p class="footer-brand"><span class="footer-brand__cross" aria-hidden="true">☩</span> <span class="footer-brand__name">Великдень · pasha.lt</span></p>
+      <p class="footer-brand"><svg class="mark" viewBox="0 0 24 32" aria-hidden="true" focusable="false"><path d="M12 1.5v29M8.5 5.5h7M4.5 11h15M7.5 22.5l9-3"/></svg><span class="footer-brand__name">Великдень · pasha.lt</span></p>
       <p class="footer-desc">Сайт православної парафії Різдва Христового в Букішках про Світле Христове Воскресіння.</p>
-      <a href="https://bukiski-hram.net" target="_blank" rel="noopener" class="footer-hram-link"><span aria-hidden="true">⛪</span> Сайт парафії<span class="visually-hidden"> (відкриється в новій вкладці)</span></a>
+      <a href="https://bukiski-hram.net" target="_blank" rel="noopener" class="footer-hram-link">Сайт парафії<span class="visually-hidden"> (відкриється в новій вкладці)</span></a>
     </div>
     <div>
       <h2 class="footer-col-title">Сторінки</h2>
@@ -187,7 +230,13 @@
     </div>
   </div>
 </div>
-<button type="button" class="scroll-top" aria-label="Нагору" title="Нагору">↑</button>
+<button type="button" class="scroll-top" aria-label="Нагору" title="Нагору"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>
+<nav class="quickbar" aria-label="Швидкі дії">
+  <a href="/ukr/#schedule"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg><span>Розклад</span></a>
+  <a href="#route"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg><span>Як дістатися</span></a>
+  <a href="tel:+37063693506"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 3.5l2.6 3.6-1.7 2.3a12 12 0 0 0 7.1 7.1l2.3-1.7 3.6 2.6-1.5 2.6c-.4.6-1 .9-1.7.9C9.8 20.9 3.1 14.2 3.1 6.7c0-.7.3-1.3.9-1.7z"/></svg><span>Зателефонувати</span></a>
+</nav>
+<p class="visually-hidden" data-live-status role="status" aria-live="polite"></p>
 </footer>
 <script src="../js/data/site-data.uk.js" defer></script>
 <script src="../js/pascha-core.js" defer></script>

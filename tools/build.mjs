@@ -96,6 +96,8 @@ function headBlock(file, lang, id, title, description, opts = {}) {
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="${rel}images/favicon.svg" type="image/svg+xml">
 <link rel="manifest" href="${rel}manifest.json">
+<link rel="preload" href="${rel}fonts/spectral-light.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="${rel}fonts/manrope-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="${rel}css/style.css">
 <script>document.documentElement.classList.add('js')</script>`;
   if (opts.jsonld) h += `\n<script type="application/ld+json">\n${JSON.stringify(opts.jsonld, null, 2)}\n</script>`;
@@ -136,14 +138,26 @@ function eventsLd(lang) {
 
 /* ── шапка и подвал ──────────────────────────────────────── */
 
-function langSwitch(file, lang, id, cls) {
+/** Восьмиконечный крест — знак сайта (линии, без заливки). */
+const CROSS = '<svg class="mark" viewBox="0 0 24 32" aria-hidden="true" focusable="false"><path d="M12 1.5v29M8.5 5.5h7M4.5 11h15M7.5 22.5l9-3"/></svg>';
+const ICON = {
+  calendar: '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>',
+  pin: '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg>',
+  phone: '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 3.5l2.6 3.6-1.7 2.3a12 12 0 0 0 7.1 7.1l2.3-1.7 3.6 2.6-1.5 2.6c-.4.6-1 .9-1.7.9C9.8 20.9 3.1 14.2 3.1 6.7c0-.7.3-1.3.9-1.7z"/></svg>',
+  share: '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.2 10.8l7.6-3.6M8.2 13.2l7.6 3.6"/></svg>',
+  globe: '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.4 2.5 3.5 5.3 3.5 8.5s-1.1 6-3.5 8.5c-2.4-2.5-3.5-5.3-3.5-8.5s1.1-6 3.5-8.5z"/></svg>',
+  play: '<svg class="icon icon--play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg>',
+  pause: '<svg class="icon icon--pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 5.5v13M15.5 5.5v13"/></svg>'
+};
+
+function langSwitch(file, lang, id, cls, long = false) {
   const t = i18n[lang];
   const page = PAGES[id] || {};
   return LANGS.map((l) => {
     const L = site.languages[l];
-    if (l === lang) return `<a href="${urlOf(file)}" lang="${L.hreflang}" class="${cls}active" aria-current="page">${L.short}</a>`;
-    if (page[l]) return `<a href="${urlOf(page[l])}" lang="${L.hreflang}" hreflang="${L.hreflang}"${cls ? ` class="${cls.trim()}"` : ''} title="${esc(L.label)}">${L.short}</a>`;
-    return `<a href="${urlOf(PAGES.home[l])}" lang="${L.hreflang}" hreflang="${L.hreflang}" class="${cls}lang-fallback" aria-label="${esc(fmt(t.ui.notTranslatedAria, { label: L.label }))}" title="${esc(fmt(t.ui.notTranslatedAria, { label: L.label }))}">${L.short}</a>`;
+    if (l === lang) return `<a href="${urlOf(file)}" lang="${L.hreflang}" class="${cls}active" aria-current="page">${long ? L.label : L.short}</a>`;
+    if (page[l]) return `<a href="${urlOf(page[l])}" lang="${L.hreflang}" hreflang="${L.hreflang}"${cls ? ` class="${cls.trim()}"` : ''} title="${esc(L.label)}">${long ? L.label : L.short}</a>`;
+    return `<a href="${urlOf(PAGES.home[l])}" lang="${L.hreflang}" hreflang="${L.hreflang}" class="${cls}lang-fallback" aria-label="${esc(fmt(t.ui.notTranslatedAria, { label: L.label }))}" title="${esc(fmt(t.ui.notTranslatedAria, { label: L.label }))}">${long ? L.label : L.short}</a>`;
   }).join('\n        ');
 }
 
@@ -173,16 +187,19 @@ ${C.renderAnnounce(ctx)}
 <nav aria-label="${esc(t.ui.mainNav)}">
   <div class="nav-inner">
     <a href="${urlOf(PAGES.home[lang])}" class="nav-logo" aria-label="${esc(t.ui.homeAria)}">
-      <span class="nav-logo__cross" aria-hidden="true">☩</span>
+      ${CROSS}
       <span class="nav-logo__text">${esc(t.meta.brand.split(' · ')[0])}<span class="nav-logo__sub">pasha.lt</span></span>
     </a>
     <ul class="nav-links">
       ${items.map((n) => `<li>${a(n)}</li>`).join('\n      ')}
     </ul>
     <div class="nav-right">
-      <div class="lang-switcher" role="group" aria-label="${esc(t.ui.langNav)}">
-        ${langSwitch(file, lang, id, '')}
-      </div>
+      <details class="lang-menu">
+        <summary aria-label="${esc(t.ui.langNav)}">${ICON.globe}<span>${site.languages[lang].short}</span></summary>
+        <div class="lang-menu__list" role="group" aria-label="${esc(t.ui.langNav)}">
+        ${langSwitch(file, lang, id, '', true)}
+        </div>
+      </details>
       <button type="button" class="hamburger" aria-label="${esc(t.ui.menuOpen)}" aria-expanded="false" aria-controls="mobile-menu">
         <span></span><span></span><span></span>
       </button>
@@ -196,7 +213,7 @@ ${C.renderAnnounce(ctx)}
   <div class="mobile-lang" role="group" aria-label="${esc(t.ui.langNav)}">
     ${langSwitch(file, lang, id, 'btn btn--ghost ')}
   </div>${fallbackNote}
-  <a href="${site.church.website}" target="_blank" rel="noopener" class="btn btn--outline">⛪ ${esc(t.ui.churchSite)}<span class="visually-hidden"> ${esc(t.ui.external)}</span></a>
+  <a href="${site.church.website}" target="_blank" rel="noopener" class="btn btn--outline">${esc(t.ui.churchSite)}<span class="visually-hidden"> ${esc(t.ui.external)}</span></a>
 </div>`;
 }
 
@@ -207,9 +224,9 @@ function footer(file, lang, id) {
   return `<div class="footer-inner">
   <div class="footer-grid">
     <div>
-      <p class="footer-brand"><span class="footer-brand__cross" aria-hidden="true">☩</span> <span class="footer-brand__name">${esc(t.meta.brand)}</span></p>
+      <p class="footer-brand">${CROSS}<span class="footer-brand__name">${esc(t.meta.brand)}</span></p>
       <p class="footer-desc">${esc(t.footer.desc)}</p>
-      <a href="${c.website}" target="_blank" rel="noopener" class="footer-hram-link"><span aria-hidden="true">⛪</span> ${esc(t.ui.churchSite)}<span class="visually-hidden"> ${esc(t.ui.external)}</span></a>
+      <a href="${c.website}" target="_blank" rel="noopener" class="footer-hram-link">${esc(t.ui.churchSite)}<span class="visually-hidden"> ${esc(t.ui.external)}</span></a>
     </div>
     <div>
       <h2 class="footer-col-title">${esc(t.footer.pagesTitle)}</h2>
@@ -233,7 +250,78 @@ function footer(file, lang, id) {
     </div>${(PAGES[id] && LANGS.some((l) => !PAGES[id][l])) ? `\n    <p class="lang-note lang-note--footer">${esc(t.ui.notTranslatedNote)}</p>` : ''}
   </div>
 </div>
-<button type="button" class="scroll-top" aria-label="${esc(t.ui.toTop)}" title="${esc(t.ui.toTop)}">↑</button>`;
+<button type="button" class="scroll-top" aria-label="${esc(t.ui.toTop)}" title="${esc(t.ui.toTop)}"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>
+${quickbar(file, lang)}
+<p class="visually-hidden" data-live-status role="status" aria-live="polite"></p>`;
+}
+
+/** Нижняя панель быстрых действий на телефоне. */
+function quickbar(file, lang) {
+  const t = i18n[lang], home = urlOf(PAGES.home[lang]);
+  const hasRoute = readFileSync(join(ROOT, file), 'utf8').includes('@region route') || (PAGES.home[lang] === file);
+  const sched = lang === 'ru' ? (file === PAGES.raspisanie.ru ? '#schedule' : urlOf(PAGES.raspisanie.ru) + '#schedule') : home + '#schedule';
+  return `<nav class="quickbar" aria-label="${esc(t.ui.quickNav)}">
+  <a href="${sched}">${ICON.calendar}<span>${esc(t.ui.schedule)}</span></a>
+  <a href="${hasRoute ? '#route' : home + '#route'}">${ICON.pin}<span>${esc(t.ui.route)}</span></a>
+  <a href="tel:${site.church.phoneE164}">${ICON.phone}<span>${esc(t.ui.call)}</span></a>
+</nav>`;
+}
+
+/** Пасхальное приветствие на разных языках (статично; смена — в pascha-runtime.js). */
+function greetings(lang) {
+  const t = i18n[lang].greet, all = site.greetings.items;
+  // Первым показываем приветствие на языке страницы
+  const start = Math.max(0, all.findIndex((g) => g.lang === site.languages[lang].hreflang));
+  const items = all.slice(start).concat(all.slice(0, start));
+  return `<section class="section greet" aria-labelledby="greet-heading" data-greetings>
+  <div class="container greet__inner">
+    <div class="greet__head">
+      <h2 class="section-title" id="greet-heading">${esc(t.title)}</h2>
+      <p class="section-lead">${esc(t.lead)}</p>
+    </div>
+    <div class="greet__stage" aria-live="polite">
+      ${items.map((g, i) => `<p class="greet__item" lang="${g.lang}"${g.dir ? ` dir="${g.dir}"` : ''}><span class="greet__g">${esc(g.g)}</span><span class="greet__r">${esc(g.r)}</span></p>`).join('\n      ')}
+    </div>
+    <div class="greet__controls">
+      <button type="button" class="greet__toggle" data-greet-toggle data-label-pause="${esc(t.pause)}" data-label-play="${esc(t.play)}" aria-label="${esc(t.pause)}" hidden>${ICON.pause}${ICON.play}</button>
+      <div class="greet__chips" role="group" aria-label="${esc(t.choose)}">
+        ${items.map((g, i) => `<button type="button" class="chip" data-greet-index="${i}" lang="${g.lang}" aria-pressed="${i === 0}">${esc(g.name)}</button>`).join('\n        ')}
+      </div>
+    </div>
+  </div>
+</section>`;
+}
+
+/** Список статей с временем чтения (русская главная). */
+function articles(lang) {
+  const t = i18n[lang];
+  if (!t.articles) return '';
+  const ids = ['smysl-pashi', 'put-hrista', 'yavleniya', 'osvyashchenie', 'prorochestva', 'traditsii', 'vpervye'];
+  const list = ids.filter((id) => PAGES[id] && PAGES[id][lang]).map((id, i) => {
+    const m = t.pages[id];
+    const min = readMinutes(PAGES[id][lang]);
+    return `<li class="read${i === 0 ? ' read--lead' : ''}"><a href="${urlOf(PAGES[id][lang])}"><span class="read__title">${esc(m.ogTitle)}</span><span class="read__desc">${esc(m.description)}</span><span class="read__meta">${esc(fmt(t.ui.readTime, { n: min }))}</span></a></li>`;
+  });
+  return `<div class="section-head"><h2 class="section-title" id="articles-heading">${esc(t.articles.title)}</h2><p class="section-lead">${esc(t.articles.lead)}</p></div>
+<ul class="reads">
+  ${list.join('\n  ')}
+</ul>`;
+}
+
+/** Время чтения: слова в <main>, без блоков сборки и скриптов, 180 слов в минуту. */
+function readMinutes(file) {
+  const html = readFileSync(join(ROOT, file), 'utf8');
+  const main = (html.split('<main')[1] || '').split('</main>')[0]
+    .replace(/<!-- @region ([\w-]+) -->[\s\S]*?<!-- @\/region \1 -->/g, ' ')
+    .replace(/<script[\s\S]*?<\/script>/g, ' ').replace(/<[^>]+>/g, ' ');
+  const words = main.split(/\s+/).filter((w) => /[\p{L}\d]/u.test(w)).length;
+  return Math.max(1, Math.round(words / 180));
+}
+
+/** Строка под заголовком статьи: время чтения и «Поделиться». */
+function articleMeta(file, lang) {
+  const t = i18n[lang];
+  return `<p class="page-meta"><span>${esc(fmt(t.ui.readTime, { n: readMinutes(file) }))}</span><button type="button" class="link-btn" data-share data-copied="${esc(t.ui.linkCopied)}" hidden>${ICON.share}${esc(t.ui.share)}</button></p>`;
 }
 
 function scripts(file, lang) {
@@ -261,7 +349,11 @@ function buildRegionPage(file) {
     countdown: C.renderCountdown(ctx),
     schedule: C.renderSchedule(ctx),
     blessing: C.renderBlessing(ctx),
-    route: C.renderRoute(ctx)
+    route: C.renderRoute(ctx),
+    cycle: C.renderCycle(ctx),
+    greetings: greetings(lang),
+    articles: articles(lang),
+    meta: articleMeta(file, lang)
   };
   const html = readFileSync(join(ROOT, file), 'utf8');
   write(file, replaceRegions(html, regions, file));
@@ -278,13 +370,12 @@ function buildLangHome(lang) {
   const cards = h.cards ? `
 <section class="section" aria-labelledby="cards-heading">
   <div class="container">
-    <div class="section-header">
-      <span class="section-tag">${esc(h.cardsTag)}</span>
+    <div class="section-head">
       <h2 class="section-title" id="cards-heading">${esc(h.cardsTitle)}</h2>
     </div>
-    <div class="pages-grid">
-      ${h.cards.map((c) => `<div class="glass-card"><div class="glass-card__body"><span class="glass-card__icon" aria-hidden="true">${c.icon}</span><h3 class="glass-card__title">${esc(c.title)}</h3><p class="glass-card__text">${esc(c.text)}</p></div></div>`).join('\n      ')}
-    </div>
+    <ul class="facts">
+      ${h.cards.map((c) => `<li class="fact"><h3 class="fact__title">${esc(c.title)}</h3><p>${esc(c.text)}</p></li>`).join('\n      ')}
+    </ul>
   </div>
 </section>` : '';
   const html = `<!DOCTYPE html>
@@ -301,36 +392,32 @@ ${header(file, lang, 'home')}
 </header>
 <main id="main-content">
 <section class="hero" aria-labelledby="hero-title">
-  <div class="hero-content">
-    <div class="hero-cross-wrap" aria-hidden="true">
-      <div class="hero-cross-halo"></div>
-      <div class="hero-cross"><svg viewBox="0 0 60 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><rect x="24" y="0" width="12" height="80" rx="3"/><rect x="0" y="18" width="60" height="12" rx="3"/></svg></div>
-    </div>
+  <div class="container">
     ${C.renderHero(ctx)}
   </div>
 </section>
-${C.renderCountdown(ctx)}
-<section class="section section--violet" id="schedule" aria-labelledby="schedule-heading">
+${greetings(lang)}
+<section class="section section--band" id="schedule" aria-labelledby="schedule-heading">
   <div class="container">
     ${C.renderSchedule(ctx)}
   </div>
 </section>
-<section class="section" aria-label="${esc(h.troparionTag)}">
-  <div class="container--narrow">
-    <figure class="silent-word">
-      <div class="silent-word__icon" aria-hidden="true">🕯️</div>
-      <blockquote class="silent-word__text">${h.troparion}</blockquote>
-      <figcaption class="silent-word__verse">— ${esc(h.troparionTag)}</figcaption>
+${C.renderCycle(ctx)}
+<section class="section" aria-labelledby="troparion-heading">
+  <div class="container">
+    <figure class="pull">
+      <blockquote class="pull__text">${h.troparion}</blockquote>
+      <figcaption class="pull__source" id="troparion-heading">${esc(h.troparionTag)}</figcaption>
     </figure>
   </div>
 </section>${cards}
 ${C.renderRoute(ctx)}
-<section class="section cta-final" aria-labelledby="closing-heading">
-  <div class="container--narrow cta-final__inner">
-    <h2 class="cta-final__title" id="closing-heading">${esc(h.closingTitle)}</h2>
-    <p class="cta-final__text">${esc(h.closingText)}</p>
-    <div class="cta-final__actions">
-      <a href="${site.church.website}" target="_blank" rel="noopener" class="btn btn--gold">⛪ ${esc(t.ui.churchSite)}<span class="visually-hidden"> ${esc(t.ui.external)}</span></a>
+<section class="section closing" aria-labelledby="closing-heading">
+  <div class="container closing__inner">
+    <h2 class="closing__title" id="closing-heading">${esc(h.closingTitle)}</h2>
+    <p class="closing__text">${esc(h.closingText)}</p>
+    <div class="closing__actions">
+      <a href="${site.church.website}" target="_blank" rel="noopener" class="btn btn--gold">${esc(t.ui.churchSite)}<span class="visually-hidden"> ${esc(t.ui.external)}</span></a>
       <a href="/ru/" class="btn btn--outline" hreflang="ru" lang="ru">${esc(h.ruLink)}</a>
     </div>
   </div>
@@ -419,7 +506,7 @@ function buildData() {
   const pick = { timezone: site.timezone, calendar: site.calendar, church: site.church, scheduleTemplates: site.scheduleTemplates, schedules: site.schedules, languages: site.languages };
   for (const l of LANGS) {
     const t = i18n[l];
-    const strings = { status: t.status, announce: t.announce, countdown: t.countdown, schedule: t.schedule, types: t.types, route: t.route, ui: t.ui };
+    const strings = { status: t.status, announce: t.announce, countdown: t.countdown, schedule: t.schedule, types: t.types, route: t.route, ui: t.ui, cycle: t.cycle };
     write(`js/data/site-data.${l}.js`, `/* Генерируется командой node tools/build.mjs из data/site.json и data/i18n.json. Не редактировать вручную. */\nwindow.PASHA_DATA = ${JSON.stringify({ site: pick, lang: l, t: strings })};\n`);
   }
 }

@@ -33,6 +33,8 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="../images/favicon.svg" type="image/svg+xml">
 <link rel="manifest" href="../manifest.json">
+<link rel="preload" href="../fonts/spectral-light.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../fonts/manrope-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../css/style.css">
 <script>document.documentElement.classList.add('js')</script>
 <script type="application/ld+json">
@@ -66,11 +68,11 @@
 <body data-lang="en" data-schedule-href="#schedule">
 <header id="site-header">
 <a href="#main-content" class="skip-nav">Skip to content</a>
-<div data-region="announce" data-mode="C" class="announcement-bar">Next Orthodox Easter — <strong>2 May 2027</strong></div>
+<div data-region="announce" data-mode="C" class="announcement-bar"><p>Next Orthodox Easter — <strong>2 May 2027</strong></p></div>
 <nav aria-label="Main navigation">
   <div class="nav-inner">
     <a href="/en/" class="nav-logo" aria-label="pasha.lt — home">
-      <span class="nav-logo__cross" aria-hidden="true">☩</span>
+      <svg class="mark" viewBox="0 0 24 32" aria-hidden="true" focusable="false"><path d="M12 1.5v29M8.5 5.5h7M4.5 11h15M7.5 22.5l9-3"/></svg>
       <span class="nav-logo__text">Pascha<span class="nav-logo__sub">pasha.lt</span></span>
     </a>
     <ul class="nav-links">
@@ -80,14 +82,17 @@
       <li><a href="/ru/" hreflang="ru" lang="ru">More articles — in Russian</a></li>
     </ul>
     <div class="nav-right">
-      <div class="lang-switcher" role="group" aria-label="Choose language">
-        <a href="/ru/" lang="ru" hreflang="ru" title="Русский">RU</a>
-        <a href="/lt/" lang="lt" hreflang="lt" title="Lietuvių">LT</a>
-        <a href="/en/" lang="en" class="active" aria-current="page">EN</a>
-        <a href="/pl/" lang="pl" hreflang="pl" title="Polski">PL</a>
-        <a href="/ukr/" lang="uk" hreflang="uk" title="Українська">UK</a>
-        <a href="/de/" lang="de" hreflang="de" title="Deutsch">DE</a>
-      </div>
+      <details class="lang-menu">
+        <summary aria-label="Choose language"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.4 2.5 3.5 5.3 3.5 8.5s-1.1 6-3.5 8.5c-2.4-2.5-3.5-5.3-3.5-8.5s1.1-6 3.5-8.5z"/></svg><span>EN</span></summary>
+        <div class="lang-menu__list" role="group" aria-label="Choose language">
+        <a href="/ru/" lang="ru" hreflang="ru" title="Русский">Русский</a>
+        <a href="/lt/" lang="lt" hreflang="lt" title="Lietuvių">Lietuvių</a>
+        <a href="/en/" lang="en" class="active" aria-current="page">English</a>
+        <a href="/pl/" lang="pl" hreflang="pl" title="Polski">Polski</a>
+        <a href="/ukr/" lang="uk" hreflang="uk" title="Українська">Українська</a>
+        <a href="/de/" lang="de" hreflang="de" title="Deutsch">Deutsch</a>
+        </div>
+      </details>
       <button type="button" class="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
         <span></span><span></span><span></span>
       </button>
@@ -109,54 +114,91 @@
         <a href="/ukr/" lang="uk" hreflang="uk" class="btn btn--ghost" title="Українська">UK</a>
         <a href="/de/" lang="de" hreflang="de" class="btn btn--ghost" title="Deutsch">DE</a>
   </div>
-  <a href="https://bukiski-hram.net" target="_blank" rel="noopener" class="btn btn--outline">⛪ Parish website<span class="visually-hidden"> (opens in a new tab)</span></a>
+  <a href="https://bukiski-hram.net" target="_blank" rel="noopener" class="btn btn--outline">Parish website<span class="visually-hidden"> (opens in a new tab)</span></a>
 </div>
 </header>
 <main id="main-content">
 <section class="hero" aria-labelledby="hero-title">
-  <div class="hero-content">
-    <div class="hero-cross-wrap" aria-hidden="true">
-      <div class="hero-cross-halo"></div>
-      <div class="hero-cross"><svg viewBox="0 0 60 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><rect x="24" y="0" width="12" height="80" rx="3"/><rect x="0" y="18" width="60" height="12" rx="3"/></svg></div>
-    </div>
-    <div data-region="hero" data-mode="C"><p class="hero-eyebrow">Next Orthodox Easter (Pascha)</p><h1 class="hero-title hero-title--feast" id="hero-title">The Resurrection<br>of Christ</h1><div class="hero-divider" aria-hidden="true"></div><div class="hero-service-info"><p class="hero-service-date">Sunday, 2 May 2027</p><p class="hero-service-text">Service schedule to be confirmed — it will be published once the parish approves it.</p></div><p class="hero-note">Western Christians celebrate Easter on 28 March 2027. The Orthodox Church calculates the date of Pascha using the Julian calendar, so it often differs from the Western date.</p><div class="hero-cta-wrap"><a href="#schedule" class="btn btn--gold">Schedule</a><a href="#route" class="btn btn--outline">Directions</a></div></div>
-  </div>
-</section>
-<div data-region="countdown" data-mode="C"></div>
-<section class="section section--violet" id="schedule" aria-labelledby="schedule-heading">
   <div class="container">
-    <div data-region="schedule" data-mode="C"><div class="section-header"><span class="section-tag">Schedule</span><h2 class="section-title" id="schedule-heading">Paschal services 2027</h2><p class="section-lead">Orthodox Church of the Nativity of Christ, Bukiškis</p></div><div class="notice-card" role="status"><h3 class="notice-card__title">Schedule to be confirmed</h3><p>The Paschal service schedule for 2027 has not been confirmed yet. We will publish it here as soon as it is approved. Please do not rely on previous years’ schedules.</p><p class="notice-card__contact">For questions, call <a href="tel:+37063693506">+370 636 93 506</a> or visit the parish website.</p></div><div class="schedule-more"><a href="https://bukiski-hram.net/raspisanie-bogosluzhenij" target="_blank" rel="noopener" class="btn btn--outline">Full-year parish schedule →<span class="visually-hidden"> (opens in a new tab)</span></a></div></div>
+    <div data-region="hero" data-mode="C" class="hero__grid"><div class="hero__text"><p class="hero__kicker">Orthodox Easter 2027</p><h1 class="hero__title" id="hero-title">The Resurrection<br>of Christ</h1><p class="hero__lead">The Orthodox Church of the Nativity of Christ in Bukiškis invites you to the Paschal services. Here you will find the date, the schedule and directions to the church.</p><div class="hero__actions"><a href="#schedule" class="btn btn--gold">Schedule</a><a href="#route" class="btn btn--outline">Directions</a></div></div><aside class="hero__panel" aria-label="Date of Pascha and schedule"><p class="panel__label">Next Orthodox Easter</p><p class="panel__date"><time datetime="2027-05-02"><span class="panel__day">2</span> <span class="panel__month">May</span></time></p><p class="panel__sub">Sunday, 2027</p><p class="panel__status"><strong>Service schedule</strong> to be confirmed — it will be published once the parish approves it.</p><details class="panel__more"><summary>Western Christians celebrate Easter on 28 March 2027.</summary><p>The Orthodox Church calculates the date of Pascha using the Julian calendar, so it often differs from the Western date.</p></details><div class="panel__actions"><button type="button" class="btn btn--ghost" data-ics-date="20270502" data-ics-title="Orthodox Easter (Pascha) 2027" data-ics-location="Orthodox Church of the Nativity of Christ, Bukiškis, Sodų g. 8, Bukiškis, Lietuva" data-ics-file="pascha-2027.ics" hidden><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4M12 13v4M10 15h4"/></svg>Add to calendar</button></div></aside></div>
   </div>
 </section>
-<section class="section" aria-label="Paschal Troparion">
-  <div class="container--narrow">
-    <figure class="silent-word">
-      <div class="silent-word__icon" aria-hidden="true">🕯️</div>
-      <blockquote class="silent-word__text">Christ is risen from the dead,<br>trampling down death by death,<br>and upon those in the tombs<br>bestowing life.</blockquote>
-      <figcaption class="silent-word__verse">— Paschal Troparion</figcaption>
+<section class="section greet" aria-labelledby="greet-heading" data-greetings>
+  <div class="container greet__inner">
+    <div class="greet__head">
+      <h2 class="section-title" id="greet-heading">The Paschal greeting</h2>
+      <p class="section-lead">This is how Orthodox Christians greet one another around the world, from Pascha until its Apodosis.</p>
+    </div>
+    <div class="greet__stage" aria-live="polite">
+      <p class="greet__item" lang="en"><span class="greet__g">Christ is risen!</span><span class="greet__r">Truly He is risen!</span></p>
+      <p class="greet__item" lang="de"><span class="greet__g">Christus ist auferstanden!</span><span class="greet__r">Er ist wahrhaftig auferstanden!</span></p>
+      <p class="greet__item" lang="ru"><span class="greet__g">Христос воскресе!</span><span class="greet__r">Воистину воскресе!</span></p>
+      <p class="greet__item" lang="el"><span class="greet__g">Χριστὸς ἀνέστη!</span><span class="greet__r">Ἀληθῶς ἀνέστη!</span></p>
+      <p class="greet__item" lang="lt"><span class="greet__g">Kristus prisikėlė!</span><span class="greet__r">Iš tikrųjų prisikėlė!</span></p>
+      <p class="greet__item" lang="uk"><span class="greet__g">Христос воскрес!</span><span class="greet__r">Воістину воскрес!</span></p>
+      <p class="greet__item" lang="be"><span class="greet__g">Хрыстос уваскрос!</span><span class="greet__r">Сапраўды ўваскрос!</span></p>
+      <p class="greet__item" lang="pl"><span class="greet__g">Chrystus zmartwychwstał!</span><span class="greet__r">Prawdziwie zmartwychwstał!</span></p>
+      <p class="greet__item" lang="sr"><span class="greet__g">Христос васкрсе!</span><span class="greet__r">Ваистину васкрсе!</span></p>
+      <p class="greet__item" lang="bg"><span class="greet__g">Христос воскресе!</span><span class="greet__r">Воистина воскресе!</span></p>
+      <p class="greet__item" lang="ro"><span class="greet__g">Hristos a înviat!</span><span class="greet__r">Adevărat a înviat!</span></p>
+      <p class="greet__item" lang="ka"><span class="greet__g">ქრისტე აღსდგა!</span><span class="greet__r">ჭეშმარიტად აღსდგა!</span></p>
+      <p class="greet__item" lang="ar" dir="rtl"><span class="greet__g">المسيح قام!</span><span class="greet__r">حقاً قام!</span></p>
+      <p class="greet__item" lang="la"><span class="greet__g">Christus resurrexit!</span><span class="greet__r">Resurrexit vere!</span></p>
+    </div>
+    <div class="greet__controls">
+      <button type="button" class="greet__toggle" data-greet-toggle data-label-pause="Pause language rotation" data-label-play="Resume language rotation" aria-label="Pause language rotation" hidden><svg class="icon icon--pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 5.5v13M15.5 5.5v13"/></svg><svg class="icon icon--play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg></button>
+      <div class="greet__chips" role="group" aria-label="Choose a language">
+        <button type="button" class="chip" data-greet-index="0" lang="en" aria-pressed="true">English</button>
+        <button type="button" class="chip" data-greet-index="1" lang="de" aria-pressed="false">Deutsch</button>
+        <button type="button" class="chip" data-greet-index="2" lang="ru" aria-pressed="false">Русский</button>
+        <button type="button" class="chip" data-greet-index="3" lang="el" aria-pressed="false">Ελληνικά</button>
+        <button type="button" class="chip" data-greet-index="4" lang="lt" aria-pressed="false">Lietuvių</button>
+        <button type="button" class="chip" data-greet-index="5" lang="uk" aria-pressed="false">Українська</button>
+        <button type="button" class="chip" data-greet-index="6" lang="be" aria-pressed="false">Беларуская</button>
+        <button type="button" class="chip" data-greet-index="7" lang="pl" aria-pressed="false">Polski</button>
+        <button type="button" class="chip" data-greet-index="8" lang="sr" aria-pressed="false">Српски</button>
+        <button type="button" class="chip" data-greet-index="9" lang="bg" aria-pressed="false">Български</button>
+        <button type="button" class="chip" data-greet-index="10" lang="ro" aria-pressed="false">Română</button>
+        <button type="button" class="chip" data-greet-index="11" lang="ka" aria-pressed="false">ქართული</button>
+        <button type="button" class="chip" data-greet-index="12" lang="ar" aria-pressed="false">العربية</button>
+        <button type="button" class="chip" data-greet-index="13" lang="la" aria-pressed="false">Latina</button>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section section--band" id="schedule" aria-labelledby="schedule-heading">
+  <div class="container">
+    <div data-region="schedule" data-mode="C"><div class="section-head"><h2 class="section-title" id="schedule-heading">Paschal services 2027</h2><p class="section-lead">Orthodox Church of the Nativity of Christ, Bukiškis</p></div><div class="notice" role="status"><h3 class="notice__title">Schedule to be confirmed</h3><p>The Paschal service schedule for 2027 has not been confirmed yet. We will publish it here as soon as it is approved. Please do not rely on previous years’ schedules.</p><p class="notice__contact">For questions, call <a href="tel:+37063693506">+370 636 93 506</a> or visit the parish website.</p></div><p class="schedule-more"><a href="https://bukiski-hram.net/raspisanie-bogosluzhenij" target="_blank" rel="noopener" class="link-arrow">Full-year parish schedule<span class="visually-hidden"> (opens in a new tab)</span></a></p></div>
+  </div>
+</section>
+<section data-region="cycle" data-mode="C" class="section cycle" aria-labelledby="cycle-heading"><div class="container"><div class="section-head"><h2 class="section-title" id="cycle-heading">The Paschal cycle 2027</h2><p class="section-lead">Days whose dates depend on Pascha each year.</p></div><ol class="cycle__track"><li class="cycle__item is-next"><time class="cycle__date" datetime="2027-03-15"><span class="cycle__day">15</span><span class="cycle__month">March</span></time><span class="cycle__name">Great Lent begins</span><span class="cycle__badge">next</span></li><li class="cycle__item is-future"><time class="cycle__date" datetime="2027-04-25"><span class="cycle__day">25</span><span class="cycle__month">April</span></time><span class="cycle__name">Entry of the Lord into Jerusalem</span></li><li class="cycle__item is-future is-pascha"><time class="cycle__date" datetime="2027-05-02"><span class="cycle__day">2</span><span class="cycle__month">May</span></time><span class="cycle__name">Pascha</span></li><li class="cycle__item is-future"><time class="cycle__date" datetime="2027-05-11"><span class="cycle__day">11</span><span class="cycle__month">May</span></time><span class="cycle__name">Radonitsa</span></li><li class="cycle__item is-future"><time class="cycle__date" datetime="2027-06-09"><span class="cycle__day">9</span><span class="cycle__month">June</span></time><span class="cycle__name">Apodosis of Pascha</span></li><li class="cycle__item is-future"><time class="cycle__date" datetime="2027-06-10"><span class="cycle__day">10</span><span class="cycle__month">June</span></time><span class="cycle__name">Ascension of the Lord</span></li><li class="cycle__item is-future"><time class="cycle__date" datetime="2027-06-20"><span class="cycle__day">20</span><span class="cycle__month">June</span></time><span class="cycle__name">Holy Trinity Day (Pentecost)</span></li></ol></div></section>
+<section class="section" aria-labelledby="troparion-heading">
+  <div class="container">
+    <figure class="pull">
+      <blockquote class="pull__text">Christ is risen from the dead,<br>trampling down death by death,<br>and upon those in the tombs<br>bestowing life.</blockquote>
+      <figcaption class="pull__source" id="troparion-heading">Paschal Troparion</figcaption>
     </figure>
   </div>
 </section>
 <section class="section" aria-labelledby="cards-heading">
   <div class="container">
-    <div class="section-header">
-      <span class="section-tag">The meaning of Pascha</span>
+    <div class="section-head">
       <h2 class="section-title" id="cards-heading">Why this feast matters</h2>
     </div>
-    <div class="pages-grid">
-      <div class="glass-card"><div class="glass-card__body"><span class="glass-card__icon" aria-hidden="true">✝️</span><h3 class="glass-card__title">The victory of life</h3><p class="glass-card__text">Pascha is not simply an ancient tradition. It proclaims that Christ has risen and that death no longer has the last word.</p></div></div>
-      <div class="glass-card"><div class="glass-card__body"><span class="glass-card__icon" aria-hidden="true">🕯️</span><h3 class="glass-card__title">An open invitation</h3><p class="glass-card__text">Whether you are Orthodox, a Christian of another tradition, or simply curious, you are welcome. Come with your questions and with an open heart.</p></div></div>
-      <div class="glass-card"><div class="glass-card__body"><span class="glass-card__icon" aria-hidden="true">⛪</span><h3 class="glass-card__title">The Orthodox Paschal service</h3><p class="glass-card__text">The night service includes the Midnight Office, the procession around the church, Paschal Matins and the Divine Liturgy.</p></div></div>
-    </div>
+    <ul class="facts">
+      <li class="fact"><h3 class="fact__title">The victory of life</h3><p>Pascha is not simply an ancient tradition. It proclaims that Christ has risen and that death no longer has the last word.</p></li>
+      <li class="fact"><h3 class="fact__title">An open invitation</h3><p>Whether you are Orthodox, a Christian of another tradition, or simply curious, you are welcome. Come with your questions and with an open heart.</p></li>
+      <li class="fact"><h3 class="fact__title">The Orthodox Paschal service</h3><p>The night service includes the Midnight Office, the procession around the church, Paschal Matins and the Divine Liturgy.</p></li>
+    </ul>
   </div>
 </section>
-<section class="section section--violet route" id="route" aria-labelledby="route-heading" data-region="route"><div class="container--narrow"><div class="section-header"><span class="section-tag">Directions</span><h2 class="section-title" id="route-heading">Church address</h2></div><div class="route-card"><p class="route-card__church">Orthodox Church of the Nativity of Christ, Bukiškis</p><address class="route-card__address" data-address>Sodų g. 8<br>LT-14180 Bukiškis<br>Avižienių sen., Vilniaus r. sav.<br>Lietuva</address><p class="route-card__place">Bukiškis, Vilnius District, Lithuania</p><div class="route-card__actions"><a class="btn btn--gold" href="https://www.google.com/maps/dir/?api=1&amp;destination=54.76091%2C25.207621" target="_blank" rel="noopener">Get directions<span class="visually-hidden"> (opens in a new tab)</span></a><a class="btn btn--outline" href="tel:+37063693506">Call: +370 636 93 506</a><button type="button" class="btn btn--ghost" data-copy-address="Sodų g. 8, Bukiškis, LT-14180, Avižienių sen., Vilniaus r. sav., Lietuva" data-copied="Address copied" data-copy-fail="Could not copy. Please select the address manually." hidden>Copy address</button></div><p class="route-card__note">Directions open in Google Maps using the church’s coordinates.</p><p class="route-card__status" data-copy-status role="status" aria-live="polite"></p></div></div></section>
-<section class="section cta-final" aria-labelledby="closing-heading">
-  <div class="container--narrow cta-final__inner">
-    <h2 class="cta-final__title" id="closing-heading">The church doors are open</h2>
-    <p class="cta-final__text">Everyone is welcome — those who have prayed since childhood and those taking their first step towards God.</p>
-    <div class="cta-final__actions">
-      <a href="https://bukiski-hram.net" target="_blank" rel="noopener" class="btn btn--gold">⛪ Parish website<span class="visually-hidden"> (opens in a new tab)</span></a>
+<section class="section route" id="route" aria-labelledby="route-heading" data-region="route"><div class="container"><div class="route__grid"><div class="route__intro"><h2 class="section-title" id="route-heading">Directions</h2><p class="section-lead">The church doors are open to everyone — to those who have prayed since childhood and to those coming for the first time.</p></div><div class="route-card"><p class="route-card__church">Orthodox Church of the Nativity of Christ, Bukiškis</p><address class="route-card__address" data-address>Sodų g. 8<br>LT-14180 Bukiškis<br>Avižienių sen., Vilniaus r. sav.<br>Lietuva</address><p class="route-card__place">Bukiškis, Vilnius District, Lithuania</p><div class="route-card__actions"><a class="btn btn--gold" href="https://www.google.com/maps/dir/?api=1&amp;destination=54.76091%2C25.207621" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg>Get directions<span class="visually-hidden"> (opens in a new tab)</span></a><a class="btn btn--outline" href="tel:+37063693506"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M6.6 3.5l2.6 3.6-1.7 2.3a12 12 0 0 0 7.1 7.1l2.3-1.7 3.6 2.6-1.5 2.6c-.4.6-1 .9-1.7.9C9.8 20.9 3.1 14.2 3.1 6.7c0-.7.3-1.3.9-1.7z"/></svg>+370 636 93 506</a><button type="button" class="btn btn--ghost" data-copy-address="Sodų g. 8, Bukiškis, LT-14180, Avižienių sen., Vilniaus r. sav., Lietuva" data-copied="Address copied" data-copy-fail="Could not copy. Please select the address manually." hidden><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><rect x="8.5" y="8.5" width="12" height="12" rx="2"/><path d="M15.5 8.5V5.5a2 2 0 0 0-2-2h-8a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h3"/></svg>Copy address</button></div><p class="route-card__note">Directions open in Google Maps using the church’s coordinates.</p><p class="route-card__status" data-copy-status role="status" aria-live="polite"></p></div></div></div></section>
+<section class="section closing" aria-labelledby="closing-heading">
+  <div class="container closing__inner">
+    <h2 class="closing__title" id="closing-heading">The church doors are open</h2>
+    <p class="closing__text">Everyone is welcome — those who have prayed since childhood and those taking their first step towards God.</p>
+    <div class="closing__actions">
+      <a href="https://bukiski-hram.net" target="_blank" rel="noopener" class="btn btn--gold">Parish website<span class="visually-hidden"> (opens in a new tab)</span></a>
       <a href="/ru/" class="btn btn--outline" hreflang="ru" lang="ru">Русская версия</a>
     </div>
   </div>
@@ -166,9 +208,9 @@
 <div class="footer-inner">
   <div class="footer-grid">
     <div>
-      <p class="footer-brand"><span class="footer-brand__cross" aria-hidden="true">☩</span> <span class="footer-brand__name">Pascha · pasha.lt</span></p>
+      <p class="footer-brand"><svg class="mark" viewBox="0 0 24 32" aria-hidden="true" focusable="false"><path d="M12 1.5v29M8.5 5.5h7M4.5 11h15M7.5 22.5l9-3"/></svg><span class="footer-brand__name">Pascha · pasha.lt</span></p>
       <p class="footer-desc">A website of the Orthodox parish of the Nativity of Christ in Bukiškis about the Resurrection of Christ.</p>
-      <a href="https://bukiski-hram.net" target="_blank" rel="noopener" class="footer-hram-link"><span aria-hidden="true">⛪</span> Parish website<span class="visually-hidden"> (opens in a new tab)</span></a>
+      <a href="https://bukiski-hram.net" target="_blank" rel="noopener" class="footer-hram-link">Parish website<span class="visually-hidden"> (opens in a new tab)</span></a>
     </div>
     <div>
       <h2 class="footer-col-title">Pages</h2>
@@ -200,7 +242,13 @@
     </div>
   </div>
 </div>
-<button type="button" class="scroll-top" aria-label="Back to top" title="Back to top">↑</button>
+<button type="button" class="scroll-top" aria-label="Back to top" title="Back to top"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>
+<nav class="quickbar" aria-label="Quick actions">
+  <a href="/en/#schedule"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg><span>Schedule</span></a>
+  <a href="#route"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg><span>Directions</span></a>
+  <a href="tel:+37063693506"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 3.5l2.6 3.6-1.7 2.3a12 12 0 0 0 7.1 7.1l2.3-1.7 3.6 2.6-1.5 2.6c-.4.6-1 .9-1.7.9C9.8 20.9 3.1 14.2 3.1 6.7c0-.7.3-1.3.9-1.7z"/></svg><span>Call</span></a>
+</nav>
+<p class="visually-hidden" data-live-status role="status" aria-live="polite"></p>
 </footer>
 <script src="../js/data/site-data.en.js" defer></script>
 <script src="../js/pascha-core.js" defer></script>

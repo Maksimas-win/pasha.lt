@@ -52,7 +52,9 @@ test('Контрольная дата 13.10.2026: режим C, следующа
   assert.equal(r.state.mode, 'C');
   assert.equal(iso(r.state.pascha), '2027-05-02');
   assert.equal(r.state.schedule.status, 'pending');
-  assert.match(r.hero, /2 мая 2027/);
+  assert.match(r.hero, /datetime="2027-05-02"/);
+  assert.match(r.hero, /panel__day">2<\/span> <span class="panel__month">мая/);
+  assert.match(r.ann, /2 мая 2027/);
   assert.match(r.sch, /Расписание уточняется/);
   assert.doesNotMatch(r.hero + r.sch + r.ann, /апреля 2026|11 апреля|12 апреля/);
   assert.equal(r.cd.includes('data-countdown-box'), false, 'в режиме C отсчёта нет');
@@ -94,7 +96,7 @@ test('Момент начала службы: отсчёт исчезает, р�
   assert.equal(start.state.mode, 'B');
   assert.equal(start.state.serviceInProgress, true);
   assert.equal(start.cd.includes('data-countdown-box'), false);
-  assert.match(start.hero, /Христос<br>Воскресе!/);
+  assert.match(start.hero, /Христос<br>воскресе!/);
   assert.match(start.hero, /уже идёт/);
 });
 
@@ -165,6 +167,18 @@ test('Все языки отрисовываются без пропущенны
       }
     }
   }
+});
+
+test('Пасхальный круг: даты от Пасхи, отметка ближайшего дня, переход к следующему году после Троицы', () => {
+  const c1 = C.getCycle(site, at('2026-10-13T12:00:00+03:00'));
+  assert.equal(c1.year, 2027);
+  assert.deepEqual(c1.items.map((i) => iso(i.date)), ['2027-03-15', '2027-04-25', '2027-05-02', '2027-05-11', '2027-06-09', '2027-06-10', '2027-06-20']);
+  assert.equal(c1.items[0].status, 'next');
+  const c2 = C.getCycle(site, at('2027-05-02T12:00:00+03:00'));
+  assert.equal(c2.items.find((i) => i.id === 'pascha').status, 'today');
+  assert.equal(c2.items.find((i) => i.id === 'palm').status, 'past');
+  assert.equal(C.getCycle(site, at('2027-06-20T12:00:00+03:00')).year, 2027);
+  assert.equal(C.getCycle(site, at('2027-06-21T00:30:00+03:00')).year, 2028);
 });
 
 test('Обедница нигде не названа литургией', () => {
