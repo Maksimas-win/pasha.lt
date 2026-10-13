@@ -1,0 +1,958 @@
+{
+  "_comment": "Подписи интерфейса и шаблоны текстов. {name} — подставляемые значения. Даты форматируются автоматически. Термины с пометкой в docs/content-sources.md требуют редакторского подтверждения.",
+  "ru": {
+    "meta": {
+      "siteName": "pasha.lt",
+      "brand": "Пасха · pasha.lt",
+      "homeTitle": "Православная Пасха — Светлое Христово Воскресение | pasha.lt",
+      "homeDescription": "Православная Пасха в храме Рождества Христова в Букишкисе (Вильнюсский район): дата праздника, расписание пасхальных богослужений, как добраться, просветительские материалы.",
+      "homeOgTitle": "Православная Пасха — Светлое Христово Воскресение",
+      "ogImageAlt": "Пасха — Светлое Христово Воскресение"
+    },
+    "ui": {
+      "skip": "Перейти к содержимому",
+      "mainNav": "Основная навигация",
+      "mobileNav": "Мобильная навигация",
+      "menuOpen": "Открыть меню",
+      "langNav": "Выбор языка",
+      "toTop": "Наверх",
+      "home": "Главная",
+      "homeAria": "pasha.lt — на главную",
+      "breadcrumb": "Навигационная цепочка",
+      "schedule": "Расписание",
+      "route": "Как добраться",
+      "churchSite": "Сайт храма",
+      "fullSchedule": "Расписание храма на весь год",
+      "notTranslatedNote": "Этот материал пока есть только на русском языке. Ссылки на другие языки ведут на их главные страницы.",
+      "notTranslatedAria": "{label}: главная страница (этот материал не переведён)",
+      "external": "(откроется в новой вкладке)"
+    },
+    "nav": [
+      {
+        "page": "home",
+        "label": "Главная"
+      },
+      {
+        "page": "smysl-pashi",
+        "label": "Смысл Пасхи"
+      },
+      {
+        "page": "put-hrista",
+        "label": "Путь Христа"
+      },
+      {
+        "page": "raspisanie",
+        "label": "Расписание"
+      },
+      {
+        "page": "traditsii",
+        "label": "Традиции"
+      },
+      {
+        "page": "vpervye",
+        "label": "Впервые в храме"
+      }
+    ],
+    "mobileNav": [
+      {
+        "page": "home",
+        "label": "Главная"
+      },
+      {
+        "page": "smysl-pashi",
+        "label": "Смысл Пасхи"
+      },
+      {
+        "page": "put-hrista",
+        "label": "Путь Христа"
+      },
+      {
+        "page": "yavleniya",
+        "label": "Явления Воскресшего"
+      },
+      {
+        "page": "osvyashchenie",
+        "label": "Почему освящаем пищу"
+      },
+      {
+        "page": "prorochestva",
+        "label": "Пророчества"
+      },
+      {
+        "page": "traditsii",
+        "label": "Традиции"
+      },
+      {
+        "page": "raspisanie",
+        "label": "Расписание богослужений"
+      },
+      {
+        "page": "vpervye",
+        "label": "Впервые в храме"
+      }
+    ],
+    "status": {
+      "feastTitle": "Светлое Христово<br>Воскресение",
+      "greetingTitle": "Христос<br>Воскресе!",
+      "greetingReply": "Воистину Воскресе!",
+      "eyebrowUpcoming": "Православная Пасха · {date}",
+      "eyebrowNext": "Следующая православная Пасха",
+      "eyebrowPaschal": "Пасхальные дни",
+      "serviceLabel": "Пасхальное богослужение",
+      "serviceLine": "{satDate}, начало в {time}",
+      "pendingLabel": "Расписание богослужений",
+      "pendingLine": "уточняется и будет опубликовано после утверждения приходом",
+      "inProgress": "Пасхальное богослужение уже идёт.",
+      "paschalLine": "Пасха празднуется до {date} — дня Отдания Пасхи. Всё это время мы приветствуем друг друга словами «Христос Воскресе!».",
+      "nextLine": "{date}",
+      "westernDiff": "Западные христиане празднуют Пасху {date}.",
+      "westernSame": "В {year} году православные и западные христиане празднуют Пасху в один день.",
+      "julianNote": "Православная Церковь определяет дату Пасхи по юлианскому календарю, поэтому она часто не совпадает с западной.",
+      "unsupported": "Дата следующей Пасхи пока не внесена на сайт. Уточните её в храме или на сайте прихода.",
+      "ctaSchedule": "Расписание",
+      "ctaRoute": "Как добраться",
+      "ctaMeaning": "О смысле Пасхи"
+    },
+    "announce": {
+      "confirmed": "<strong>Пасхальное богослужение</strong> — {satDate}, начало в <strong>{time}</strong> · {church}",
+      "pending": "<strong>Православная Пасха</strong> — {date} · расписание уточняется",
+      "paschal": "<strong>Христос Воскресе!</strong> Пасхальные дни — до {date}",
+      "next": "Следующая православная Пасха — <strong>{date}</strong>"
+    },
+    "countdown": {
+      "aria": "Обратный отсчёт",
+      "tagService": "До начала пасхального богослужения",
+      "tagFeast": "До дня Пасхи",
+      "title": "Осталось",
+      "targetService": "Начало богослужения: {date}, {time} (время Вильнюса)",
+      "targetFeast": "Пасха: {date}",
+      "days": "Дней",
+      "hours": "Часов",
+      "minutes": "Минут",
+      "seconds": "Секунд",
+      "reachedService": "Пасхальное богослужение началось.",
+      "reachedFeast": "Христос Воскресе!"
+    },
+    "schedule": {
+      "tag": "Расписание",
+      "title": "Пасхальные богослужения {year}",
+      "saturday": "Великая Суббота",
+      "night": "Пасхальная ночь",
+      "sunday": "Светлое Христово Воскресение",
+      "nightDate": "{satDate} — {sunDate}",
+      "then": "затем",
+      "after": "после",
+      "until": "до {time}",
+      "range": "{from}–{to}",
+      "confirmedNote": "Расписание утверждено приходом.",
+      "pendingTitle": "Расписание уточняется",
+      "pendingText": "Расписание пасхальных богослужений {year} года ещё не утверждено. Мы опубликуем его здесь сразу после подтверждения. Пожалуйста, не ориентируйтесь на расписание прошлых лет.",
+      "contact": "Вопросы можно задать по телефону {phone} или на сайте храма.",
+      "paschalTitle": "Пасхальные дни продолжаются",
+      "paschalText": "Расписание богослужений Светлой седмицы и последующих дней публикуется на сайте храма."
+    },
+    "types": {
+      "food_blessing": {
+        "name": "Освящение пасхальной пищи",
+        "note": "куличей, пасх и яиц"
+      },
+      "midnight_office": {
+        "name": "Полунощница",
+        "note": "с каноном Великой Субботы"
+      },
+      "procession": {
+        "name": "Крестный ход",
+        "note": "вокруг храма, со свечами"
+      },
+      "matins": {
+        "name": "Пасхальная утреня",
+        "note": "пасхальный канон, «Христос воскресе из мертвых»"
+      },
+      "liturgy": {
+        "name": "Божественная литургия",
+        "note": "Причащение Святых Христовых Таин"
+      },
+      "typika": {
+        "name": "Обедница",
+        "note": "краткая служба из псалмов и песнопений литургии, без совершения Евхаристии; для тех, кто не смог быть ночью"
+      }
+    },
+    "route": {
+      "tag": "Как добраться",
+      "title": "Адрес храма",
+      "place": "Букишкис (Bukiškis), Вильнюсский район, Литва",
+      "directions": "Проложить маршрут",
+      "call": "Позвонить",
+      "copy": "Скопировать адрес",
+      "copied": "Адрес скопирован",
+      "copyFail": "Не удалось скопировать. Выделите адрес вручную.",
+      "mapNote": "Маршрут откроется в Google Картах по координатам храма."
+    },
+    "footer": {
+      "desc": "Сайт прихода храма Рождества Христова в Букишкисе о Светлом Христовом Воскресении.",
+      "pagesTitle": "Материалы",
+      "churchTitle": "Храм",
+      "copyright": "© {year} pasha.lt · {church}"
+    },
+    "root": {
+      "intro": "Православная Пасха в храме Рождества Христова в Букишкисе",
+      "choose": "Выберите язык"
+    },
+    "pages": {
+      "smysl-pashi": {
+        "title": "Смысл Пасхи — победа жизни над смертью | pasha.lt",
+        "description": "Что такое Пасха? Почему Воскресение Христово — центр христианской веры. Простое и точное объяснение.",
+        "ogTitle": "Смысл Пасхи"
+      },
+      "put-hrista": {
+        "title": "Путь Христа к Воскресению | pasha.lt",
+        "description": "От Входа в Иерусалим до Воскресения: события Страстной седмицы по Евангелию.",
+        "ogTitle": "Путь Христа к Воскресению"
+      },
+      "yavleniya": {
+        "title": "Явления Воскресшего Христа | pasha.lt",
+        "description": "Мария Магдалина, жёны-мироносицы, ученики на пути в Эммаус, апостол Фома — явления Воскресшего Христа по Евангелию.",
+        "ogTitle": "Явления Воскресшего Христа"
+      },
+      "osvyashchenie": {
+        "title": "Почему мы освящаем пищу на Пасху | pasha.lt",
+        "description": "Кулич, пасха, яйца: что означает освящение пасхальной пищи и когда оно совершается в нашем храме.",
+        "ogTitle": "Почему мы освящаем пищу на Пасху"
+      },
+      "prorochestva": {
+        "title": "Пророчества о Воскресении Христа | pasha.lt",
+        "description": "Псалмы, пророки Исаия, Осия и Иона: ветхозаветные тексты, которые Церковь читает как пророчества о Страданиях и Воскресении Христа.",
+        "ogTitle": "Пророчества о Воскресении Христа"
+      },
+      "traditsii": {
+        "title": "Пасхальные традиции | pasha.lt",
+        "description": "Крестный ход, христосование, красные яйца, разговение, Светлая седмица — традиции православной Пасхи.",
+        "ogTitle": "Пасхальные традиции"
+      },
+      "raspisanie": {
+        "title": "Расписание пасхальных богослужений | pasha.lt",
+        "description": "Расписание пасхальных богослужений в храме Рождества Христова в Букишкисе (Вильнюсский район): освящение пищи, ночная служба, обедница. Адрес и маршрут.",
+        "ogTitle": "Расписание пасхальных богослужений"
+      },
+      "vpervye": {
+        "title": "Впервые в храме — пасхальная служба для новичков | pasha.lt",
+        "description": "Впервые на пасхальном богослужении? Как одеться, что происходит на службе, как себя вести — спокойно и без осуждения.",
+        "ogTitle": "Впервые в храме"
+      }
+    }
+  },
+  "lt": {
+    "meta": {
+      "siteName": "pasha.lt",
+      "brand": "Velykos · pasha.lt",
+      "homeTitle": "Stačiatikių Velykos — Šventasis Kristaus Prisikėlimas | pasha.lt",
+      "homeDescription": "Stačiatikių Velykos Bukiškio Kristaus Gimimo stačiatikių bažnyčioje (Vilniaus r.): šventės data, Velykų pamaldų tvarkaraštis, kaip atvykti.",
+      "homeOgTitle": "Stačiatikių Velykos — Kristaus Prisikėlimas",
+      "ogImageAlt": "Velykos — Kristaus Prisikėlimas"
+    },
+    "ui": {
+      "skip": "Pereiti prie turinio",
+      "mainNav": "Pagrindinė navigacija",
+      "mobileNav": "Mobilioji navigacija",
+      "menuOpen": "Atidaryti meniu",
+      "langNav": "Kalbos pasirinkimas",
+      "toTop": "Į viršų",
+      "home": "Pradžia",
+      "homeAria": "pasha.lt — į pradžią",
+      "breadcrumb": "Naršymo kelias",
+      "schedule": "Tvarkaraštis",
+      "route": "Kaip atvykti",
+      "churchSite": "Parapijos svetainė",
+      "fullSchedule": "Visų metų pamaldų tvarkaraštis",
+      "ruMaterials": "Daugiau medžiagos — rusų kalba",
+      "notTranslatedNote": "Ši medžiaga kol kas yra tik rusų kalba.",
+      "notTranslatedAria": "{label}: pagrindinis puslapis (ši medžiaga neišversta)",
+      "external": "(atsidarys naujame skirtuke)"
+    },
+    "status": {
+      "feastTitle": "Šventasis Kristaus<br>Prisikėlimas",
+      "greetingTitle": "Kristus<br>prisikėlė!",
+      "greetingReply": "Iš tikrųjų prisikėlė!",
+      "eyebrowUpcoming": "Stačiatikių Velykos · {date}",
+      "eyebrowNext": "Artimiausios stačiatikių Velykos",
+      "eyebrowPaschal": "Velykų laikotarpis",
+      "serviceLabel": "Velykų pamaldos",
+      "serviceLine": "{satDate}, pradžia {time}",
+      "pendingLabel": "Pamaldų tvarkaraštis",
+      "pendingLine": "dar tikslinamas ir bus paskelbtas, kai jį patvirtins parapija",
+      "inProgress": "Velykų pamaldos jau vyksta.",
+      "paschalLine": "Velykos švenčiamos iki {date} — Velykų šventės užbaigimo dienos. Visą šį laiką sveikinamės žodžiais „Kristus prisikėlė!“",
+      "nextLine": "{date}",
+      "westernDiff": "Vakarų krikščionys (katalikai ir protestantai) Velykas švenčia {date}.",
+      "westernSame": "{year} m. stačiatikiai ir Vakarų krikščionys Velykas švenčia tą pačią dieną.",
+      "julianNote": "Stačiatikių Bažnyčia Velykų datą apskaičiuoja pagal Julijaus kalendorių, todėl ji dažnai nesutampa su Vakarų Velykomis.",
+      "unsupported": "Kitų Velykų data svetainėje dar nenurodyta. Pasiteiraukite bažnyčioje arba parapijos svetainėje.",
+      "ctaSchedule": "Tvarkaraštis",
+      "ctaRoute": "Kaip atvykti",
+      "ctaMeaning": "Apie Velykas (rusų k.)"
+    },
+    "announce": {
+      "confirmed": "<strong>Velykų pamaldos</strong> — {satDate}, pradžia <strong>{time}</strong> · {church}",
+      "pending": "<strong>Stačiatikių Velykos</strong> — {date} · tvarkaraštis tikslinamas",
+      "paschal": "<strong>Kristus prisikėlė!</strong> Velykų laikotarpis — iki {date}",
+      "next": "Artimiausios stačiatikių Velykos — <strong>{date}</strong>"
+    },
+    "countdown": {
+      "aria": "Atgalinis laikmatis",
+      "tagService": "Iki Velykų pamaldų pradžios",
+      "tagFeast": "Iki Velykų dienos",
+      "title": "Liko",
+      "targetService": "Pamaldų pradžia: {date}, {time} (Vilniaus laiku)",
+      "targetFeast": "Velykos: {date}",
+      "days": "Dienų",
+      "hours": "Valandų",
+      "minutes": "Minučių",
+      "seconds": "Sekundžių",
+      "reachedService": "Velykų pamaldos prasidėjo.",
+      "reachedFeast": "Kristus prisikėlė!"
+    },
+    "schedule": {
+      "tag": "Tvarkaraštis",
+      "title": "Velykų pamaldos {year}",
+      "saturday": "Didysis šeštadienis",
+      "night": "Velyknaktis",
+      "sunday": "Šventasis Kristaus Prisikėlimas",
+      "nightDate": "{satDate} — {sunDate}",
+      "then": "toliau",
+      "after": "po to",
+      "until": "iki {time}",
+      "range": "{from}–{to}",
+      "confirmedNote": "Tvarkaraštį patvirtino parapija.",
+      "pendingTitle": "Tvarkaraštis tikslinamas",
+      "pendingText": "{year} m. Velykų pamaldų tvarkaraštis dar nepatvirtintas. Jį paskelbsime čia, kai tik jis bus patvirtintas. Prašome nesiremti ankstesnių metų tvarkaraščiu.",
+      "contact": "Klausimus galite užduoti telefonu {phone} arba parapijos svetainėje.",
+      "paschalTitle": "Velykų laikotarpis tęsiasi",
+      "paschalText": "Šviesiosios savaitės ir vėlesnių dienų pamaldų tvarkaraštis skelbiamas parapijos svetainėje."
+    },
+    "types": {
+      "food_blessing": {
+        "name": "Velykinių valgių šventinimas",
+        "note": "velykinių pyragų, varškės paschos ir margučių"
+      },
+      "midnight_office": {
+        "name": "Vidurnakčio pamaldos",
+        "note": "su Didžiojo šeštadienio kanonu"
+      },
+      "procession": {
+        "name": "Kryžiaus eisena",
+        "note": "aplink bažnyčią, su žvakėmis"
+      },
+      "matins": {
+        "name": "Velykų rytmetinė",
+        "note": "Velykų kanonas"
+      },
+      "liturgy": {
+        "name": "Dieviškoji liturgija",
+        "note": "Šventoji Komunija"
+      },
+      "typika": {
+        "name": "Obednica",
+        "note": "trumpos pamaldos iš psalmių ir liturgijos giesmių, be Eucharistijos; tiems, kurie negalėjo dalyvauti naktį"
+      }
+    },
+    "route": {
+      "tag": "Kaip atvykti",
+      "title": "Bažnyčios adresas",
+      "place": "Bukiškis, Vilniaus rajonas, Lietuva",
+      "directions": "Maršrutas",
+      "call": "Skambinti",
+      "copy": "Kopijuoti adresą",
+      "copied": "Adresas nukopijuotas",
+      "copyFail": "Nepavyko nukopijuoti. Pažymėkite adresą rankiniu būdu.",
+      "mapNote": "Maršrutas atsidarys „Google Maps“ pagal bažnyčios koordinates."
+    },
+    "footer": {
+      "desc": "Bukiškio Kristaus Gimimo stačiatikių parapijos svetainė apie Šventąjį Kristaus Prisikėlimą.",
+      "pagesTitle": "Puslapiai",
+      "churchTitle": "Bažnyčia",
+      "copyright": "© {year} pasha.lt · {church}"
+    },
+    "home": {
+      "troparionTag": "Velykų troparas",
+      "troparion": "Kristus prisikėlė iš numirusių,<br>mirtimi sutrypė mirtį<br>ir kapuose gulintiesiems<br>gyvenimą padovanojo.",
+      "closingTitle": "Bažnyčios durys atviros",
+      "closingText": "Laukiame visų — ir tų, kurie meldžiasi nuo vaikystės, ir tų, kurie į bažnyčią ateina pirmą kartą.",
+      "ruLink": "Русская версия"
+    }
+  },
+  "en": {
+    "meta": {
+      "siteName": "pasha.lt",
+      "brand": "Pascha · pasha.lt",
+      "homeTitle": "Orthodox Easter (Pascha) — The Resurrection of Christ | pasha.lt",
+      "homeDescription": "Orthodox Easter (Pascha) at the Orthodox Church of the Nativity of Christ in Bukiškis, Vilnius District, Lithuania: date of the feast, Paschal service schedule, directions.",
+      "homeOgTitle": "Orthodox Easter (Pascha) — The Resurrection of Christ",
+      "ogImageAlt": "Pascha — the Resurrection of Christ"
+    },
+    "ui": {
+      "skip": "Skip to content",
+      "mainNav": "Main navigation",
+      "mobileNav": "Mobile navigation",
+      "menuOpen": "Open menu",
+      "langNav": "Choose language",
+      "toTop": "Back to top",
+      "home": "Home",
+      "homeAria": "pasha.lt — home",
+      "breadcrumb": "Breadcrumb",
+      "schedule": "Schedule",
+      "route": "Directions",
+      "churchSite": "Parish website",
+      "fullSchedule": "Full-year parish schedule",
+      "ruMaterials": "More articles — in Russian",
+      "notTranslatedNote": "This article is currently available in Russian only.",
+      "notTranslatedAria": "{label}: home page (this article is not translated)",
+      "external": "(opens in a new tab)"
+    },
+    "status": {
+      "feastTitle": "The Resurrection<br>of Christ",
+      "greetingTitle": "Christ<br>is Risen!",
+      "greetingReply": "Truly He is Risen!",
+      "eyebrowUpcoming": "Orthodox Easter · {date}",
+      "eyebrowNext": "Next Orthodox Easter (Pascha)",
+      "eyebrowPaschal": "The Paschal season",
+      "serviceLabel": "Paschal services",
+      "serviceLine": "{satDate}, starting at {time}",
+      "pendingLabel": "Service schedule",
+      "pendingLine": "to be confirmed — it will be published once the parish approves it",
+      "inProgress": "The Paschal service is under way.",
+      "paschalLine": "Pascha is celebrated until {date}, the Apodosis (leave-taking) of Pascha. Throughout this time we greet one another with “Christ is Risen!”",
+      "nextLine": "{date}",
+      "westernDiff": "Western Christians celebrate Easter on {date}.",
+      "westernSame": "In {year}, Orthodox and Western Christians celebrate Easter on the same day.",
+      "julianNote": "The Orthodox Church calculates the date of Pascha using the Julian calendar, so it often differs from the Western date.",
+      "unsupported": "The date of the next Pascha has not yet been added to this site. Please ask at the church or check the parish website.",
+      "ctaSchedule": "Schedule",
+      "ctaRoute": "Directions",
+      "ctaMeaning": "About Pascha (in Russian)"
+    },
+    "announce": {
+      "confirmed": "<strong>Paschal services</strong> — {satDate}, starting at <strong>{time}</strong> · {church}",
+      "pending": "<strong>Orthodox Easter</strong> — {date} · schedule to be confirmed",
+      "paschal": "<strong>Christ is Risen!</strong> The Paschal season lasts until {date}",
+      "next": "Next Orthodox Easter — <strong>{date}</strong>"
+    },
+    "countdown": {
+      "aria": "Countdown",
+      "tagService": "Until the Paschal service begins",
+      "tagFeast": "Until Pascha",
+      "title": "Time remaining",
+      "targetService": "Service begins: {date}, {time} (Vilnius time)",
+      "targetFeast": "Pascha: {date}",
+      "days": "Days",
+      "hours": "Hours",
+      "minutes": "Minutes",
+      "seconds": "Seconds",
+      "reachedService": "The Paschal service has begun.",
+      "reachedFeast": "Christ is Risen!"
+    },
+    "schedule": {
+      "tag": "Schedule",
+      "title": "Paschal services {year}",
+      "saturday": "Holy Saturday",
+      "night": "Paschal night",
+      "sunday": "Pascha — the Resurrection of Christ",
+      "nightDate": "{satDate} — {sunDate}",
+      "then": "then",
+      "after": "after",
+      "until": "until {time}",
+      "range": "{from}–{to}",
+      "confirmedNote": "Schedule confirmed by the parish.",
+      "pendingTitle": "Schedule to be confirmed",
+      "pendingText": "The Paschal service schedule for {year} has not been confirmed yet. We will publish it here as soon as it is approved. Please do not rely on previous years’ schedules.",
+      "contact": "For questions, call {phone} or visit the parish website.",
+      "paschalTitle": "The Paschal season continues",
+      "paschalText": "The schedule for Bright Week and the following days is published on the parish website."
+    },
+    "types": {
+      "food_blessing": {
+        "name": "Blessing of Paschal food",
+        "note": "kulich (Easter bread), paskha (sweet cheese dish) and eggs"
+      },
+      "midnight_office": {
+        "name": "Midnight Office",
+        "note": "with the Canon of Holy Saturday"
+      },
+      "procession": {
+        "name": "Procession",
+        "note": "around the church, with candles"
+      },
+      "matins": {
+        "name": "Paschal Matins",
+        "note": "the Paschal Canon"
+      },
+      "liturgy": {
+        "name": "Divine Liturgy",
+        "note": "Holy Communion"
+      },
+      "typika": {
+        "name": "Typika (Obednitsa)",
+        "note": "a short service of psalms and hymns from the Liturgy, without the Eucharist; for those who could not attend at night"
+      }
+    },
+    "route": {
+      "tag": "Directions",
+      "title": "Church address",
+      "place": "Bukiškis, Vilnius District, Lithuania",
+      "directions": "Get directions",
+      "call": "Call",
+      "copy": "Copy address",
+      "copied": "Address copied",
+      "copyFail": "Could not copy. Please select the address manually.",
+      "mapNote": "Directions open in Google Maps using the church’s coordinates."
+    },
+    "footer": {
+      "desc": "A website of the Orthodox parish of the Nativity of Christ in Bukiškis about the Resurrection of Christ.",
+      "pagesTitle": "Pages",
+      "churchTitle": "Church",
+      "copyright": "© {year} pasha.lt · {church}"
+    },
+    "home": {
+      "troparionTag": "Paschal Troparion",
+      "troparion": "Christ is risen from the dead,<br>trampling down death by death,<br>and upon those in the tombs<br>bestowing life.",
+      "cardsTag": "The meaning of Pascha",
+      "cardsTitle": "Why this feast matters",
+      "cards": [
+        {
+          "icon": "✝️",
+          "title": "The victory of life",
+          "text": "Pascha is not simply an ancient tradition. It proclaims that Christ has risen and that death no longer has the last word."
+        },
+        {
+          "icon": "🕯️",
+          "title": "An open invitation",
+          "text": "Whether you are Orthodox, a Christian of another tradition, or simply curious, you are welcome. Come with your questions and with an open heart."
+        },
+        {
+          "icon": "⛪",
+          "title": "The Orthodox Paschal service",
+          "text": "The night service includes the Midnight Office, the procession around the church, Paschal Matins and the Divine Liturgy."
+        }
+      ],
+      "closingTitle": "The church doors are open",
+      "closingText": "Everyone is welcome — those who have prayed since childhood and those taking their first step towards God.",
+      "ruLink": "Русская версия"
+    }
+  },
+  "pl": {
+    "meta": {
+      "siteName": "pasha.lt",
+      "brand": "Pascha · pasha.lt",
+      "homeTitle": "Prawosławna Pascha (Wielkanoc) — Zmartwychwstanie Chrystusa | pasha.lt",
+      "homeDescription": "Prawosławna Pascha w cerkwi Narodzenia Pańskiego w Bukiszkach (Bukiškis, rejon wileński): data święta, porządek nabożeństw paschalnych, dojazd.",
+      "homeOgTitle": "Prawosławna Pascha — Zmartwychwstanie Chrystusa",
+      "ogImageAlt": "Pascha — Zmartwychwstanie Chrystusa"
+    },
+    "ui": {
+      "skip": "Przejdź do treści",
+      "mainNav": "Nawigacja główna",
+      "mobileNav": "Nawigacja mobilna",
+      "menuOpen": "Otwórz menu",
+      "langNav": "Wybór języka",
+      "toTop": "Do góry",
+      "home": "Strona główna",
+      "homeAria": "pasha.lt — strona główna",
+      "breadcrumb": "Ścieżka nawigacji",
+      "schedule": "Nabożeństwa",
+      "route": "Dojazd",
+      "churchSite": "Strona parafii",
+      "fullSchedule": "Całoroczny porządek nabożeństw",
+      "ruMaterials": "Więcej artykułów — po rosyjsku",
+      "notTranslatedNote": "Ten artykuł jest na razie dostępny tylko po rosyjsku.",
+      "notTranslatedAria": "{label}: strona główna (artykuł nie jest przetłumaczony)",
+      "external": "(otworzy się w nowej karcie)"
+    },
+    "status": {
+      "feastTitle": "Zmartwychwstanie<br>Chrystusa",
+      "greetingTitle": "Chrystus<br>Zmartwychwstał!",
+      "greetingReply": "Prawdziwie Zmartwychwstał!",
+      "eyebrowUpcoming": "Prawosławna Pascha · {date}",
+      "eyebrowNext": "Najbliższa prawosławna Pascha",
+      "eyebrowPaschal": "Okres paschalny",
+      "serviceLabel": "Nabożeństwo paschalne",
+      "serviceLine": "{satDate}, początek o {time}",
+      "pendingLabel": "Porządek nabożeństw",
+      "pendingLine": "jest jeszcze ustalany i zostanie opublikowany po zatwierdzeniu przez parafię",
+      "inProgress": "Nabożeństwo paschalne właśnie trwa.",
+      "paschalLine": "Paschę świętujemy do {date} — dnia oddania święta Paschy. Przez cały ten czas pozdrawiamy się słowami „Chrystus Zmartwychwstał!”",
+      "nextLine": "{date}",
+      "westernDiff": "Chrześcijanie zachodni obchodzą Wielkanoc {date}.",
+      "westernSame": "W {year} roku prawosławni i chrześcijanie zachodni obchodzą Wielkanoc tego samego dnia.",
+      "julianNote": "Cerkiew prawosławna wyznacza datę Paschy według kalendarza juliańskiego, dlatego często różni się ona od daty zachodniej.",
+      "unsupported": "Data następnej Paschy nie została jeszcze dodana do strony. Prosimy zapytać w cerkwi lub na stronie parafii.",
+      "ctaSchedule": "Nabożeństwa",
+      "ctaRoute": "Dojazd",
+      "ctaMeaning": "O Passze (po rosyjsku)"
+    },
+    "announce": {
+      "confirmed": "<strong>Nabożeństwo paschalne</strong> — {satDate}, początek o <strong>{time}</strong> · {church}",
+      "pending": "<strong>Prawosławna Pascha</strong> — {date} · porządek nabożeństw w przygotowaniu",
+      "paschal": "<strong>Chrystus Zmartwychwstał!</strong> Okres paschalny — do {date}",
+      "next": "Najbliższa prawosławna Pascha — <strong>{date}</strong>"
+    },
+    "countdown": {
+      "aria": "Odliczanie",
+      "tagService": "Do rozpoczęcia nabożeństwa paschalnego",
+      "tagFeast": "Do dnia Paschy",
+      "title": "Pozostało",
+      "targetService": "Początek nabożeństwa: {date}, {time} (czas wileński)",
+      "targetFeast": "Pascha: {date}",
+      "days": "Dni",
+      "hours": "Godzin",
+      "minutes": "Minut",
+      "seconds": "Sekund",
+      "reachedService": "Nabożeństwo paschalne się rozpoczęło.",
+      "reachedFeast": "Chrystus Zmartwychwstał!"
+    },
+    "schedule": {
+      "tag": "Nabożeństwa",
+      "title": "Nabożeństwa paschalne {year}",
+      "saturday": "Wielka Sobota",
+      "night": "Noc paschalna",
+      "sunday": "Zmartwychwstanie Chrystusa",
+      "nightDate": "{satDate} — {sunDate}",
+      "then": "następnie",
+      "after": "potem",
+      "until": "do {time}",
+      "range": "{from}–{to}",
+      "confirmedNote": "Porządek nabożeństw zatwierdzony przez parafię.",
+      "pendingTitle": "Porządek nabożeństw w przygotowaniu",
+      "pendingText": "Porządek nabożeństw paschalnych na rok {year} nie został jeszcze zatwierdzony. Opublikujemy go tutaj zaraz po zatwierdzeniu. Prosimy nie kierować się porządkiem z lat ubiegłych.",
+      "contact": "Pytania można zadać telefonicznie: {phone}, lub na stronie parafii.",
+      "paschalTitle": "Okres paschalny trwa",
+      "paschalText": "Porządek nabożeństw Tygodnia Paschalnego i kolejnych dni publikowany jest na stronie parafii."
+    },
+    "types": {
+      "food_blessing": {
+        "name": "Poświęcenie pokarmów paschalnych",
+        "note": "kulicza, paschy twarogowej i jajek"
+      },
+      "midnight_office": {
+        "name": "Połunosznica",
+        "note": "z kanonem Wielkiej Soboty"
+      },
+      "procession": {
+        "name": "Procesja",
+        "note": "wokół cerkwi, ze świecami"
+      },
+      "matins": {
+        "name": "Jutrznia paschalna",
+        "note": "kanon paschalny"
+      },
+      "liturgy": {
+        "name": "Boska Liturgia",
+        "note": "Komunia Święta"
+      },
+      "typika": {
+        "name": "Obiednica",
+        "note": "krótkie nabożeństwo z psalmów i śpiewów Liturgii, bez sprawowania Eucharystii; dla tych, którzy nie mogli przyjść w nocy"
+      }
+    },
+    "route": {
+      "tag": "Dojazd",
+      "title": "Adres cerkwi",
+      "place": "Bukiszki (Bukiškis), rejon wileński, Litwa",
+      "directions": "Wyznacz trasę",
+      "call": "Zadzwoń",
+      "copy": "Kopiuj adres",
+      "copied": "Adres skopiowany",
+      "copyFail": "Nie udało się skopiować. Zaznacz adres ręcznie.",
+      "mapNote": "Trasa otworzy się w Mapach Google według współrzędnych cerkwi."
+    },
+    "footer": {
+      "desc": "Strona prawosławnej parafii Narodzenia Pańskiego w Bukiszkach o Zmartwychwstaniu Chrystusa.",
+      "pagesTitle": "Strony",
+      "churchTitle": "Cerkiew",
+      "copyright": "© {year} pasha.lt · {church}"
+    },
+    "home": {
+      "troparionTag": "Troparion paschalny",
+      "troparion": "Chrystus zmartwychwstał z umarłych,<br>śmiercią podeptał śmierć<br>i będącym w grobach<br>życie darował.",
+      "closingTitle": "Drzwi cerkwi są otwarte",
+      "closingText": "Zapraszamy wszystkich — tych, którzy modlą się od dzieciństwa, i tych, którzy stawiają pierwszy krok ku Bogu.",
+      "ruLink": "Русская версия"
+    }
+  },
+  "uk": {
+    "meta": {
+      "siteName": "pasha.lt",
+      "brand": "Великдень · pasha.lt",
+      "homeTitle": "Православний Великдень — Світле Христове Воскресіння | pasha.lt",
+      "homeDescription": "Православний Великдень у храмі Різдва Христового в Букішках (Bukiškis, Вільнюський район): дата свята, розклад великодніх богослужінь, як дістатися.",
+      "homeOgTitle": "Православний Великдень — Світле Христове Воскресіння",
+      "ogImageAlt": "Великдень — Світле Христове Воскресіння"
+    },
+    "ui": {
+      "skip": "Перейти до змісту",
+      "mainNav": "Основна навігація",
+      "mobileNav": "Мобільна навігація",
+      "menuOpen": "Відкрити меню",
+      "langNav": "Вибір мови",
+      "toTop": "Нагору",
+      "home": "Головна",
+      "homeAria": "pasha.lt — на головну",
+      "breadcrumb": "Навігаційний ланцюжок",
+      "schedule": "Розклад",
+      "route": "Як дістатися",
+      "churchSite": "Сайт парафії",
+      "fullSchedule": "Розклад храму на весь рік",
+      "ruMaterials": "Більше матеріалів — російською",
+      "notTranslatedNote": "Цей матеріал поки що доступний лише російською.",
+      "notTranslatedAria": "{label}: головна сторінка (матеріал не перекладено)",
+      "external": "(відкриється в новій вкладці)"
+    },
+    "status": {
+      "feastTitle": "Світле Христове<br>Воскресіння",
+      "greetingTitle": "Христос<br>воскрес!",
+      "greetingReply": "Воістину воскрес!",
+      "eyebrowUpcoming": "Православний Великдень · {date}",
+      "eyebrowNext": "Наступний православний Великдень",
+      "eyebrowPaschal": "Великодній період",
+      "serviceLabel": "Великоднє богослужіння",
+      "serviceLine": "{satDate}, початок о {time}",
+      "pendingLabel": "Розклад богослужінь",
+      "pendingLine": "уточнюється і буде опублікований після затвердження парафією",
+      "inProgress": "Великоднє богослужіння вже триває.",
+      "paschalLine": "Великдень святкують до {date} — дня віддання Пасхи. Увесь цей час ми вітаємо одне одного словами «Христос воскрес!»",
+      "nextLine": "{date}",
+      "westernDiff": "Західні християни святкують Великдень {date}.",
+      "westernSame": "У {year} році православні та західні християни святкують Великдень в один день.",
+      "julianNote": "Православна Церква визначає дату Пасхи за юліанським календарем, тому вона часто не збігається із західною.",
+      "unsupported": "Дату наступного Великодня ще не внесено на сайт. Уточніть її в храмі або на сайті парафії.",
+      "ctaSchedule": "Розклад",
+      "ctaRoute": "Як дістатися",
+      "ctaMeaning": "Про Пасху (російською)"
+    },
+    "announce": {
+      "confirmed": "<strong>Великоднє богослужіння</strong> — {satDate}, початок о <strong>{time}</strong> · {church}",
+      "pending": "<strong>Православний Великдень</strong> — {date} · розклад уточнюється",
+      "paschal": "<strong>Христос воскрес!</strong> Великодній період — до {date}",
+      "next": "Наступний православний Великдень — <strong>{date}</strong>"
+    },
+    "countdown": {
+      "aria": "Зворотний відлік",
+      "tagService": "До початку великоднього богослужіння",
+      "tagFeast": "До дня Великодня",
+      "title": "Залишилося",
+      "targetService": "Початок богослужіння: {date}, {time} (за вільнюським часом)",
+      "targetFeast": "Великдень: {date}",
+      "days": "Днів",
+      "hours": "Годин",
+      "minutes": "Хвилин",
+      "seconds": "Секунд",
+      "reachedService": "Великоднє богослужіння почалося.",
+      "reachedFeast": "Христос воскрес!"
+    },
+    "schedule": {
+      "tag": "Розклад",
+      "title": "Великодні богослужіння {year}",
+      "saturday": "Велика субота",
+      "night": "Великодня ніч",
+      "sunday": "Світле Христове Воскресіння",
+      "nightDate": "{satDate} — {sunDate}",
+      "then": "потім",
+      "after": "після",
+      "until": "до {time}",
+      "range": "{from}–{to}",
+      "confirmedNote": "Розклад затверджено парафією.",
+      "pendingTitle": "Розклад уточнюється",
+      "pendingText": "Розклад великодніх богослужінь на {year} рік ще не затверджено. Ми опублікуємо його тут одразу після підтвердження. Будь ласка, не орієнтуйтеся на розклад минулих років.",
+      "contact": "Питання можна поставити за телефоном {phone} або на сайті парафії.",
+      "paschalTitle": "Великодній період триває",
+      "paschalText": "Розклад богослужінь Світлого тижня та наступних днів публікується на сайті парафії."
+    },
+    "types": {
+      "food_blessing": {
+        "name": "Освячення великодніх страв",
+        "note": "пасок (куличів), сирних пасок і яєць"
+      },
+      "midnight_office": {
+        "name": "Полунощниця",
+        "note": "з каноном Великої суботи"
+      },
+      "procession": {
+        "name": "Хресний хід",
+        "note": "довкола храму, зі свічками"
+      },
+      "matins": {
+        "name": "Пасхальна утреня",
+        "note": "пасхальний канон"
+      },
+      "liturgy": {
+        "name": "Божественна літургія",
+        "note": "Причастя Святих Христових Тайн"
+      },
+      "typika": {
+        "name": "Обідниця",
+        "note": "коротка служба з псалмів і співів літургії, без звершення Євхаристії; для тих, хто не зміг бути вночі"
+      }
+    },
+    "route": {
+      "tag": "Як дістатися",
+      "title": "Адреса храму",
+      "place": "Букішки (Bukiškis), Вільнюський район, Литва",
+      "directions": "Прокласти маршрут",
+      "call": "Зателефонувати",
+      "copy": "Скопіювати адресу",
+      "copied": "Адресу скопійовано",
+      "copyFail": "Не вдалося скопіювати. Виділіть адресу вручну.",
+      "mapNote": "Маршрут відкриється в Google Картах за координатами храму."
+    },
+    "footer": {
+      "desc": "Сайт православної парафії Різдва Христового в Букішках про Світле Христове Воскресіння.",
+      "pagesTitle": "Сторінки",
+      "churchTitle": "Храм",
+      "copyright": "© {year} pasha.lt · {church}"
+    },
+    "home": {
+      "troparionTag": "Великодній тропар",
+      "troparion": "Христос воскрес із мертвих,<br>смертю смерть подолав<br>і тим, що в гробах були,<br>життя дарував.",
+      "closingTitle": "Двері храму відчинені",
+      "closingText": "Ми раді кожному — і тим, хто молиться з дитинства, і тим, хто робить перший крок назустріч Богу.",
+      "ruLink": "Русская версия"
+    }
+  },
+  "de": {
+    "meta": {
+      "siteName": "pasha.lt",
+      "brand": "Ostern · pasha.lt",
+      "homeTitle": "Orthodoxes Osterfest (Pascha) — Die Auferstehung Christi | pasha.lt",
+      "homeDescription": "Orthodoxes Osterfest in der orthodoxen Kirche der Geburt Christi in Bukiškis (Bezirk Vilnius, Litauen): Datum des Festes, Ordnung der Ostergottesdienste, Anfahrt.",
+      "homeOgTitle": "Orthodoxes Osterfest — Die Auferstehung Christi",
+      "ogImageAlt": "Ostern — die Auferstehung Christi"
+    },
+    "ui": {
+      "skip": "Zum Inhalt springen",
+      "mainNav": "Hauptnavigation",
+      "mobileNav": "Mobile Navigation",
+      "menuOpen": "Menü öffnen",
+      "langNav": "Sprache wählen",
+      "toTop": "Nach oben",
+      "home": "Startseite",
+      "homeAria": "pasha.lt — Startseite",
+      "breadcrumb": "Navigationspfad",
+      "schedule": "Gottesdienste",
+      "route": "Anfahrt",
+      "churchSite": "Website der Gemeinde",
+      "fullSchedule": "Gottesdienstplan der Gemeinde",
+      "ruMaterials": "Weitere Beiträge — auf Russisch",
+      "notTranslatedNote": "Dieser Beitrag ist bisher nur auf Russisch verfügbar.",
+      "notTranslatedAria": "{label}: Startseite (Beitrag nicht übersetzt)",
+      "external": "(öffnet in neuem Tab)"
+    },
+    "status": {
+      "feastTitle": "Die Auferstehung<br>Christi",
+      "greetingTitle": "Christus ist<br>auferstanden!",
+      "greetingReply": "Er ist wahrhaftig auferstanden!",
+      "eyebrowUpcoming": "Orthodoxes Osterfest · {date}",
+      "eyebrowNext": "Nächstes orthodoxes Osterfest",
+      "eyebrowPaschal": "Die österliche Zeit",
+      "serviceLabel": "Ostergottesdienst",
+      "serviceLine": "{satDate}, Beginn um {time} Uhr",
+      "pendingLabel": "Gottesdienstordnung",
+      "pendingLine": "wird noch festgelegt und nach Bestätigung durch die Gemeinde veröffentlicht",
+      "inProgress": "Der Ostergottesdienst hat begonnen.",
+      "paschalLine": "Ostern wird bis zum {date} gefeiert, dem Abschluss (Apodosis) des Osterfestes. In dieser ganzen Zeit grüßen wir einander mit „Christus ist auferstanden!“",
+      "nextLine": "{date}",
+      "westernDiff": "Die westlichen Christen feiern Ostern am {date}.",
+      "westernSame": "{year} feiern orthodoxe und westliche Christen Ostern am selben Tag.",
+      "julianNote": "Die Orthodoxe Kirche berechnet das Osterdatum nach dem Julianischen Kalender; deshalb weicht es oft vom westlichen Datum ab.",
+      "unsupported": "Das Datum des nächsten Osterfestes ist auf dieser Website noch nicht eingetragen. Bitte fragen Sie in der Kirche oder auf der Website der Gemeinde nach.",
+      "ctaSchedule": "Gottesdienste",
+      "ctaRoute": "Anfahrt",
+      "ctaMeaning": "Über Ostern (auf Russisch)"
+    },
+    "announce": {
+      "confirmed": "<strong>Ostergottesdienst</strong> — {satDate}, Beginn um <strong>{time} Uhr</strong> · {church}",
+      "pending": "<strong>Orthodoxes Osterfest</strong> — {date} · Gottesdienstordnung folgt",
+      "paschal": "<strong>Christus ist auferstanden!</strong> Die österliche Zeit dauert bis zum {date}",
+      "next": "Nächstes orthodoxes Osterfest — <strong>{date}</strong>"
+    },
+    "countdown": {
+      "aria": "Countdown",
+      "tagService": "Bis zum Beginn des Ostergottesdienstes",
+      "tagFeast": "Bis zum Osterfest",
+      "title": "Es bleiben",
+      "targetService": "Gottesdienstbeginn: {date}, {time} Uhr (Ortszeit Vilnius)",
+      "targetFeast": "Ostern: {date}",
+      "days": "Tage",
+      "hours": "Stunden",
+      "minutes": "Minuten",
+      "seconds": "Sekunden",
+      "reachedService": "Der Ostergottesdienst hat begonnen.",
+      "reachedFeast": "Christus ist auferstanden!"
+    },
+    "schedule": {
+      "tag": "Gottesdienste",
+      "title": "Ostergottesdienste {year}",
+      "saturday": "Karsamstag",
+      "night": "Osternacht",
+      "sunday": "Die Auferstehung Christi",
+      "nightDate": "{satDate} – {sunDate}",
+      "then": "danach",
+      "after": "danach",
+      "until": "bis {time} Uhr",
+      "range": "{from}–{to} Uhr",
+      "confirmedNote": "Von der Gemeinde bestätigt.",
+      "pendingTitle": "Gottesdienstordnung folgt",
+      "pendingText": "Die Ordnung der Ostergottesdienste {year} ist noch nicht bestätigt. Wir veröffentlichen sie hier, sobald sie feststeht. Bitte verlassen Sie sich nicht auf die Zeiten früherer Jahre.",
+      "contact": "Bei Fragen erreichen Sie uns telefonisch unter {phone} oder über die Website der Gemeinde.",
+      "paschalTitle": "Die österliche Zeit dauert an",
+      "paschalText": "Die Gottesdienste der Lichten Woche und der folgenden Tage werden auf der Website der Gemeinde veröffentlicht."
+    },
+    "types": {
+      "food_blessing": {
+        "name": "Segnung der Osterspeisen",
+        "note": "Kulitsch (Osterbrot), Pascha (Quarkspeise) und Eier"
+      },
+      "midnight_office": {
+        "name": "Mitternachtsoffizium",
+        "note": "mit dem Kanon des Karsamstags"
+      },
+      "procession": {
+        "name": "Prozession",
+        "note": "um die Kirche, mit Kerzen"
+      },
+      "matins": {
+        "name": "Österlicher Orthros (Matutin)",
+        "note": "der Osterkanon"
+      },
+      "liturgy": {
+        "name": "Göttliche Liturgie",
+        "note": "Heilige Kommunion"
+      },
+      "typika": {
+        "name": "Typika (Obedniza)",
+        "note": "ein kurzer Gottesdienst aus Psalmen und Gesängen der Liturgie, ohne Feier der Eucharistie; für alle, die nachts nicht kommen konnten"
+      }
+    },
+    "route": {
+      "tag": "Anfahrt",
+      "title": "Adresse der Kirche",
+      "place": "Bukiškis, Bezirk Vilnius, Litauen",
+      "directions": "Route planen",
+      "call": "Anrufen",
+      "copy": "Adresse kopieren",
+      "copied": "Adresse kopiert",
+      "copyFail": "Kopieren nicht möglich. Bitte markieren Sie die Adresse von Hand.",
+      "mapNote": "Die Route öffnet sich in Google Maps anhand der Koordinaten der Kirche."
+    },
+    "footer": {
+      "desc": "Website der orthodoxen Gemeinde der Geburt Christi in Bukiškis über die Auferstehung Christi.",
+      "pagesTitle": "Seiten",
+      "churchTitle": "Kirche",
+      "copyright": "© {year} pasha.lt · {church}"
+    },
+    "home": {
+      "troparionTag": "Ostertroparion",
+      "troparion": "Christus ist auferstanden von den Toten,<br>hat durch seinen Tod den Tod besiegt<br>und denen in den Gräbern<br>das Leben geschenkt.",
+      "closingTitle": "Die Türen der Kirche stehen offen",
+      "closingText": "Alle sind willkommen — wer seit der Kindheit betet, und wer den ersten Schritt zu Gott wagt.",
+      "ruLink": "Русская версия"
+    }
+  }
+}

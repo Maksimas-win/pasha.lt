@@ -1,100 +1,48 @@
 /**
- * navigation.js — Mobile Menu & Active Link
- * Pasha.lt | Светлое Воскресение Христово
+ * navigation.js — мобильное меню.
+ * Шапка и подвал теперь встроены в HTML при сборке (tools/build.mjs),
+ * поэтому навигация и переключатель языков работают и без JavaScript;
+ * отметка текущей страницы и языка (aria-current) тоже проставляется при сборке.
  */
-
 (function () {
   'use strict';
 
-  function initNavigation() {
-    const hamburger   = document.querySelector('.hamburger');
-    const mobileMenu  = document.querySelector('.mobile-menu');
-    const navLinks    = document.querySelectorAll('.nav-links a, .mobile-menu a');
+  function init() {
+    var hamburger = document.querySelector('.hamburger');
+    var menu = document.querySelector('.mobile-menu');
+    if (!hamburger || !menu) return;
 
-    /* ── Hamburger toggle ── */
-    if (hamburger && mobileMenu) {
-      hamburger.addEventListener('click', () => {
-        const open = mobileMenu.classList.toggle('open');
-        hamburger.classList.toggle('open', open);
-        hamburger.setAttribute('aria-expanded', String(open));
-        document.body.style.overflow = open ? 'hidden' : '';
-      });
-
-      // Закрыть при клике на ссылку
-      mobileMenu.querySelectorAll('a').forEach(a => {
-        a.addEventListener('click', () => {
-          mobileMenu.classList.remove('open');
-          hamburger.classList.remove('open');
-          hamburger.setAttribute('aria-expanded', 'false');
-          document.body.style.overflow = '';
-        });
-      });
-
-      // Закрыть при клике вне меню
-      document.addEventListener('click', e => {
-        if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
-          mobileMenu.classList.remove('open');
-          hamburger.classList.remove('open');
-          hamburger.setAttribute('aria-expanded', 'false');
-          document.body.style.overflow = '';
-        }
-      });
+    function setOpen(open, returnFocus) {
+      menu.classList.toggle('open', open);
+      hamburger.classList.toggle('open', open);
+      hamburger.setAttribute('aria-expanded', String(open));
+      document.body.style.overflow = open ? 'hidden' : '';
+      if (open) {
+        var first = menu.querySelector('a');
+        if (first) first.focus();
+      } else if (returnFocus) {
+        hamburger.focus();
+      }
     }
 
-    /* ── Active link detection ── */
-    const currentPath = window.location.pathname;
-
-    navLinks.forEach(link => {
-      const href = link.getAttribute('href');
-      if (!href) return;
-
-      // Нормализуем путь для сравнения
-      const linkPath = new URL(href, window.location.href).pathname;
-
-      if (
-        linkPath === currentPath ||
-        (currentPath.endsWith('/index.html') && linkPath === currentPath.replace('/index.html', '/')) ||
-        (currentPath !== '/' && linkPath !== '/' && currentPath.startsWith(linkPath) && linkPath.length > 3)
-      ) {
-        link.classList.add('active');
-      }
+    hamburger.addEventListener('click', function () {
+      setOpen(!menu.classList.contains('open'), true);
     });
-
-    /* ── Language switcher: detect current lang ── */
-    const langLinks = document.querySelectorAll('.lang-switcher a, .footer-bottom__langs a, .mobile-lang a');
-    const pathParts = currentPath.split('/').filter(Boolean);
-    const currentLang = ['ru', 'lt', 'en', 'pl', 'ukr', 'de'].includes(pathParts[0])
-      ? pathParts[0] : 'ru';
-
-    langLinks.forEach(link => {
-      const href = link.getAttribute('href') || '';
-      const langMatch = href.match(/\/(ru|lt|en|pl|ukr|de)\//);
-      if (langMatch && langMatch[1] === currentLang) {
-        link.classList.add('active');
-      }
+    menu.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () { setOpen(false, false); });
     });
-
-    /* ── Keyboard navigation: close on Escape ── */
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape' && mobileMenu && mobileMenu.classList.contains('open')) {
-        mobileMenu.classList.remove('open');
-        hamburger && hamburger.classList.remove('open');
-        document.body.style.overflow = '';
-      }
+    document.addEventListener('click', function (e) {
+      if (menu.classList.contains('open') && !hamburger.contains(e.target) && !menu.contains(e.target)) setOpen(false, false);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && menu.classList.contains('open')) setOpen(false, true);
+    });
+    // При переходе на широкий экран меню закрывается
+    window.addEventListener('resize', function () {
+      if (window.innerWidth > 900 && menu.classList.contains('open')) setOpen(false, false);
     });
   }
 
-  // Предотвращаем двойную инициализацию
-  let initialized = false;
-  function initOnce() {
-    if (initialized) return;
-    initialized = true;
-    initNavigation();
-  }
-
-  // Инициализация после загрузки компонентов
-  document.addEventListener('components:ready', initOnce);
-  // Также — при стандартной загрузке
-  document.addEventListener('DOMContentLoaded', initOnce);
-
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
 })();

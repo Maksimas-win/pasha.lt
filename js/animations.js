@@ -10,6 +10,10 @@
   function initReveal() {
     const items = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
     if (!items.length) return;
+    if (reduceMotion || !('IntersectionObserver' in window)) {
+      items.forEach(el => el.classList.add('revealed'));
+      return;
+    }
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -26,9 +30,11 @@
     items.forEach(el => observer.observe(el));
   }
 
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   /* ── Parallax: hero layer on desktop ── */
   function initParallax() {
-    if (window.innerWidth < 900) return;
+    if (reduceMotion || window.innerWidth < 900) return;
 
     const layer = document.querySelector('.parallax-layer');
     if (!layer) return;
@@ -50,7 +56,7 @@
   /* ── Hero Particles: floating golden sparks ── */
   function initParticles() {
     const canvas = document.getElementById('hero-particles');
-    if (!canvas) return;
+    if (!canvas || reduceMotion) return;
 
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
@@ -137,74 +143,7 @@
     if (hero) heroObs.observe(hero);
   }
 
-  /* ── Countdown to Easter (11 April 2026, 23:30 local time) ── */
-  function initCountdown() {
-    const els = {
-      days:    document.querySelectorAll('[data-countdown="days"]'),
-      hours:   document.querySelectorAll('[data-countdown="hours"]'),
-      minutes: document.querySelectorAll('[data-countdown="minutes"]'),
-      seconds: document.querySelectorAll('[data-countdown="seconds"]')
-    };
-
-    const hasAny = Object.values(els).some(nl => nl.length > 0);
-    if (!hasAny) return;
-
-    const target = new Date('2026-04-11T23:30:00+03:00');
-
-    function pad(n) { return String(n).padStart(2, '0'); }
-
-    // Animate digit change with a quick scale pulse
-    function setDigit(el, value) {
-      if (el.textContent === value) return;
-      el.textContent = value;
-      el.style.transform = 'scale(1.15)';
-      el.style.transition = 'transform 0.3s cubic-bezier(.4,0,.2,1)';
-      setTimeout(() => { el.style.transform = 'scale(1)'; }, 300);
-    }
-
-    function update() {
-      const now  = new Date();
-      const diff = target - now;
-
-      if (diff <= 0) {
-        Object.values(els).forEach(nl => nl.forEach(el => el.textContent = '00'));
-        const msgEls = document.querySelectorAll('[data-countdown-msg]');
-        msgEls.forEach(el => {
-          el.textContent = 'Христос Воскресе!';
-          el.style.color = 'var(--gold)';
-          el.style.fontSize = '1.5rem';
-        });
-        return;
-      }
-
-      const d = pad(Math.floor(diff / 86400000));
-      const h = pad(Math.floor((diff % 86400000) / 3600000));
-      const m = pad(Math.floor((diff % 3600000) / 60000));
-      const s = pad(Math.floor((diff % 60000) / 1000));
-
-      els.days.forEach(el    => setDigit(el, d));
-      els.hours.forEach(el   => setDigit(el, h));
-      els.minutes.forEach(el => setDigit(el, m));
-      els.seconds.forEach(el => setDigit(el, s));
-    }
-
-    update();
-    const countdownTimer = setInterval(() => {
-      update();
-      const diff = target - new Date();
-      if (diff <= 0) clearInterval(countdownTimer);
-    }, 1000);
-  }
-
-  /* ── Show static schedule ── */
-  function initScheduleFetch() {
-    const container = document.getElementById('schedule-dynamic');
-    if (!container) return;
-
-    container.style.display = 'grid';
-    const loading = document.getElementById('schedule-loading');
-    if (loading) loading.remove();
-  }
+  /* Обратный отсчёт и расписание теперь в js/pascha-runtime.js (данные — data/site.json). */
 
   /* ── Scroll to top button ── */
   function initScrollTop() {
@@ -216,7 +155,9 @@
     }, { passive: true });
 
     btn.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+      const skip = document.querySelector('.skip-nav');
+      if (skip) skip.focus({ preventScroll: true });
     });
   }
 
@@ -236,8 +177,6 @@
     initReveal();
     initParallax();
     initParticles();
-    initCountdown();
-    initScheduleFetch();
     initScrollTop();
     initHeaderScroll();
   }
@@ -247,10 +186,5 @@
   } else {
     init();
   }
-
-  document.addEventListener('components:ready', () => {
-    initReveal();
-    initHeaderScroll();
-  });
 
 })();

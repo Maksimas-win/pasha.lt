@@ -1,0 +1,95 @@
+{
+  "_comment": "ЕДИНЫЙ ИСТОЧНИК ДАННЫХ pasha.lt. После любой правки: node tools/build.mjs. Подробно: docs/maintenance.md",
+
+  "siteUrl": "https://pasha.lt",
+  "timezone": "Europe/Vilnius",
+
+  "calendar": {
+    "_comment": "Дата Пасхи вычисляется по Юлианской пасхалии (+13 дней к григорианскому календарю). Алгоритм верен для 1900–2099; диапазон ниже — то, что сайт показывает. paschaOverrides — ручная поправка на конкретный год (формат ГГГГ-ММ-ДД), если когда-либо потребуется.",
+    "supportedYears": { "from": 2020, "to": 2099 },
+    "invitationStartDaysBefore": 48,
+    "otdanieDaysAfter": 38,
+    "paschaOverrides": {}
+  },
+
+  "church": {
+    "names": {
+      "ru": "Храм Рождества Христова в Букишкисе",
+      "lt": "Bukiškio Kristaus Gimimo stačiatikių bažnyčia",
+      "en": "Orthodox Church of the Nativity of Christ, Bukiškis",
+      "pl": "Prawosławna cerkiew Narodzenia Pańskiego w Bukiszkach",
+      "uk": "Храм Різдва Христового в Букішках",
+      "de": "Orthodoxe Kirche der Geburt Christi in Bukiškis"
+    },
+    "address": {
+      "street": "Sodų g. 8",
+      "locality": "Bukiškis",
+      "postalCode": "LT-14180",
+      "eldership": "Avižienių sen.",
+      "municipality": "Vilniaus r. sav.",
+      "country": "Lietuva",
+      "countryCode": "LT"
+    },
+    "phone": "+370 636 93 506",
+    "phoneE164": "+37063693506",
+    "geo": { "lat": 54.76091, "lng": 25.207621, "_source": "Координаты взяты из ссылки «Маршрут» на bukiski-hram.net (проверено 13.10.2026)" },
+    "website": "https://bukiski-hram.net",
+    "scheduleUrl": "https://bukiski-hram.net/raspisanie-bogosluzhenij",
+    "transit": {
+      "publish": false,
+      "_comment": "Не публикуется до подтверждения приходом. По bukiski-hram.net (13.10.2026): остановка Bukiškių st., 1-iosios Bukiškės; маршруты 57, 87, 110, 124, 127. Ночное сообщение не подтверждено."
+    }
+  },
+
+  "scheduleTemplates": {
+    "standard": {
+      "_comment": "day: 0 = день Пасхи (воскресенье), -1 = Великая Суббота. Время местное (Europe/Vilnius). Пункт без time идёт «затем», после предыдущего пункта той же группы.",
+      "items": [
+        { "group": "saturday", "type": "food_blessing", "day": -1, "time": "14:00", "until": "19:00" },
+        { "group": "night", "type": "midnight_office", "day": -1, "time": "23:30", "serviceStart": true },
+        { "group": "night", "type": "procession" },
+        { "group": "night", "type": "matins" },
+        { "group": "night", "type": "liturgy" },
+        { "group": "sunday", "type": "typika", "day": 0, "time": "09:00" },
+        { "group": "sunday", "type": "food_blessing" }
+      ]
+    }
+  },
+
+  "schedules": {
+    "_comment": "status: confirmed — расписание утверждено приходом и публикуется; pending — показывается «Расписание уточняется». Год без записи считается pending.",
+    "2026": {
+      "status": "confirmed",
+      "template": "standard",
+      "source": "Расписание, опубликованное приходом на pasha.lt в апреле 2026 г."
+    },
+    "2027": {
+      "status": "pending",
+      "template": "standard",
+      "source": ""
+    }
+  },
+
+  "languages": {
+    "_comment": "dir — папка на сайте; hreflang — код для поисковиков; locale — для Intl и og:locale.",
+    "ru": { "dir": "ru",  "hreflang": "ru", "locale": "ru-RU", "og": "ru_RU", "label": "Русский",    "short": "RU" },
+    "lt": { "dir": "lt",  "hreflang": "lt", "locale": "lt-LT", "og": "lt_LT", "label": "Lietuvių",   "short": "LT" },
+    "en": { "dir": "en",  "hreflang": "en", "locale": "en-GB", "og": "en_GB", "label": "English",    "short": "EN" },
+    "pl": { "dir": "pl",  "hreflang": "pl", "locale": "pl-PL", "og": "pl_PL", "label": "Polski",     "short": "PL" },
+    "uk": { "dir": "ukr", "hreflang": "uk", "locale": "uk-UA", "og": "uk_UA", "label": "Українська", "short": "UK" },
+    "de": { "dir": "de",  "hreflang": "de", "locale": "de-DE", "og": "de_DE", "label": "Deutsch",    "short": "DE" }
+  },
+
+  "pages": {
+    "_comment": "Матрица реально существующих страниц: id страницы → язык → файл. Нет ключа языка — перевода нет (переключатель ведёт на главную этого языка с пояснением). lastmod — дата последнего содержательного изменения.",
+    "home":         { "lastmod": "2026-10-13", "ru": "ru/index.html", "lt": "lt/index.html", "en": "en/index.html", "pl": "pl/index.html", "uk": "ukr/index.html", "de": "de/index.html" },
+    "smysl-pashi":  { "lastmod": "2026-10-13", "ru": "ru/smysl-pashi.html" },
+    "put-hrista":   { "lastmod": "2026-10-13", "ru": "ru/put-hrista.html" },
+    "yavleniya":    { "lastmod": "2026-10-13", "ru": "ru/yavleniya.html" },
+    "osvyashchenie":{ "lastmod": "2026-10-13", "ru": "ru/osvyashchenie.html" },
+    "prorochestva": { "lastmod": "2026-10-13", "ru": "ru/prorochestva.html" },
+    "traditsii":    { "lastmod": "2026-10-13", "ru": "ru/traditsii.html" },
+    "raspisanie":   { "lastmod": "2026-10-13", "ru": "ru/raspisanie.html" },
+    "vpervye":      { "lastmod": "2026-10-13", "ru": "ru/vpervye.html" }
+  }
+}
