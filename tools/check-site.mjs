@@ -59,15 +59,17 @@ for (const [f, s] of Object.entries(html)) {
     let target, hash = href.includes('#') ? href.split('#')[1] : '';
     if (href.startsWith('#')) target = f;
     else if (href.startsWith('/') || href.startsWith('https://pasha.lt')) target = fileForUrl(href);
-    else target = relative(ROOT, join(ROOT, dirname(f), href.split('#')[0])) || f;
+    else target = relative(ROOT, join(ROOT, dirname(f), href.split('#')[0].split('?')[0])) || f;
     if (target.endsWith('/') || target === '') target += 'index.html';
     if (!existsSync(join(ROOT, target))) { err(f, `битая ссылка ${href}`); continue; }
     if (hash && html[target] && !ids(html[target]).has(hash)) err(f, `нет якоря #${hash} на ${target}`);
   }
   for (const src of attr(s, /\ssrc="([^"]+)"/g)) {
     if (/^https?:/.test(src)) continue;
-    if (!existsSync(join(ROOT, dirname(f), src))) err(f, `нет файла ${src}`);
+    if (!existsSync(join(ROOT, dirname(f), src.split('?')[0]))) err(f, `нет файла ${src}`);
   }
+  // Стили и скрипты должны подключаться с меткой версии (иначе браузер может показать старый файл из кеша)
+  for (const u of [...attr(s, /<link rel="stylesheet" href="([^"]+)"/g), ...attr(s, /<script src="([^"]+)"/g)]) if (!/\?v=[0-9a-f]{8}$/.test(u)) err(f, `нет метки версии у ${u}`);
   // hreflang: взаимность
   const alts = [...s.matchAll(/<link rel="alternate" hreflang="([^"]+)" href="([^"]+)">/g)];
   for (const [, hl, url] of alts) {

@@ -13,6 +13,7 @@
  * Зависимостей нет (Node 18+).
  */
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { dirname, join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
@@ -37,6 +38,18 @@ const { esc, fmt } = C;
 const changed = [];
 
 /* ── утилиты ─────────────────────────────────────────────── */
+
+/** Метка версии файла (по содержимому): браузер сразу берёт новую версию стилей и скриптов. */
+const verCache = {};
+function ver(path) {
+  if (!(path in verCache)) {
+    const full = join(OUT, path);
+    const src = existsSync(full) ? full : join(ROOT, path);
+    verCache[path] = createHash('sha1').update(readFileSync(src)).digest('hex').slice(0, 8);
+  }
+  return verCache[path];
+}
+const asset = (rel, path) => `${rel}${path}?v=${ver(path)}`;
 
 const urlOf = (file) => '/' + file.replace(/index\.html$/, '');
 const absUrl = (file) => site.siteUrl + urlOf(file);
@@ -98,7 +111,7 @@ function headBlock(file, lang, id, title, description, opts = {}) {
 <link rel="manifest" href="${rel}manifest.json">
 <link rel="preload" href="${rel}fonts/spectral-light.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="${rel}fonts/manrope-var.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="${rel}css/style.css">
+<link rel="stylesheet" href="${asset(rel, 'css/style.css')}">
 <script>document.documentElement.classList.add('js')</script>`;
   if (opts.jsonld) h += `\n<script type="application/ld+json">\n${JSON.stringify(opts.jsonld, null, 2)}\n</script>`;
   return h;
@@ -327,7 +340,7 @@ function articleMeta(file, lang) {
 function scripts(file, lang) {
   const rel = relRoot(file);
   return ['js/data/site-data.' + lang + '.js', 'js/pascha-core.js', 'js/pascha-runtime.js', 'js/navigation.js', 'js/animations.js']
-    .map((s) => `<script src="${rel}${s}" defer></script>`).join('\n');
+    .map((s) => `<script src="${asset(rel, s)}" defer></script>`).join('\n');
 }
 
 /* ── страницы ────────────────────────────────────────────── */
@@ -460,7 +473,7 @@ ${LANGS.map((l) => `<link rel="alternate" hreflang="${site.languages[l].hreflang
 <meta property="og:image" content="${site.siteUrl}/images/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="${asset('', 'css/style.css')}">
 </head>
 <body class="root-page">
 <main id="main-content" class="root-choose">
@@ -513,6 +526,8 @@ function buildData() {
 
 /* ── запуск ──────────────────────────────────────────────── */
 
+// Сначала данные для браузера: их метки версий нужны страницам
+buildData();
 for (const [id, p] of Object.entries(PAGES)) {
   for (const l of LANGS) {
     if (!p[l]) continue;
@@ -522,7 +537,6 @@ for (const [id, p] of Object.entries(PAGES)) {
 }
 buildRoot();
 buildSitemap();
-buildData();
 
 const when = new Date(NOW).toISOString();
 console.log(`pasha.lt: сборка на ${when}; режим ${state.mode}${state.pascha ? `, Пасха ${C.iso(state.pascha)}, расписание: ${state.schedule.status}` : ''}`);
