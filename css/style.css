@@ -262,6 +262,7 @@ h1, h2, h3 { font-weight: 400; line-height: 1.15; overflow-wrap: break-word; hyp
 
 /* ── Расписание: три дня ─────────────────────────────────── */
 .days { list-style: none; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr) minmax(0, 1fr); gap: 16px; align-items: start; }
+.days--published { grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr)); }
 .day { border: 1px solid var(--line); border-radius: var(--r-m); background: var(--night); padding: 22px 22px 8px; }
 .day--main { border-color: var(--line-gold); background: linear-gradient(170deg, rgba(94, 26, 38, .5), var(--night) 60%); }
 .day__title { font-family: var(--serif); font-size: 1.45rem; color: var(--text); }

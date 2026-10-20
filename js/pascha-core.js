@@ -243,7 +243,7 @@
     var t = ctx.t.schedule;
     var upcoming = (ctx.state.schedule.events || []).filter(function (event) { return Date.parse(event.start) >= ctx.state.nowMs; });
     if (!upcoming.length) return '<div class="notice"><p>' + esc(t.publishedEnded) + '</p></div>';
-    return '<p class="section-lead">' + esc(t.publishedIntro) + '</p><ol class="days">' + upcoming.map(function (event) {
+    return '<p class="section-lead">' + esc(t.publishedIntro) + '</p><ol class="days days--published">' + upcoming.map(function (event) {
       var title = event.title[ctx.lang];
       var note = event.note && event.note[ctx.lang];
       return '<li class="day"><div class="day__head"><h3 class="day__title">' + esc(cap(dateWeekdayYear(parseIso(event.date), ctx.locale))) + '</h3></div>' +
