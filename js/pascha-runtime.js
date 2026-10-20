@@ -40,6 +40,7 @@
   /** Ключ состояния: при его смене блоки перерисовываются. */
   function keyOf(s) {
     return [s.mode, s.year, s.schedule ? s.schedule.status : '', s.serviceInProgress, s.scheduleRelevant,
+      (s.schedule && s.schedule.events || []).filter(function (event) { return Date.parse(event.start) >= s.nowMs; }).map(function (event) { return event.id; }).join(','),
       C.iso(C.localDate(s.nowMs, D.site.timezone))].join('|');
   }
 

@@ -106,7 +106,7 @@
       "serviceLabel": "Пасхальное богослужение",
       "serviceLine": "{satDate}, начало в {time}",
       "pendingLabel": "Расписание богослужений",
-      "pendingLine": "уточняется и будет опубликовано после утверждения приходом",
+      "pendingLine": "публикуется на сайте прихода; перед поездкой проверьте время служб",
       "inProgress": "Пасхальное богослужение уже идёт.",
       "paschalLine": "Пасха празднуется до {date} — дня Отдания Пасхи. Всё это время мы приветствуем друг друга словами «Христос воскресе!».",
       "nextLine": "{date}",
@@ -127,7 +127,8 @@
       "addCal": "Добавить в календарь",
       "icsFeast": "Православная Пасха",
       "icsService": "Пасхальное богослужение",
-      "panelAria": "Дата Пасхи и расписание"
+      "panelAria": "Дата Пасхи и расписание",
+      "publishedLine": "опубликовано в приходском календаре."
     },
     "announce": {
       "confirmed": "<strong>Пасхальное богослужение</strong> — {satDate}, начало в <strong>{time}</strong> · {church}",
@@ -162,10 +163,17 @@
       "range": "{from}–{to}",
       "confirmedNote": "Расписание утверждено приходом.",
       "pendingTitle": "Расписание уточняется",
-      "pendingText": "Расписание пасхальных богослужений {year} года ещё не утверждено. Мы опубликуем его здесь сразу после подтверждения. Пожалуйста, не ориентируйтесь на расписание прошлых лет.",
+      "pendingText": "Актуальное расписание пасхальных богослужений {year} года публикуется на сайте прихода. Перед поездкой проверьте время служб; не ориентируйтесь на расписание прошлых лет.",
       "contact": "Вопросы можно задать по телефону {phone} или на сайте храма.",
       "paschalTitle": "Пасхальные дни продолжаются",
-      "paschalText": "Расписание богослужений Светлой седмицы и последующих дней публикуется на сайте храма."
+      "paschalText": "Расписание богослужений Светлой седмицы и последующих дней публикуется на сайте храма.",
+      "publishedIntro": "Службы, опубликованные в приходском календаре. Время указано для Литвы.",
+      "publishedNote": "Время освящения пасхальной пищи уточняйте в объявлениях прихода.",
+      "publishedEnded": "Указанные пасхальные службы уже начались. Ближайшие богослужения смотрите на сайте прихода.",
+      "updatedLabel": "Календарь обновлён:",
+      "staleTitle": "Проверьте актуальное расписание",
+      "staleText": "Данные календаря давно не обновлялись. Перед поездкой проверьте время служб на сайте прихода или по телефону.",
+      "blessingText": "Время освящения пасхальной пищи смотрите в актуальных объявлениях прихода."
     },
     "types": {
       "food_blessing": {
@@ -328,7 +336,7 @@
       "serviceLabel": "Velykų pamaldos",
       "serviceLine": "{satDate}, pradžia {time}",
       "pendingLabel": "Pamaldų tvarkaraštis",
-      "pendingLine": "dar tikslinamas ir bus paskelbtas, kai jį patvirtins parapija",
+      "pendingLine": "skelbiamas parapijos svetainėje; prieš vykdami patikrinkite pamaldų laiką",
       "inProgress": "Velykų pamaldos jau vyksta.",
       "paschalLine": "Velykos švenčiamos iki {date} — Velykų šventės užbaigimo dienos. Visą šį laiką sveikinamės žodžiais „Kristus prisikėlė!“",
       "nextLine": "{date}",
@@ -349,7 +357,8 @@
       "addCal": "Įtraukti į kalendorių",
       "icsFeast": "Stačiatikių Velykos",
       "icsService": "Velykų pamaldos",
-      "panelAria": "Velykų data ir tvarkaraštis"
+      "panelAria": "Velykų data ir tvarkaraštis",
+      "publishedLine": "paskelbtas parapijos kalendoriuje."
     },
     "announce": {
       "confirmed": "<strong>Velykų pamaldos</strong> — {satDate}, pradžia <strong>{time}</strong> · {church}",
@@ -384,10 +393,17 @@
       "range": "{from}–{to}",
       "confirmedNote": "Tvarkaraštį patvirtino parapija.",
       "pendingTitle": "Tvarkaraštis tikslinamas",
-      "pendingText": "{year} m. Velykų pamaldų tvarkaraštis dar nepatvirtintas. Jį paskelbsime čia, kai tik jis bus patvirtintas. Prašome nesiremti ankstesnių metų tvarkaraščiu.",
+      "pendingText": "Naujausias {year} m. Velykų pamaldų tvarkaraštis skelbiamas parapijos svetainėje. Prieš vykdami patikrinkite laiką; nesiremkite ankstesnių metų tvarkaraščiu.",
       "contact": "Klausimus galite užduoti telefonu {phone} arba parapijos svetainėje.",
       "paschalTitle": "Velykų laikotarpis tęsiasi",
-      "paschalText": "Šviesiosios savaitės ir vėlesnių dienų pamaldų tvarkaraštis skelbiamas parapijos svetainėje."
+      "paschalText": "Šviesiosios savaitės ir vėlesnių dienų pamaldų tvarkaraštis skelbiamas parapijos svetainėje.",
+      "publishedIntro": "Parapijos kalendoriuje paskelbtos pamaldos. Laikas nurodytas Lietuvos laiku.",
+      "publishedNote": "Velykinių valgių šventinimo laiką pasitikrinkite parapijos skelbimuose.",
+      "publishedEnded": "Nurodytos Velykų pamaldos jau prasidėjo. Artimiausių pamaldų ieškokite parapijos svetainėje.",
+      "updatedLabel": "Kalendorius atnaujintas:",
+      "staleTitle": "Patikrinkite naujausią tvarkaraštį",
+      "staleText": "Kalendoriaus duomenys seniai neatnaujinti. Prieš vykdami patikrinkite pamaldų laiką parapijos svetainėje arba telefonu.",
+      "blessingText": "Velykinių valgių šventinimo laikas skelbiamas naujausiuose parapijos pranešimuose."
     },
     "types": {
       "food_blessing": {
@@ -507,7 +523,7 @@
       "serviceLabel": "Paschal services",
       "serviceLine": "{satDate}, starting at {time}",
       "pendingLabel": "Service schedule",
-      "pendingLine": "to be confirmed — it will be published once the parish approves it",
+      "pendingLine": "is published on the parish website; check service times before travelling",
       "inProgress": "The Paschal service is under way.",
       "paschalLine": "Pascha is celebrated until {date}, the Apodosis (leave-taking) of Pascha. Throughout this time we greet one another with “Christ is Risen!”",
       "nextLine": "{date}",
@@ -528,7 +544,8 @@
       "addCal": "Add to calendar",
       "icsFeast": "Orthodox Easter (Pascha)",
       "icsService": "Paschal service",
-      "panelAria": "Date of Pascha and schedule"
+      "panelAria": "Date of Pascha and schedule",
+      "publishedLine": "is published in the parish calendar."
     },
     "announce": {
       "confirmed": "<strong>Paschal services</strong> — {satDate}, starting at <strong>{time}</strong> · {church}",
@@ -563,10 +580,17 @@
       "range": "{from}–{to}",
       "confirmedNote": "Schedule confirmed by the parish.",
       "pendingTitle": "Schedule to be confirmed",
-      "pendingText": "The Paschal service schedule for {year} has not been confirmed yet. We will publish it here as soon as it is approved. Please do not rely on previous years’ schedules.",
+      "pendingText": "The current Paschal service schedule for {year} is published on the parish website. Check the times before travelling; please do not rely on previous years’ schedules.",
       "contact": "For questions, call {phone} or visit the parish website.",
       "paschalTitle": "The Paschal season continues",
-      "paschalText": "The schedule for Bright Week and the following days is published on the parish website."
+      "paschalText": "The schedule for Bright Week and the following days is published on the parish website.",
+      "publishedIntro": "Services published in the parish calendar. All times are local to Lithuania.",
+      "publishedNote": "Please check parish announcements for the blessing of Paschal food.",
+      "publishedEnded": "The listed Paschal services have already started. See the parish website for upcoming services.",
+      "updatedLabel": "Calendar updated:",
+      "staleTitle": "Please check the current schedule",
+      "staleText": "The calendar data has not been updated recently. Before travelling, check service times on the parish website or by phone.",
+      "blessingText": "Please see current parish announcements for the time of the blessing of Paschal food."
     },
     "types": {
       "food_blessing": {
@@ -705,7 +729,7 @@
       "serviceLabel": "Nabożeństwo paschalne",
       "serviceLine": "{satDate}, początek o {time}",
       "pendingLabel": "Porządek nabożeństw",
-      "pendingLine": "jest jeszcze ustalany i zostanie opublikowany po zatwierdzeniu przez parafię",
+      "pendingLine": "jest publikowany na stronie parafii; sprawdź godziny nabożeństw przed przyjazdem",
       "inProgress": "Nabożeństwo paschalne właśnie trwa.",
       "paschalLine": "Paschę świętujemy do {date} — dnia oddania święta Paschy. Przez cały ten czas pozdrawiamy się słowami „Chrystus Zmartwychwstał!”",
       "nextLine": "{date}",
@@ -726,7 +750,8 @@
       "addCal": "Dodaj do kalendarza",
       "icsFeast": "Prawosławna Pascha",
       "icsService": "Nabożeństwo paschalne",
-      "panelAria": "Data Paschy i porządek nabożeństw"
+      "panelAria": "Data Paschy i porządek nabożeństw",
+      "publishedLine": "jest opublikowany w kalendarzu parafialnym."
     },
     "announce": {
       "confirmed": "<strong>Nabożeństwo paschalne</strong> — {satDate}, początek o <strong>{time}</strong> · {church}",
@@ -761,10 +786,17 @@
       "range": "{from}–{to}",
       "confirmedNote": "Porządek nabożeństw zatwierdzony przez parafię.",
       "pendingTitle": "Porządek nabożeństw w przygotowaniu",
-      "pendingText": "Porządek nabożeństw paschalnych na rok {year} nie został jeszcze zatwierdzony. Opublikujemy go tutaj zaraz po zatwierdzeniu. Prosimy nie kierować się porządkiem z lat ubiegłych.",
+      "pendingText": "Aktualny porządek nabożeństw paschalnych na rok {year} jest publikowany na stronie parafii. Sprawdź godziny przed przyjazdem; nie kieruj się porządkiem z lat ubiegłych.",
       "contact": "Pytania można zadać telefonicznie: {phone}, lub na stronie parafii.",
       "paschalTitle": "Okres paschalny trwa",
-      "paschalText": "Porządek nabożeństw Tygodnia Paschalnego i kolejnych dni publikowany jest na stronie parafii."
+      "paschalText": "Porządek nabożeństw Tygodnia Paschalnego i kolejnych dni publikowany jest na stronie parafii.",
+      "publishedIntro": "Nabożeństwa opublikowane w kalendarzu parafialnym. Podano czas litewski.",
+      "publishedNote": "Godziny święcenia pokarmów paschalnych prosimy sprawdzić w ogłoszeniach parafialnych.",
+      "publishedEnded": "Wymienione nabożeństwa paschalne już się rozpoczęły. Najbliższe nabożeństwa znajdziesz na stronie parafii.",
+      "updatedLabel": "Kalendarz zaktualizowano:",
+      "staleTitle": "Sprawdź aktualny porządek nabożeństw",
+      "staleText": "Dane kalendarza nie były ostatnio aktualizowane. Przed przyjazdem sprawdź godziny nabożeństw na stronie parafii lub telefonicznie.",
+      "blessingText": "Godziny święcenia pokarmów paschalnych są podawane w aktualnych ogłoszeniach parafialnych."
     },
     "types": {
       "food_blessing": {
@@ -884,7 +916,7 @@
       "serviceLabel": "Великоднє богослужіння",
       "serviceLine": "{satDate}, початок о {time}",
       "pendingLabel": "Розклад богослужінь",
-      "pendingLine": "уточнюється і буде опублікований після затвердження парафією",
+      "pendingLine": "публікується на сайті парафії; перед поїздкою перевірте час богослужінь",
       "inProgress": "Великоднє богослужіння вже триває.",
       "paschalLine": "Великдень святкують до {date} — дня віддання Пасхи. Увесь цей час ми вітаємо одне одного словами «Христос воскрес!»",
       "nextLine": "{date}",
@@ -905,7 +937,8 @@
       "addCal": "Додати в календар",
       "icsFeast": "Православний Великдень",
       "icsService": "Великоднє богослужіння",
-      "panelAria": "Дата Великодня і розклад"
+      "panelAria": "Дата Великодня і розклад",
+      "publishedLine": "опублікований у парафіяльному календарі."
     },
     "announce": {
       "confirmed": "<strong>Великоднє богослужіння</strong> — {satDate}, початок о <strong>{time}</strong> · {church}",
@@ -940,10 +973,17 @@
       "range": "{from}–{to}",
       "confirmedNote": "Розклад затверджено парафією.",
       "pendingTitle": "Розклад уточнюється",
-      "pendingText": "Розклад великодніх богослужінь на {year} рік ще не затверджено. Ми опублікуємо його тут одразу після підтвердження. Будь ласка, не орієнтуйтеся на розклад минулих років.",
+      "pendingText": "Актуальний розклад великодніх богослужінь на {year} рік публікується на сайті парафії. Перед поїздкою перевірте час служб; не орієнтуйтеся на розклад минулих років.",
       "contact": "Питання можна поставити за телефоном {phone} або на сайті парафії.",
       "paschalTitle": "Великодній період триває",
-      "paschalText": "Розклад богослужінь Світлого тижня та наступних днів публікується на сайті парафії."
+      "paschalText": "Розклад богослужінь Світлого тижня та наступних днів публікується на сайті парафії.",
+      "publishedIntro": "Богослужіння, опубліковані в парафіяльному календарі. Час указано для Литви.",
+      "publishedNote": "Час освячення великодньої їжі уточнюйте в оголошеннях парафії.",
+      "publishedEnded": "Зазначені великодні богослужіння вже почалися. Найближчі богослужіння дивіться на сайті парафії.",
+      "updatedLabel": "Календар оновлено:",
+      "staleTitle": "Перевірте актуальний розклад",
+      "staleText": "Дані календаря давно не оновлювалися. Перед поїздкою перевірте час богослужінь на сайті парафії або телефоном.",
+      "blessingText": "Час освячення великодньої їжі дивіться в актуальних оголошеннях парафії."
     },
     "types": {
       "food_blessing": {
@@ -1063,7 +1103,7 @@
       "serviceLabel": "Ostergottesdienst",
       "serviceLine": "{satDate}, Beginn um {time} Uhr",
       "pendingLabel": "Gottesdienstordnung",
-      "pendingLine": "wird noch festgelegt und nach Bestätigung durch die Gemeinde veröffentlicht",
+      "pendingLine": "wird auf der Website der Gemeinde veröffentlicht; bitte die Zeiten vor der Anreise prüfen",
       "inProgress": "Der Ostergottesdienst hat begonnen.",
       "paschalLine": "Ostern wird bis zum {date} gefeiert, dem Abschluss (Apodosis) des Osterfestes. In dieser ganzen Zeit grüßen wir einander mit „Christus ist auferstanden!“",
       "nextLine": "{date}",
@@ -1084,7 +1124,8 @@
       "addCal": "Zum Kalender hinzufügen",
       "icsFeast": "Orthodoxes Osterfest",
       "icsService": "Ostergottesdienst",
-      "panelAria": "Osterdatum und Gottesdienste"
+      "panelAria": "Osterdatum und Gottesdienste",
+      "publishedLine": "ist im Gemeindekalender veröffentlicht."
     },
     "announce": {
       "confirmed": "<strong>Ostergottesdienst</strong> — {satDate}, Beginn um <strong>{time} Uhr</strong> · {church}",
@@ -1119,10 +1160,17 @@
       "range": "{from}–{to} Uhr",
       "confirmedNote": "Von der Gemeinde bestätigt.",
       "pendingTitle": "Gottesdienstordnung folgt",
-      "pendingText": "Die Ordnung der Ostergottesdienste {year} ist noch nicht bestätigt. Wir veröffentlichen sie hier, sobald sie feststeht. Bitte verlassen Sie sich nicht auf die Zeiten früherer Jahre.",
+      "pendingText": "Der aktuelle Plan der Ostergottesdienste {year} wird auf der Website der Gemeinde veröffentlicht. Prüfen Sie die Zeiten vor der Anreise; verlassen Sie sich nicht auf die Zeiten früherer Jahre.",
       "contact": "Bei Fragen erreichen Sie uns telefonisch unter {phone} oder über die Website der Gemeinde.",
       "paschalTitle": "Die österliche Zeit dauert an",
-      "paschalText": "Die Gottesdienste der Lichten Woche und der folgenden Tage werden auf der Website der Gemeinde veröffentlicht."
+      "paschalText": "Die Gottesdienste der Lichten Woche und der folgenden Tage werden auf der Website der Gemeinde veröffentlicht.",
+      "publishedIntro": "Im Gemeindekalender veröffentlichte Gottesdienste. Alle Zeiten gelten für Litauen.",
+      "publishedNote": "Die Zeiten der Osterspeisensegnung finden Sie in den Mitteilungen der Gemeinde.",
+      "publishedEnded": "Die aufgeführten Ostergottesdienste haben bereits begonnen. Die nächsten Gottesdienste finden Sie auf der Website der Gemeinde.",
+      "updatedLabel": "Kalender aktualisiert:",
+      "staleTitle": "Bitte den aktuellen Gottesdienstplan prüfen",
+      "staleText": "Die Kalenderdaten wurden seit längerer Zeit nicht aktualisiert. Prüfen Sie die Gottesdienstzeiten vor der Anreise auf der Website der Gemeinde oder telefonisch.",
+      "blessingText": "Die Zeiten der Osterspeisensegnung finden Sie in den aktuellen Mitteilungen der Gemeinde."
     },
     "types": {
       "food_blessing": {

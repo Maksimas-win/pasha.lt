@@ -14,9 +14,10 @@
  */
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { createHash } from 'node:crypto';
-import { dirname, join, relative } from 'node:path';
+import { dirname, join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
+import { scriptJSON } from './lib/script-json.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const require = createRequire(import.meta.url);
@@ -26,10 +27,12 @@ const args = process.argv.slice(2);
 const argVal = (k) => { const i = args.indexOf(k); return i >= 0 ? args[i + 1] : null; };
 const NOW = argVal('--now') ? Date.parse(argVal('--now')) : Date.now();
 const CHECK = args.includes('--check');
-const OUT = argVal('--out') ? join(process.cwd(), argVal('--out')) : ROOT;
+const OUT = argVal('--out') ? resolve(process.cwd(), argVal('--out')) : ROOT;
 if (Number.isNaN(NOW)) { console.error('Неверная дата в --now'); process.exit(1); }
 
 const site = JSON.parse(readFileSync(join(ROOT, 'data/site.json'), 'utf8'));
+const parishSnapshot = join(ROOT, 'data/parish-schedule.json');
+if (existsSync(parishSnapshot)) site.parishSchedule = JSON.parse(readFileSync(parishSnapshot, 'utf8'));
 const i18n = JSON.parse(readFileSync(join(ROOT, 'data/i18n.json'), 'utf8'));
 const LANGS = Object.keys(site.languages).filter((k) => !k.startsWith('_'));
 const PAGES = Object.fromEntries(Object.entries(site.pages).filter(([k]) => !k.startsWith('_')));
@@ -63,6 +66,13 @@ function ctxFor(lang, extra = {}) {
   return { site, lang, t: i18n[lang], locale: site.languages[lang].locale, state, scheduleHref: '#schedule', meaningHref: null, ...extra };
 }
 function write(file, content) {
+  if (file.endsWith('.html')) {
+    // Один и тот же HTML работает в корне pasha.lt и в папке проекта GitHub Pages.
+    // Абсолютные canonical/hreflang и внешние ссылки сохраняют свой адрес.
+    const prefix = relRoot(file);
+    content = content.replace(/(\s(?:href|src|data-(?:meaning|schedule)-href))="\/(?!\/)([^"]*)"/g,
+      (_, attr, target) => `${attr}="${prefix + target || './'}"`);
+  }
   const path = join(OUT, file);
   const old = existsSync(path) ? readFileSync(path, 'utf8') : null;
   if (old === content) return;
@@ -113,7 +123,7 @@ function headBlock(file, lang, id, title, description, opts = {}) {
 <link rel="preload" href="${rel}fonts/manrope-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="${asset(rel, 'css/style.css')}">
 <script>document.documentElement.classList.add('js')</script>`;
-  if (opts.jsonld) h += `\n<script type="application/ld+json">\n${JSON.stringify(opts.jsonld, null, 2)}\n</script>`;
+  if (opts.jsonld) h += `\n<script type="application/ld+json">\n${scriptJSON(opts.jsonld)}\n</script>`;
   return h;
 }
 
@@ -129,23 +139,24 @@ function churchLd(lang) {
     geo: { '@type': 'GeoCoordinates', latitude: c.geo.lat, longitude: c.geo.lng }
   };
 }
-/** Событие — только при утверждённом расписании и только если оно ещё впереди на момент сборки. Время окончания не указывается: оно не утверждено. */
+/** Только явно опубликованное или утверждённое начало службы. Время окончания не выдумывается. */
 function eventsLd(lang) {
-  if (state.mode === 'unsupported' || state.schedule.status !== 'confirmed' || !state.serviceStartMs || state.serviceStartMs <= NOW) return [];
+  if (state.mode === 'unsupported' || !['confirmed', 'published'].includes(state.schedule.status) || !state.serviceStartMs || state.serviceStartMs <= NOW) return [];
   const t = i18n[lang];
+  const publishedNight = (state.schedule.events || []).find(event => event.kind === 'paschal-night');
   const off = C.offsetAt(state.serviceStartMs, site.timezone) / 60000;
   const local = new Date(state.serviceStartMs + off * 60000).toISOString().slice(0, 16);
   const sign = off >= 0 ? '+' : '-';
   const tzStr = `${sign}${String(Math.floor(Math.abs(off) / 60)).padStart(2, '0')}:${String(Math.abs(off) % 60).padStart(2, '0')}`;
   return [{
     '@type': 'Event',
-    name: `${t.status.serviceLabel} ${state.year}`,
+    name: publishedNight ? publishedNight.title[lang] : `${t.status.serviceLabel} ${state.year}`,
     startDate: `${local}:00${tzStr}`,
     eventStatus: 'https://schema.org/EventScheduled',
     eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
     location: { '@id': `${site.siteUrl}/#church` },
     organizer: { '@id': `${site.siteUrl}/#church` },
-    description: ['midnight_office', 'procession', 'matins', 'liturgy'].map((k) => t.types[k].name).join(', ')
+    description: publishedNight ? publishedNight.title[lang] : ['midnight_office', 'procession', 'matins', 'liturgy'].map((k) => t.types[k].name).join(', ')
   }];
 }
 
@@ -252,7 +263,7 @@ function footer(file, lang, id) {
       <address class="footer-address">${esc(c.names[lang])}<br>${esc(a.street)}, ${esc(a.postalCode)} ${esc(a.locality)}<br>${esc(a.municipality)}, ${esc(a.country)}<br><a href="tel:${c.phoneE164}">${esc(c.phone)}</a></address>
       <ul class="footer-links">
         <li><a href="${c.website}" target="_blank" rel="noopener">bukiski-hram.net<span class="visually-hidden"> ${esc(t.ui.external)}</span></a></li>
-        <li><a href="${c.scheduleUrl}" target="_blank" rel="noopener">${esc(t.ui.fullSchedule)}<span class="visually-hidden"> ${esc(t.ui.external)}</span></a></li>
+        <li><a href="${c.scheduleUrls?.[lang] || c.scheduleUrl}" target="_blank" rel="noopener">${esc(t.ui.fullSchedule)}<span class="visually-hidden"> ${esc(t.ui.external)}</span></a></li>
       </ul>
     </div>
   </div>
@@ -516,7 +527,7 @@ function buildSitemap() {
 }
 
 function buildData() {
-  const pick = { timezone: site.timezone, calendar: site.calendar, church: site.church, scheduleTemplates: site.scheduleTemplates, schedules: site.schedules, languages: site.languages };
+  const pick = { timezone: site.timezone, calendar: site.calendar, church: site.church, scheduleTemplates: site.scheduleTemplates, schedules: site.schedules, parishSchedule: site.parishSchedule, languages: site.languages };
   for (const l of LANGS) {
     const t = i18n[l];
     const strings = { status: t.status, announce: t.announce, countdown: t.countdown, schedule: t.schedule, types: t.types, route: t.route, ui: t.ui, cycle: t.cycle };

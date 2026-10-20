@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "timezone": "Europe/Vilnius",
+  "sourceURL": "https://bukiski-hram.net/data/assistant-services.json",
+  "generatedAt": "2026-10-20T22:27:32.922Z",
+  "sourceUpdatedAt": "2026-10-20T22:27:32.922Z",
+  "events": [
+    {
+      "id": "svc-affb6ea909183b39d00b",
+      "date": "2027-05-01",
+      "feastDate": "2027-05-02",
+      "start": "2027-05-01T20:30:00.000Z",
+      "startTime": "23:30",
+      "title": {
+        "ru": "Пасхальная полунощница, крестный ход и ночное богослужение",
+        "lt": "Pusiaunakčio pamaldos, kryžiaus eisena ir Velykų nakties pamaldos",
+        "en": "Paschal Midnight Office, procession and night service",
+        "pl": "Paschalna połunoszcznica, procesja i nocne nabożeństwo",
+        "de": "Österliches Mitternachtsamt, Prozession und nächtlicher Gottesdienst",
+        "uk": "Великодня полуношниця, хресний хід і нічне богослужіння"
+      },
+      "subtitle": {
+        "ru": "Светлое Христово Воскресение. Пасха",
+        "lt": "Šviesusis Kristaus Prisikėlimas. Velykos",
+        "en": "Holy Resurrection of Christ. Pascha",
+        "pl": "Zmartwychwstanie Chrystusa. Pascha",
+        "de": "Heilige Auferstehung Christi. Pascha",
+        "uk": "Світле Христове Воскресіння. Пасха"
+      },
+      "kind": "paschal-night",
+      "source": "parish-calendar"
+    },
+    {
+      "id": "svc-c765f636b5603fe52e27",
+      "date": "2027-05-02",
+      "start": "2027-05-02T06:00:00.000Z",
+      "startTime": "09:00",
+      "title": {
+        "ru": "Обедница",
+        "lt": "Obednica",
+        "en": "Typica",
+        "pl": "Obiednica",
+        "de": "Typika",
+        "uk": "Обідниця"
+      },
+      "subtitle": {
+        "ru": "Светлое Христово Воскресение. Пасха",
+        "lt": "Šviesusis Kristaus Prisikėlimas. Velykos",
+        "en": "Holy Resurrection of Christ. Pascha",
+        "pl": "Zmartwychwstanie Chrystusa. Pascha",
+        "de": "Heilige Auferstehung Christi. Pascha",
+        "uk": "Світле Христове Воскресіння. Пасха"
+      },
+      "kind": "typica",
+      "source": "parish-calendar"
+    }
+  ]
+}
