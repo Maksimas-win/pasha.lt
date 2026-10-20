@@ -3,11 +3,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://pasha.lt/</loc>
-    <lastmod>2026-10-13</lastmod>
+    <lastmod>2026-10-20</lastmod>
   </url>
   <url>
     <loc>https://pasha.lt/ru/</loc>
-    <lastmod>2026-10-13</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <xhtml:link rel="alternate" hreflang="ru" href="https://pasha.lt/ru/"/>
     <xhtml:link rel="alternate" hreflang="lt" href="https://pasha.lt/lt/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://pasha.lt/en/"/>
@@ -18,7 +18,7 @@
   </url>
   <url>
     <loc>https://pasha.lt/lt/</loc>
-    <lastmod>2026-10-13</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <xhtml:link rel="alternate" hreflang="ru" href="https://pasha.lt/ru/"/>
     <xhtml:link rel="alternate" hreflang="lt" href="https://pasha.lt/lt/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://pasha.lt/en/"/>
@@ -29,7 +29,7 @@
   </url>
   <url>
     <loc>https://pasha.lt/en/</loc>
-    <lastmod>2026-10-13</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <xhtml:link rel="alternate" hreflang="ru" href="https://pasha.lt/ru/"/>
     <xhtml:link rel="alternate" hreflang="lt" href="https://pasha.lt/lt/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://pasha.lt/en/"/>
@@ -40,7 +40,7 @@
   </url>
   <url>
     <loc>https://pasha.lt/pl/</loc>
-    <lastmod>2026-10-13</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <xhtml:link rel="alternate" hreflang="ru" href="https://pasha.lt/ru/"/>
     <xhtml:link rel="alternate" hreflang="lt" href="https://pasha.lt/lt/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://pasha.lt/en/"/>
@@ -51,7 +51,7 @@
   </url>
   <url>
     <loc>https://pasha.lt/ukr/</loc>
-    <lastmod>2026-10-13</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <xhtml:link rel="alternate" hreflang="ru" href="https://pasha.lt/ru/"/>
     <xhtml:link rel="alternate" hreflang="lt" href="https://pasha.lt/lt/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://pasha.lt/en/"/>
@@ -62,7 +62,7 @@
   </url>
   <url>
     <loc>https://pasha.lt/de/</loc>
-    <lastmod>2026-10-13</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <xhtml:link rel="alternate" hreflang="ru" href="https://pasha.lt/ru/"/>
     <xhtml:link rel="alternate" hreflang="lt" href="https://pasha.lt/lt/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://pasha.lt/en/"/>
@@ -85,7 +85,7 @@
   </url>
   <url>
     <loc>https://pasha.lt/ru/osvyashchenie.html</loc>
-    <lastmod>2026-10-13</lastmod>
+    <lastmod>2026-10-20</lastmod>
   </url>
   <url>
     <loc>https://pasha.lt/ru/prorochestva.html</loc>
@@ -97,7 +97,7 @@
   </url>
   <url>
     <loc>https://pasha.lt/ru/raspisanie.html</loc>
-    <lastmod>2026-10-13</lastmod>
+    <lastmod>2026-10-20</lastmod>
   </url>
   <url>
     <loc>https://pasha.lt/ru/vpervye.html</loc>

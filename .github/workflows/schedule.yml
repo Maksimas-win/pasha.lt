@@ -1,0 +1,86 @@
+name: Refresh and verify the parish schedule
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    - cron: '23 4,10,16,22 * * *'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pasha-schedule-${{ github.event_name == 'pull_request' && github.ref || 'main' }}
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: '24'
+          package-manager-cache: false
+      - name: Verify calendar logic, imports and both site addresses
+        run: node --test tools/tests/*.test.mjs
+      - name: Build and check the static site
+        run: |
+          node tools/build.mjs
+          node tools/check-site.mjs
+
+  refresh:
+    if: github.event_name != 'pull_request'
+    needs: verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+      pages: write
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          ref: main
+          persist-credentials: true
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: '24'
+          package-manager-cache: false
+      - name: Import published parish events
+        id: import
+        continue-on-error: true
+        run: node tools/sync-schedule.mjs
+      - name: Build and verify before publication
+        run: |
+          test -s data/parish-schedule.json
+          node tools/build.mjs
+          node --test tools/tests/*.test.mjs
+          node tools/check-site.mjs
+          git diff --check
+      - name: Save verified files for the existing Hostinger Git deployment
+        run: |
+          git add data/parish-schedule.json js/data index.html ru lt en pl de ukr sitemap.xml
+          if ! git diff --cached --quiet; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit -m 'Refresh published parish schedule'
+            git push origin HEAD:main
+          fi
+      # GITHUB_TOKEN commits do not automatically trigger a branch-based Pages build.
+      # Request one explicitly without changing the existing Pages configuration.
+      - name: Refresh the existing GitHub Pages mirror
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: gh api --method POST "repos/$GH_REPO/pages/builds" --silent
+      - name: Report an upstream refresh failure after publishing the honest fallback
+        if: steps.import.outcome == 'failure'
+        run: |
+          echo '::error::Parish import failed. The previous source timestamp was retained; the published site hides service times once that snapshot is stale.'
+          exit 1

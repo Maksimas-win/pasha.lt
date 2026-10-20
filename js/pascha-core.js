@@ -87,10 +87,26 @@
 
   /* ── Расписание ───────────────────────────────────────────── */
 
-  function getSchedule(site, year, pascha) {
+  function getSchedule(site, year, pascha, nowMs) {
     var entry = (site.schedules && site.schedules[String(year)]) || null;
     var status = entry && entry.status === 'confirmed' ? 'confirmed' : 'pending';
     var res = { year: year, status: status, source: entry ? entry.source || '' : '', groups: [] };
+    // Published calendar entries are independent of the manually approved template.
+    // In particular, a night service does not confirm last year's food-blessing hours.
+    var snapshot = site.parishSchedule;
+    var events = snapshot && Array.isArray(snapshot.events) ? snapshot.events.filter(function (event) {
+      return event.feastDate === iso(pascha) || event.date === iso(pascha);
+    }) : [];
+    if (events.length) {
+      var updated = Date.parse(snapshot.sourceUpdatedAt);
+      var now = typeof nowMs === 'number' ? nowMs : Date.now();
+      var stale = !isFinite(updated) || now - updated > 48 * 3600000 || updated > now + 300000;
+      res.status = stale ? 'stale' : 'published';
+      res.source = snapshot.sourceURL;
+      res.sourceUpdatedAt = snapshot.sourceUpdatedAt;
+      res.events = stale ? [] : events.slice().sort(function (a, b) { return Date.parse(a.start) - Date.parse(b.start); });
+      return res;
+    }
     if (status !== 'confirmed') return res;
     var items = entry.items || (site.scheduleTemplates[entry.template || 'standard'] || {}).items || [];
     var exceptions = entry.exceptions || {};
@@ -128,9 +144,11 @@
     if (!info || year < range.from || year > range.to) {
       return { mode: 'unsupported', year: year, nowMs: nowMs };
     }
-    var sched = getSchedule(site, year, info.pascha);
+    var sched = getSchedule(site, year, info.pascha, nowMs);
     var serviceStartMs = null;
     sched.groups.forEach(function (g) { g.items.forEach(function (i) { if (i.serviceStart) serviceStartMs = i.startMs; }); });
+    var publishedNight = (sched.events || []).find(function (event) { return event.kind === 'paschal-night'; });
+    if (publishedNight) serviceStartMs = Date.parse(publishedNight.start);
     var countdown = serviceStartMs
       ? { kind: 'service', targetMs: serviceStartMs }
       : { kind: 'feast', targetMs: info.paschaStartMs };
@@ -202,8 +220,36 @@
   function serviceInfo(ctx) {
     var s = ctx.state, start = null;
     if (!s.schedule) return null;
+    var publishedNight = (s.schedule.events || []).find(function (event) { return event.kind === 'paschal-night'; });
+    if (publishedNight) return { date: parseIso(publishedNight.date), time: publishedNight.startTime, ms: Date.parse(publishedNight.start) };
     s.schedule.groups.forEach(function (g) { g.items.forEach(function (i) { if (i.serviceStart) start = { date: g.date, time: i.time, ms: i.startMs }; }); });
     return start;
+  }
+
+  function parishScheduleURL(ctx) {
+    return (ctx.site.church.scheduleUrls || {})[ctx.lang] || ctx.site.church.scheduleUrl;
+  }
+
+  function sourceStamp(ctx) {
+    var stamp = ctx.state.schedule.sourceUpdatedAt;
+    if (!stamp || !isFinite(Date.parse(stamp))) return '';
+    var label = new Intl.DateTimeFormat(ctx.locale, {
+      timeZone: ctx.site.timezone, day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit'
+    }).format(new Date(stamp));
+    return '<p class="schedule-status">' + esc(ctx.t.schedule.updatedLabel) + ' <time datetime="' + esc(stamp) + '">' + esc(label) + '</time></p>';
+  }
+
+  function publishedSchedule(ctx) {
+    var t = ctx.t.schedule;
+    var upcoming = (ctx.state.schedule.events || []).filter(function (event) { return Date.parse(event.start) >= ctx.state.nowMs; });
+    if (!upcoming.length) return '<div class="notice"><p>' + esc(t.publishedEnded) + '</p></div>';
+    return '<p class="section-lead">' + esc(t.publishedIntro) + '</p><ol class="days">' + upcoming.map(function (event) {
+      var title = event.title[ctx.lang];
+      var note = event.note && event.note[ctx.lang];
+      return '<li class="day"><div class="day__head"><h3 class="day__title">' + esc(cap(dateWeekdayYear(parseIso(event.date), ctx.locale))) + '</h3></div>' +
+        '<ol class="day__items"><li class="slot"><time class="slot__time" datetime="' + esc(event.start) + '">' + esc(event.startTime) + '</time>' +
+        '<p class="slot__text"><strong>' + esc(title) + '</strong>' + (note ? '<span>' + esc(note) + '</span>' : '') + '</p></li></ol></li>';
+    }).join('') + '</ol><p class="schedule-status">' + esc(t.publishedNote) + '</p>';
   }
 
   /** День и месяц отдельно, в нужном падеже: {day: '2', month: 'мая'}. */
@@ -270,6 +316,8 @@
         '<p class="hero__lead">' + esc(t.lead) + '</p>' + ctas(ctx.scheduleHref, t.ctaSchedule);
       var status = start
         ? '<p class="panel__status"><strong>' + esc(t.serviceLabel) + '</strong><br>' + esc(cap(fmt(t.serviceLine, { satDate: dateWeekday(start.date, L), time: start.time }))) + '</p>'
+        : s.schedule.status === 'published' ? '<p class="panel__status"><strong>' + esc(t.pendingLabel) + '</strong> ' + esc(t.publishedLine) + '</p>'
+        : s.schedule.status === 'stale' ? '<p class="panel__status"><strong>' + esc(ctx.t.schedule.staleTitle) + '</strong> ' + esc(ctx.t.schedule.staleText) + '</p>'
         : '<p class="panel__status"><strong>' + esc(t.pendingLabel) + '</strong> ' + esc(t.pendingLine) + '.</p>';
       var same = iso(s.western) === iso(s.pascha);
       var western = same ? fmt(t.westernSame, { year: s.year }) : fmt(t.westernDiff, { date: dateLong(s.western, L) });
@@ -368,12 +416,16 @@
     var contact = '<p class="notice__contact">' + fmt(esc(t.contact), {
       phone: '<a href="tel:' + site.church.phoneE164 + '">' + esc(site.church.phone) + '</a>'
     }) + '</p>';
-    var more = '<p class="schedule-more"><a href="' + site.church.scheduleUrl + '" target="_blank" rel="noopener" class="link-arrow">' +
+    var more = '<p class="schedule-more"><a href="' + esc(parishScheduleURL(ctx)) + '" target="_blank" rel="noopener" class="link-arrow">' +
       esc(ctx.t.ui.fullSchedule) + '<span class="visually-hidden"> ' + esc(ctx.t.ui.external) + '</span></a></p>';
     var h;
     if (s.mode === 'unsupported') return wrap('schedule', s, '');
     if (s.mode === 'B' && !s.scheduleRelevant) {
       h = head(t.paschalTitle) + '<div class="notice"><p>' + esc(t.paschalText) + '</p></div>' + more;
+    } else if (s.schedule.status === 'published') {
+      h = head(fmt(t.title, { year: s.year })) + publishedSchedule(ctx) + sourceStamp(ctx) + more;
+    } else if (s.schedule.status === 'stale') {
+      h = head(fmt(t.title, { year: s.year })) + '<div class="notice" role="status"><h3 class="notice__title">' + esc(t.staleTitle) + '</h3><p>' + esc(t.staleText) + '</p>' + contact + '</div>' + sourceStamp(ctx) + more;
     } else if (s.schedule.status === 'confirmed') {
       h = head(fmt(t.title, { year: s.year })) + scheduleDays(ctx) +
         '<p class="schedule-status"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>' + esc(t.confirmedNote) + '</p>' + more;
@@ -389,6 +441,10 @@
   function renderBlessing(ctx) {
     var s = ctx.state, L = ctx.locale, t = ctx.t;
     if (s.mode === 'unsupported') return wrap('blessing', s, '');
+    var parishLink = '<p><a href="' + esc(parishScheduleURL(ctx)) + '">' + esc(t.ui.fullSchedule) + '</a></p>';
+    if (s.schedule.status === 'published' || s.schedule.status === 'stale') {
+      return wrap('blessing', s, '<p>' + esc(t.schedule.blessingText) + '</p>' + parishLink);
+    }
     if (s.schedule.status !== 'confirmed' || (s.mode === 'B' && !s.scheduleRelevant)) {
       return wrap('blessing', s, '<p>' + esc(fmt(t.schedule.pendingText, { year: s.year })) + '</p>');
     }
@@ -405,7 +461,7 @@
         prev = it;
       });
     });
-    return wrap('blessing', s, '<ul class="plain-list">' + lines.join('') + '</ul>');
+    return wrap('blessing', s, lines.length ? '<ul class="plain-list">' + lines.join('') + '</ul>' : '<p>' + esc(t.schedule.blessingText) + '</p>' + parishLink);
   }
 
   function renderRoute(ctx) {

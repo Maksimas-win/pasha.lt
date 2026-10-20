@@ -1,5 +1,5 @@
 {
-  "_comment": "ЕДИНЫЙ ИСТОЧНИК ДАННЫХ pasha.lt. После любой правки: node tools/build.mjs. Подробно: docs/maintenance.md",
+  "_comment": "РЕДАКЦИОННЫЕ ДАННЫЕ pasha.lt. Приходские службы отдельно в data/parish-schedule.json. После правки: node tools/build.mjs. Подробно: docs/maintenance.md",
   "siteUrl": "https://pasha.lt",
   "timezone": "Europe/Vilnius",
   "calendar": {
@@ -68,10 +68,18 @@
       "_source": "Координаты взяты из ссылки «Маршрут» на bukiski-hram.net (проверено 13.10.2026)"
     },
     "website": "https://bukiski-hram.net",
-    "scheduleUrl": "https://bukiski-hram.net/raspisanie-bogosluzhenij",
+    "scheduleUrl": "https://bukiski-hram.net/ru/schedule.html",
     "transit": {
       "publish": false,
       "_comment": "Не публикуется до подтверждения приходом. По bukiski-hram.net (13.10.2026): остановка Bukiškių st., 1-iosios Bukiškės; маршруты 57, 87, 110, 124, 127. Ночное сообщение не подтверждено."
+    },
+    "scheduleUrls": {
+      "ru": "https://bukiski-hram.net/ru/schedule.html",
+      "lt": "https://bukiski-hram.net/lt/schedule.html",
+      "en": "https://bukiski-hram.net/en/schedule.html",
+      "pl": "https://bukiski-hram.net/pl/schedule.html",
+      "de": "https://bukiski-hram.net/de/schedule.html",
+      "uk": "https://bukiski-hram.net/uk/schedule.html"
     }
   },
   "scheduleTemplates": {
@@ -184,7 +192,7 @@
   "pages": {
     "_comment": "Матрица реально существующих страниц: id страницы → язык → файл. Нет ключа языка — перевода нет (переключатель ведёт на главную этого языка с пояснением). lastmod — дата последнего содержательного изменения.",
     "home": {
-      "lastmod": "2026-10-13",
+      "lastmod": "2026-10-20",
       "ru": "ru/index.html",
       "lt": "lt/index.html",
       "en": "en/index.html",
@@ -205,7 +213,7 @@
       "ru": "ru/yavleniya.html"
     },
     "osvyashchenie": {
-      "lastmod": "2026-10-13",
+      "lastmod": "2026-10-20",
       "ru": "ru/osvyashchenie.html"
     },
     "prorochestva": {
@@ -217,7 +225,7 @@
       "ru": "ru/traditsii.html"
     },
     "raspisanie": {
-      "lastmod": "2026-10-13",
+      "lastmod": "2026-10-20",
       "ru": "ru/raspisanie.html"
     },
     "vpervye": {
