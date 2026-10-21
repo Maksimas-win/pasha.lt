@@ -68,7 +68,7 @@ strong { font-weight: 650; }
 .skip-nav:focus { top: 12px; }
 
 .icon { width: 1.15em; height: 1.15em; flex: none; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
-.mark { width: 18px; height: 24px; fill: none; stroke: var(--gold); stroke-width: 1.7; stroke-linecap: round; }
+.mark { width: 18px; height: 27px; flex: none; color: var(--gold); fill: currentColor; stroke: none; }
 
 .container, .container--narrow { width: 100%; max-width: var(--wrap); margin: 0 auto; padding: 0 var(--gutter); }
 .container--narrow { max-width: 820px; }
@@ -461,8 +461,7 @@ h1, h2, h3 { font-weight: 400; line-height: 1.15; overflow-wrap: break-word; hyp
 /* ── Корневая страница выбора языка ─────────────────────── */
 .root-page { min-height: 100vh; display: flex; align-items: center; }
 .root-choose { max-width: var(--wrap); width: 100%; margin: 0 auto; padding: 56px var(--gutter); }
-.root-choose__cross { font-size: 0; }
-.root-choose__cross::before { content: ''; display: block; width: 26px; height: 34px; background: no-repeat center/contain url('../images/favicon.svg'); border-radius: 6px; }
+.root-choose__cross .mark { display: block; width: 26px; height: 39px; }
 .root-choose__title { font-family: var(--serif); font-weight: 300; font-size: clamp(2.6rem, 7vw, 4.6rem); margin: 18px 0 8px; }
 .root-choose__lead { color: var(--muted); margin-bottom: 36px; }
 .lang-cards { list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }

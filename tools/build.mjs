@@ -117,8 +117,8 @@ function headBlock(file, lang, id, title, description, opts = {}) {
   for (const l of langsHere) if (l !== lang) h += `\n<meta property="og:locale:alternate" content="${site.languages[l].og}">`;
   h += `
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="${rel}images/favicon.svg" type="image/svg+xml">
-<link rel="manifest" href="${rel}manifest.json">
+<link rel="icon" href="${asset(rel, FAVICON)}" type="image/svg+xml">
+<link rel="manifest" href="${asset(rel, 'manifest.json')}">
 <link rel="preload" href="${rel}fonts/spectral-light.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="${rel}fonts/manrope-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="${asset(rel, 'css/style.css')}">
@@ -162,8 +162,18 @@ function eventsLd(lang) {
 
 /* ── шапка и подвал ──────────────────────────────────────── */
 
-/** Восьмиконечный крест — знак сайта (линии, без заливки). */
-const CROSS = '<svg class="mark" viewBox="0 0 24 32" aria-hidden="true" focusable="false"><path d="M12 1.5v29M8.5 5.5h7M4.5 11h15M7.5 22.5l9-3"/></svg>';
+/** Утверждённый орнаментальный крест с одной перекладиной: один источник для всех знаков. */
+const CROSS_SOURCE = readFileSync(join(ROOT, 'images/cross.svg'), 'utf8').trim();
+const CROSS = CROSS_SOURCE.replace('<svg ', '<svg class="mark" aria-hidden="true" focusable="false" ');
+const FAVICON = 'images/favicon-cross-v2.svg';
+
+function buildIdentity() {
+  const shape = CROSS_SOURCE.replace(/^<svg\b[^>]*>\s*/, '').replace(/\s*<\/svg>$/, '');
+  const icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#150B0F"/><g fill="#DDB86C" transform="translate(16 8) scale(.5)">' + shape + '</g></svg>\n';
+  write(FAVICON, icon);
+  // Сохранённые старые адреса также получают правильную форму при обновлении кеша.
+  write('images/favicon.svg', icon);
+}
 const ICON = {
   calendar: '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>',
   pin: '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg>',
@@ -483,12 +493,12 @@ ${LANGS.map((l) => `<link rel="alternate" hreflang="${site.languages[l].hreflang
 <meta property="og:description" content="Храм Рождества Христова в Букишкисе · Bukiškio Kristaus Gimimo stačiatikių bažnyčia">
 <meta property="og:image" content="${site.siteUrl}/images/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="${asset('', FAVICON)}" type="image/svg+xml">
 <link rel="stylesheet" href="${asset('', 'css/style.css')}">
 </head>
 <body class="root-page">
 <main id="main-content" class="root-choose">
-  <div class="root-choose__cross" aria-hidden="true">☩</div>
+  <div class="root-choose__cross" aria-hidden="true">${CROSS}</div>
   <h1 class="root-choose__title">pasha.lt</h1>
   <p class="root-choose__lead" lang="ru">${esc(t.root.choose)} · <span lang="lt">Pasirinkite kalbą</span> · <span lang="en">Choose a language</span></p>
   <nav aria-label="Языки · Kalbos · Languages">
@@ -538,6 +548,7 @@ function buildData() {
 /* ── запуск ──────────────────────────────────────────────── */
 
 // Сначала данные для браузера: их метки версий нужны страницам
+buildIdentity();
 buildData();
 for (const [id, p] of Object.entries(PAGES)) {
   for (const l of LANGS) {
